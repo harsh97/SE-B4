@@ -9,11 +9,11 @@
 	3. Now access the postgres prompt by typing 
 		$ psql
 
-	4.Now create the database 'Transport_Mangement_System' by typing the following command
-		CREATE DATABASE Transport_Management_System ;
+	4.Now create the database 'transport_mangement_system' by typing the following command
+		CREATE DATABASE transport_management_system ;
 
 	5. Type the following command to connect/select this database
-		# \c Transport_Mangement_System
+		# \c transport_mangement_system
 	
 	6. To Create the relations locallcy in the system run the following queries in your system*/ 
 
