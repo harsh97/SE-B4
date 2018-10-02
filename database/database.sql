@@ -30,8 +30,7 @@
 	\i means execute commands from file
 
 		All commands will be executed
-
-	*/ 
+*/ 
 
 CREATE TABLE Stu_Per_Data (
 	USN VARCHAR PRIMARY KEY NOT NULL,
