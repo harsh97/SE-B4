@@ -9,13 +9,29 @@
 	3. Now access the postgres prompt by typing 
 		$ psql
 
-	4.Now create the database 'transport_mangement_system' by typing the following command
+	4.Now create the database 'Transport_Mangement_System' by typing the following command
 		CREATE DATABASE transport_management_system ;
 
 	5. Type the following command to connect/select this database
 		# \c transport_mangement_system
 	
-	6. To Create the relations locallcy in the system run the following queries in your system*/ 
+	6. To Create the relations locallcy in the system run the following queries in your system
+
+	-----------------------------------------------------------------------------------------
+	Instead of manually copy-pasting these sql statements you can execute this file your terminal
+	After creating the database(After step 4) open the terminal where this file is located
+
+	1. Connect to the relevant database eg.
+		sudo -u postgres psql transport_management_system
+	2.Then run
+		\i database.sql
+		\i insert_dummy_val.sql
+
+	\i means execute commands from file
+
+		All commands will be executed
+
+	*/ 
 
 CREATE TABLE Stu_Per_Data (
 	USN VARCHAR PRIMARY KEY NOT NULL,
