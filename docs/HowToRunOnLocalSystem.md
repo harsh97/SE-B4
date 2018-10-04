@@ -12,6 +12,12 @@ npm start
 ```
 and then open http://localhost:4001
 
+3. Run the web application in development(as live server) by the below command
+```
+npm run dev
+```
+and then open http://localhost:4001
+
 ### Note
 
 1. Download and install latest version of Node js 
