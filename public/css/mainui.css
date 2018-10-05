@@ -162,3 +162,19 @@
     left:-8px;
     padding:0px!important;
 }
+.accordion > .frame > .heading {
+    background-color:#20dde6;
+}
+.newnode li{
+    font-size:14px !important;
+}
+.cbutton{
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    padding: 15px;
+}  
