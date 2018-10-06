@@ -133,17 +133,18 @@
 .csidebar-header{
     height:150px;
     top:0px;
-    position:sticky;
+    display:block;
+    z-index:99;
 }
 .csidebar-title{
-    font-size:32px;
-    font-weight:100;
-    top:56px;
+    font-size:32px!important;
+    font-weight:300!important;
+    top:56px!important;
 }
 .csidebar-subtitle{
-    font-size:26px;
-    font-weight:200;
-    top:98px;
+    font-size:26px!important;
+    font-weight:100!important;
+    top:98px!important;
 }
 .cappbar{
     height:0px;
@@ -177,4 +178,28 @@
     border: none;
     outline: none;
     padding: 15px;
-}  
+}
+.footer-note{
+    height:60px!important;
+    display: block;
+    z-index: 99;
+    bottom: 0px;
+    border: 5px solid crimson;
+    outline: 5px solid darkslategray;
+}
+.footer-title{
+    line-height:25px!important;
+    font-size:13px;
+    padding-top:0px;
+    padding-left:18px!important;
+    padding-right:60%!important;
+}
+.footer-subtitle{
+    line-height:25px!important;
+    font-size:11px;
+    padding-top:0px;
+    padding-left:18px!important;
+}
+.sidebar-header~.sidebar-menu{
+    height: auto!important;
+}
