@@ -8,31 +8,27 @@
         <link rel="icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
         <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
         <link rel="stylesheet" href="/css/login.css">
-
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
-
+        
         <title>Login for Driver</title>
     </head>
     <body class="h-vh-100 bg-brandColor2">
         <form class="login-form bg-white p-6 mx-auto border bd-default win-shadow"
-            data-role="validator"
             action="javascript:"
-            data-clear-invalid="2000"
-            data-on-error-form="invalidForm"
-            data-on-validate-form="validateForm">
+            data-clear-invalid="2000">
             <span class="mif-vpn-lock mif-4x place-right" style="margin-top: -10px;"></span>
             <h2 class="text-light">Driver Login</h2>
             <hr class="thin mt-4 mb-4 bg-white">
             <div class="form-group">
-                <input type="text" data-role="input" data-prepend="<span class='mif-envelop'>" placeholder="Driver-ID">
+                <input type="text" data-role="input" data-prepend="<span class='mif-envelop'>" placeholder="Driver-ID" required>
             </div>
             <div class="form-group">
-                <input type="password" data-role="input" data-prepend="<span class='mif-key'>" placeholder="Enter your password..." data-validate="required minlength=6">
-            </div>
+                <input type="password" data-role="input" data-prepend="<span class='mif-key'>" placeholder="Enter your password..." data-validate="required minlength=6" required>
+                </div>
             <div class="form-group mt-10">
                 <button class="button">Login</button>
             </div>
         </form>       
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
     </body>
 </html>
