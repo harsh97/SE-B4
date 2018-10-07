@@ -3,7 +3,7 @@
  */
 $('#usn').change(() => {
     var data = { usn : $('#usn').val() };
-    var url = `${location.protocol}//${location.host}/existUSN`;
+    var url = "/existUSN"; 
     // Function which displays whether the USN is avaialable for use or not
     displayMessage = (res) => {
         $("#usn_response").show();
