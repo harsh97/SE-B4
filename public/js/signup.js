@@ -4,7 +4,6 @@ $('#usn').change(() => {
     var url = `${host}/existUSN`;
     success = (res) => {
         $("#usn_response").show();
-        console.log(res);
         if(res.exist){
             $("#usn_response").html("<span class='not-exists'>* USN Already in use.</span>");       
         }
