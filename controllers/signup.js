@@ -34,4 +34,12 @@ const doesUSNExist =  (usn) => {
     });
 }
 
-module.exports = doesUSNExist;
+const addStudent = (user) => {
+    var client = new pg.Client(config);
+    console.log(user);
+    return new Promise((resolve, reject) => {
+        resolve('exist');
+    });
+}
+
+module.exports = { doesUSNExist, addStudent };

@@ -1,6 +1,7 @@
 const express = require('express');
 const existUSNRouter = express.Router();
-const doesUSNExist = require('../controllers/signup');
+const registerRouter = express.Router();
+const { doesUSNExist, addStudent } = require('../controllers/signup');
 
 /**
  * Router to check if the USN has already registered.
@@ -15,4 +16,13 @@ existUSNRouter.get('/existUSN', (req, res, next) => {
     .catch(err => console.log(err));
 });
 
-module.exports = existUSNRouter;
+registerRouter.post('/registerStudent', (req, res, next) => {
+    console.log(req.query);
+    addStudent(req.query)
+    .then(exist => {
+        res.send().status(200);
+    })
+    .catch(err => console.log(err));
+});
+
+module.exports = { existUSNRouter, registerRouter };

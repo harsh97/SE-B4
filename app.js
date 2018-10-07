@@ -8,7 +8,8 @@ server.set('PORT', 4001);
 server.use(express.static('public'));
 server.use(express.static('views'));
 
-server.use('/', index);
+server.use('/', index.existUSNRouter);
+server.use('/', index.registerRouter);
 
 server.get('/', (req, res, next) => {
     res.sendFile('index.html',{root: './views'});
