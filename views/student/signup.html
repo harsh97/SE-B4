@@ -12,7 +12,7 @@
             crossorigin="" />
 
         <title>Signup Form</title>
-        </head>
+    </head>
     <body>
         <div class="blur-image-bg"></div>
         <div class="container signup-container">
@@ -31,8 +31,9 @@
                     <form data-role="validator" action="javascript:" class="p-1 mt-4 mb-4">
                         <input class="mt-2" type="text" data-role="input" data-prepend="Name<span class='fg-red required-mark'>*</span>:" data-validate="required">
                         <span class="invalid_feedback ani-horizontal">Required</span>
-                        <input class="mt-2" type="text" data-role="input" data-prepend="USN<span class='fg-red required-mark'>*</span>:" data-validate="required">
+                        <input class="mt-2" id="usn" type="text" data-role="input" data-prepend="USN<span class='fg-red required-mark'>*</span>:" data-validate="required">
                         <span class="invalid_feedback ani-horizontal">Required</span>
+                        <div id="usn_response" class="response"></div>
                         <input class="mt-2 mb-2" type="email" data-role="input" data-prepend="Email<span class='fg-red required-mark'>*</span>:" data-validate="email">
                         <span class="invalid_feedback ani-horizontal">Required</span>
                         <div class="mb-4">
@@ -70,5 +71,6 @@
         <script src="/js/staticMarker.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+        <script type="text/javascript" src="/js/signup.js"></script>
     </body>
 </html>

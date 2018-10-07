@@ -24,6 +24,18 @@
         height: 400px;
         z-index:100;
     }
+    /* Response */
+    .response{
+        padding: 6px;
+        display: none;
+    }
+    .not-exists{
+        color: green;
+    }
+    
+    .exists{
+        color: red;
+    }
     .required-mark{
         font-size:20px;
     }
