@@ -1,6 +1,11 @@
 var pg = require('pg');
 var config = require('../config');
 
+/**
+ * Checks the availability of the USN during registration
+ * @param {USN of the student} usn 
+ * @returns Promise<boolean> 
+ */
 const doesUSNExist =  (usn) => {
     var usnExist = false;
     var client = new pg.Client(config);
@@ -14,7 +19,7 @@ const doesUSNExist =  (usn) => {
                         });
                     })
                     .catch(err => {
-                        console.log("Fetch error: " + err);
+                        console.log(`Fetch error: ${err}`);
                         reject(err);
                     })
                     .then(() => {
@@ -23,7 +28,7 @@ const doesUSNExist =  (usn) => {
                     });
             })
             .catch(err => {
-                console.log("Connection error: " + err);
+                console.log(`Connection error: ${err}`);
                 reject(err);
             });
     });
