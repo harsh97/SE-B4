@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
             crossorigin="" />
 
-        <title>Registration Form</title>
+        <title>Signup Form</title>
         </head>
     <body>
         <div class="blur-image-bg"></div>
@@ -27,31 +27,32 @@
                 </div>
                 <div class="p-2 m-2 border-dashed bd-red border-size-1">
                     <h1>SignUp Form</h1>
+                    <label class="fg-red required-mark">* : Required</label>
                     <form data-role="validator" action="javascript:" class="p-1 mt-4 mb-4">
-                        <input class="mt-2" type="text" data-role="input" data-prepend="Name:" data-validate="required">
+                        <input class="mt-2" type="text" data-role="input" data-prepend="Name<span class='fg-red required-mark'>*</span>:" data-validate="required">
                         <span class="invalid_feedback ani-horizontal">Required</span>
-                        <input class="mt-2" id="usn" type="text" data-role="input" data-prepend="USN:" data-validate="required">
+                        <input class="mt-2" type="text" data-role="input" data-prepend="USN<span class='fg-red required-mark'>*</span>:" data-validate="required">
                         <span class="invalid_feedback ani-horizontal">Required</span>
                         <div id="usn_response" class="response"></div>
-                        <input class="mt-2 mb-2" type="email" data-role="input" data-prepend="Email:" data-validate="email">
+                        <input class="mt-2 mb-2" type="email" data-role="input" data-prepend="Email<span class='fg-red required-mark'>*</span>:" data-validate="email">
                         <span class="invalid_feedback ani-horizontal">Required</span>
                         <div class="mb-4">
-                            <label>Contact Number:</label>
+                            <label>Contact Number<span class="fg-red required-mark">*</span>:</label>
                             <input type="text" data-role="input" data-prepend="+91" data-validator="required number length=10">
                             <span class="invalid_feedback ani-horizontal">Required or Invalid value</span>
                         </div>
                         <div class="p-1 m-2">
                             <label>Parent/Guardian Details</label>
                             <div class="mb-2">
-                                <input class="mb-2" type="text" data-role="input" data-prepend="Name:" data-validate="required">
+                                <input class="mb-2" type="text" data-role="input" data-prepend="Name<span class='fg-red required-mark'>*</span>:" data-validate="required">
                                 <span class="invalid_feedback ani-horizontal">Required</span>
-                                <label>Contact Number:</label>
+                                <label>Contact Number<span class="fg-red required-mark">*</span>:</label>
                                 <input class="mb-2" type="text" data-role="input" data-prepend="+91" data-validator="required number length=10">
                                 <span class="invalid_feedback ani-horizontal">Required or Invalid value</span>
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label>Drop marker on your home location</label>
+                            <label>Drop marker on your home location<span class="fg-red required-mark">*</span></label>
                             <div data-role="panel">
                                 <div id="map"></div>
                                 <input class="mt-4 mb-4 ml-2 mr-2" type="text" data-role="input" id="end" data-prepend="Lat.,Long."
