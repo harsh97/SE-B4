@@ -13,7 +13,7 @@ $('#forgotPassword').on('click', function(){
                         alert('Sent successfully'+msg);
                     }
                     $.ajax({
-                        type: "POST",
+                        type: "GET",
                         url: url,
                         data: data,
                         success: success,
