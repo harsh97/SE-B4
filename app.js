@@ -1,15 +1,15 @@
 const express = require('express');
-var index = require('./routes/signup');
+var bodyParser = require('body-parser');
+var signUp = require('./routes/signup');
 const server = express();
 
 server.set('PORT', 4001);
-
 // Static pages which doesn't require Rest API calls. 
 server.use(express.static('public'));
 server.use(express.static('views'));
+server.use(bodyParser.urlencoded({ extended: true }));
 
-server.use('/', index.existUSNRouter);
-server.use('/', index.registerRouter);
+server.use('/', signUp);
 
 server.get('/', (req, res, next) => {
     res.sendFile('index.html',{root: './views'});

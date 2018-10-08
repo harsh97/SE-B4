@@ -1,6 +1,5 @@
 const express = require('express');
-const existUSNRouter = express.Router();
-const registerRouter = express.Router();
+const signUpRouter = express.Router();
 const { doesUSNExist, addStudent } = require('../controllers/signup');
 
 /**
@@ -8,7 +7,7 @@ const { doesUSNExist, addStudent } = require('../controllers/signup');
  * Request parameters => USN
  * Response parameters => { exist : true/false }
  */
-existUSNRouter.get('/existUSN', (req, res, next) => {
+signUpRouter.get('/existUSN', (req, res, next) => {
     doesUSNExist(req.query.usn)
     .then(exist => {
         res.send({'exist':exist}).status(200);
@@ -16,13 +15,18 @@ existUSNRouter.get('/existUSN', (req, res, next) => {
     .catch(err => console.log(err));
 });
 
-registerRouter.post('/registerStudent', (req, res, next) => {
-    console.log(req.query);
-    addStudent(req.query)
-    .then(exist => {
-        res.send().status(200);
+/**
+ * Router to add the student who register into the database
+ */
+signUpRouter.post('/registerStudent', (req, res, next) => {
+    addStudent(req.body)
+    .then(added => {
+        res.send({'inserted': added}).status(201);
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.send().status(503);
+    });
 });
 
-module.exports = { existUSNRouter, registerRouter };
+module.exports = signUpRouter ;

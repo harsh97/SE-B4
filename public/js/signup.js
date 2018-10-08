@@ -35,13 +35,26 @@ $("#regForm").click(function(){
     var parentName = $("#parentName").val();
     var parentContact = $("#parentContact").val();
     var [latitude, longitude] = $("#end").val().split(",");
-    var regData ={'name': name,'usn': usn, 'email': email, 'contact': contact, 'parentName': parentName, 'parentContact': parentContact};
-      $.ajax({
+    var regData ={'name': name,'usn': usn, 'email': email, 'contact': contact, 'parentName': parentName, 'parentContact': parentContact, 'latitude': latitude, 'longitude': longitude};
+    $.ajax({
         type : 'POST',
         url : '/registerStudent',
         data : regData,
         success: function(data){
-            $("#mainDiv").html(data);
+            Metro.dialog.create({
+                title: "Sign Up",
+                content: "<div>You have successfully registered!</div>",
+                actions: [
+                    {
+                        caption: "Okay",
+                        cls: "js-dialog-close alert",
+                        onclick: function(){
+                            window.location = `${location.protocol}//${location.host}/student/login.html`;
+                        }
+                    }
+                ]
+            });
+            
         }
-      });
+    });
   });
