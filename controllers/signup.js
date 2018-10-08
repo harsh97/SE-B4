@@ -1,5 +1,5 @@
-var pg = require('pg');
-var config = require('../config');
+const pg = require('pg');
+const config = require('../config');
 
 /**
  * Checks the availability of the USN during registration
@@ -8,11 +8,11 @@ var config = require('../config');
  */
 const doesUSNExist =  (usn) => {
     var usnExist = false;
-    var client = new pg.Client(config);
+    const client = new pg.Client(config);
     return new Promise((resolve, reject) => {
         client.connect()
             .then(() => {
-                var query = client.query(`SELECT name FROM stu_per_data WHERE usn='${usn}';`)
+                client.query(`SELECT name FROM stu_per_data WHERE usn='${usn}';`)
                     .then( res => {
                         res.rows.forEach(row => {
                             usnExist = true;
@@ -40,7 +40,7 @@ const doesUSNExist =  (usn) => {
  * @returns String
  */
 const generatePassword = (length) => { 
-    var randomstring = Math.random().toString(36).slice(-length); 
+    const randomstring = Math.random().toString(36).slice(-length); 
     return randomstring
 }
 
@@ -50,12 +50,12 @@ const generatePassword = (length) => {
  * @returns Promise<boolean>
  */
 const addStudent = (user) => {
-    var client = new pg.Client(config);
+    const client = new pg.Client(config);
     var addedStudent = false;
     return new Promise((resolve, reject) => {
         client.connect()
         .then(() => {
-            var query = client.query(`INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
+            client.query(`INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
             VALUES ('${user.usn}','${user.name}', '${user.email}', '${user.parentName}', '${user.parentContact}', '${user.contact}',${user.latitude}, ${user.longitude}, '${generatePassword(8)}');`)
                 .then(() => {
                         addedStudent = true;

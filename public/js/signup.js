@@ -2,8 +2,8 @@
  * Alert the user through a message if the USN is avaialble or not 
  */
 $('#usn').change(() => {
-    var data = { usn : $('#usn').val() };
-    var url = "/existUSN"; 
+    const data = { usn : $('#usn').val() };
+    const url = "/existUSN"; 
     // Function which displays whether the USN is avaialable for use or not
     displayMessage = (res) => {
         $("#usn_response").show();
@@ -28,14 +28,14 @@ $('#usn').change(() => {
  * Registration form 
  */
 $("#regForm").click(function(){
-    var name  = $("#name").val();
-    var usn = $("#usn").val();
-    var email = $("#email").val();
-    var contact = $("#contact").val();
-    var parentName = $("#parentName").val();
-    var parentContact = $("#parentContact").val();
-    var [latitude, longitude] = $("#end").val().split(",");
-    var regData ={'name': name,'usn': usn, 'email': email, 'contact': contact, 'parentName': parentName, 'parentContact': parentContact, 'latitude': latitude, 'longitude': longitude};
+    const name  = $("#name").val();
+    const usn = $("#usn").val();
+    const email = $("#email").val();
+    const contact = $("#contact").val();
+    const parentName = $("#parentName").val();
+    const parentContact = $("#parentContact").val();
+    const [latitude, longitude] = $("#end").val().split(",");
+    const regData ={'name': name,'usn': usn, 'email': email, 'contact': contact, 'parentName': parentName, 'parentContact': parentContact, 'latitude': latitude, 'longitude': longitude};
     $.ajax({
         type : 'POST',
         url : '/registerStudent',
