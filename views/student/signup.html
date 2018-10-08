@@ -29,25 +29,25 @@
                     <h1>SignUp Form</h1>
                     <label class="fg-red required-mark">* : Required</label>
                     <form data-role="validator" action="javascript:" class="p-1 mt-4 mb-4">
-                        <input class="mt-2" type="text" data-role="input" data-prepend="Name<span class='fg-red required-mark'>*</span>:" data-validate="required">
+                        <input class="mt-2" id="name" type="text" data-role="input" data-prepend="Name<span class='fg-red required-mark'>*</span>:" data-validate="required">
                         <span class="invalid_feedback ani-horizontal">Required</span>
                         <input class="mt-2" id="usn" type="text" data-role="input" data-prepend="USN<span class='fg-red required-mark'>*</span>:" data-validate="required">
                         <span class="invalid_feedback ani-horizontal">Required</span>
                         <div id="usn_response" class="response"></div>
-                        <input class="mt-2 mb-2" type="email" data-role="input" data-prepend="Email<span class='fg-red required-mark'>*</span>:" data-validate="email">
+                        <input class="mt-2 mb-2" id="email" type="email" data-role="input" data-prepend="Email<span class='fg-red required-mark'>*</span>:" data-validate="email">
                         <span class="invalid_feedback ani-horizontal">Required</span>
                         <div class="mb-4">
                             <label>Contact Number<span class="fg-red required-mark">*</span>:</label>
-                            <input type="text" data-role="input" data-prepend="+91" data-validator="required number length=10">
+                            <input id="contact" type="text" data-role="input" data-prepend="+91" data-validator="required number length=10">
                             <span class="invalid_feedback ani-horizontal">Required or Invalid value</span>
                         </div>
                         <div class="p-1 m-2">
                             <label>Parent/Guardian Details</label>
                             <div class="mb-2">
-                                <input class="mb-2" type="text" data-role="input" data-prepend="Name<span class='fg-red required-mark'>*</span>:" data-validate="required">
+                                <input class="mb-2" id="parentName" type="text" data-role="input" data-prepend="Name<span class='fg-red required-mark'>*</span>:" data-validate="required">
                                 <span class="invalid_feedback ani-horizontal">Required</span>
                                 <label>Contact Number<span class="fg-red required-mark">*</span>:</label>
-                                <input class="mb-2" type="text" data-role="input" data-prepend="+91" data-validator="required number length=10">
+                                <input class="mb-2" id="parentContact" type="text" data-role="input" data-prepend="+91" data-validator="required number length=10">
                                 <span class="invalid_feedback ani-horizontal">Required or Invalid value</span>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                 <input class="mt-4 mb-4 ml-2 mr-2" type="text" data-role="input" id="end" data-prepend="Lat.,Long."
                                 disabled>
                                 <div class="mx-auto mt-2">
-                                    <button type="submit" class="button primary">Submit the form</button>
+                                    <button type="submit" id="regForm" class="button primary">Submit the form</button>
                                 </div>
                             </div>
                         </div>
