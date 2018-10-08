@@ -35,6 +35,16 @@ const doesUSNExist =  (usn) => {
 }
 
 /**
+ * Function to generate Random Password
+ * @param {Length of the password with maximum 10} length
+ * @returns String
+ */
+const generatePassword = (length) => { 
+    var randomstring = Math.random().toString(36).slice(-length); 
+    return randomstring
+}
+
+/**
  * Insert student details into database while registration
  * @param {JSON object containing student details} user
  * @returns Promise<boolean>
@@ -46,7 +56,7 @@ const addStudent = (user) => {
         client.connect()
         .then(() => {
             var query = client.query(`INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
-            VALUES ('${user.usn}','${user.name}', '${user.email}', '${user.parentName}', '${user.parentContact}', '${user.contact}',${user.latitude}, ${user.longitude}, 'braz');`)
+            VALUES ('${user.usn}','${user.name}', '${user.email}', '${user.parentName}', '${user.parentContact}', '${user.contact}',${user.latitude}, ${user.longitude}, '${generatePassword(8)}');`)
                 .then(() => {
                         addedStudent = true;
                         client.end();

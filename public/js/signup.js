@@ -49,6 +49,7 @@ $("#regForm").click(function(){
                         caption: "Okay",
                         cls: "js-dialog-close alert",
                         onclick: function(){
+                            // Redirect to login page
                             window.location = `${location.protocol}//${location.host}/student/login.html`;
                         }
                     }
