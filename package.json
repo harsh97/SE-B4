@@ -12,6 +12,8 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "nodemailer": "^4.6.8",
+    "nodemailer-smtp-pool": "^2.8.3",
     "pg": "^7.5.0"
   },
   "devDependencies": {

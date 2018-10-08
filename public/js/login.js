@@ -10,7 +10,7 @@ $('#forgotPassword').on('click', function(){
                     var url = `/forgotPassword`;
                     data = { usn : $('#usn').val() };
                     success = (msg) => {
-                        alert('Sent successfully'+msg);
+                        alert('Sent successfully to your registered mail ID');
                     }
                     $.ajax({
                         type: "GET",
