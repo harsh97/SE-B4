@@ -20,7 +20,7 @@ const sendMail = (user) => {
       var mailOptions = {
         from: 'testpesub4@gmail.com', 
         to: user.email,
-        subject: 'Password Reset Request',
+        subject: 'Password Reset Request - TMS App',
         text: `Dear ${user.name} \n\n   Your password is ${user.password}. \n\n If you did not make this request, it is likely that another user has entered your USN by mistake and your account is still secure. \n\n Thanks & Regards,\n Team TMS`
       };
       
