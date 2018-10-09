@@ -9,8 +9,8 @@ const { sendEmail } = require('../controllers/login');
  */
 loginRouter.get('/forgotPassword', (req, res, next) => {
     sendEmail(req.query.usn)
-    .then(exist => {
-        res.send({'exist':exist}).status(200);
+    .then(sent => {
+        res.send({'sent':sent}).status(200);
     })
     .catch(err => console.log(err));
 });

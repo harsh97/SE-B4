@@ -9,8 +9,13 @@ $('#forgotPassword').on('click', function(){
                 onclick: function(){
                     var url = `/forgotPassword`;
                     data = { usn : $('#usn').val() };
-                    success = (msg) => {
-                        alert('Sent successfully to your registered mail ID');
+                    success = (mail) => {
+                        if(mail.sent) {
+                            alert('Sent successfully to your registered mail ID');
+                        }
+                        else {
+                            alert("Invalid USN!!");
+                        }
                     }
                     $.ajax({
                         type: "GET",

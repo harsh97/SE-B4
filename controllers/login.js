@@ -57,7 +57,7 @@ const sendEmail =  (usn) => {
                     })
                     .then(() => {
                         client.end();
-                        resolve(mailSent)
+                        resolve(mailSent);
                     });
             })
             .catch(err => {
