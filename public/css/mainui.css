@@ -153,13 +153,15 @@
 }
 .cappbar-item{
     padding:0px 0px !important;
+    top:-4.5px!important;
+    left:4.5px!important;
 }
 .cappbar-menu{
     font-size:34px;
 }
 .cappbar-header{
-    font-size:24px!important;
-    top:2px;
+    font-size:18px!important;
+    top:0px!important
     left:-8px;
     padding:0px!important;
 }
