@@ -205,3 +205,7 @@
 .sidebar-header~.sidebar-menu{
     height: auto!important;
 }
+.driver-sidebar-title{
+    font-size:22px!important;
+    top:88px!important;
+}
