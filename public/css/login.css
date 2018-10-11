@@ -26,3 +26,6 @@
     .clogin-pos{
         top:-50%;
     }
+    .exists{
+        color: red;
+    }

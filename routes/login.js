@@ -11,15 +11,15 @@ loginRouter.post('/login', (req, res, next) => {
     validateLogin(req.body)
     .then(responseUser => {
         if(responseUser.name){
-        res.render('UserProfile.html',{
-            user:responseUser
-        })
-    }
-    else
-    {
-        Exist= false;
-        res.send(Exist).status(204);
-    }
+            res.render('UserProfile.html',{
+                user:responseUser
+            })
+        }
+        else
+        {
+            exist= false;
+            res.send(exist).status(204);
+        }
     })
     .catch(err => console.log(err));
 });

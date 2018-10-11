@@ -16,7 +16,7 @@ const validateLogin =  (user) => {
                     .then( res => {
                             res.rows.forEach(row => {
                                 sname = row.name;
-                                resUser={name: sname};
+                                resUser={name: sname, usn:user.usn};
                         });
                     })
                     .catch(err => {
