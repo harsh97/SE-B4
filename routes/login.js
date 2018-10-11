@@ -7,13 +7,23 @@ const validateLogin = require('../controllers/login');
  * Request parameters => USN and Password
  * Response parameters => { user:name }
  */
-loginRouter.post('/login', (req, res, next) => {
+loginRouter.post('/login/:id', (req, res, next) => {
     validateLogin(req.body)
     .then(responseUser => {
         if(responseUser.name){
+            if(responseUser.id=="student")
+            {
         res.render('UserProfile.html',{
             user:responseUser
         })
+            }
+            if(responseUser.id=="driver")
+            {
+        res.render('driver/driverui.html',{
+            user:responseUser
+        })
+            }
+
     }
     else
     {

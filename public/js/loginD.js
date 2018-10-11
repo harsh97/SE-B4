@@ -1,6 +1,6 @@
 $('#login').click(() => {
-    var data = { usn : $('#usn').val(), pass: $('#pass').val(),id:"student"};
-    var url = `${location.protocol}//${location.host}/login/student`;
+    var data = { dId : $('#dId').val(), pass: $('#pass').val(),id:"driver"};
+    var url = `${location.protocol}//${location.host}/login/driver`;
    
     // Function which displays whether the login password is right and takes actions accordingly
    
