@@ -3,11 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link rel="shortcut icon" href="img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
-        <link rel="icon" href="img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
+        <link rel="icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
 
         <link href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css" rel="stylesheet">
-        <link href="css/mainui.css" rel="stylesheet">
+        <link href="/css/mainui.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
@@ -15,7 +15,7 @@
                 <div class="sidebar-header color-effect csidebar-header">
                     <a href="/" class="fg-white sub-action" onclick="Metro.sidebar.close('#sb1'); return false;"><span
                             class="mif-arrow-left mif-2x"></span></a>
-                    <span class="title csidebar-title fg-white">Name</span>
+                    <span class="title csidebar-title fg-white"><%= user.name%></span>
                     <span class="subtitle csidebar-subtitle fg-white">USN</span>
                 </div>
                 <ul class="sidebar-menu">
@@ -32,14 +32,10 @@
                     <button class="app-bar-item cappbar-item c-pointer" id="sidebar-toggle"><span class="mif-menu cappbar-menu fg-white"></span></button>
                     <h1 class="brand cappbar-header no-hover fg-white mx-auto">Transport Management System</h1>
                 </div>
-
                 <div class="p-4">
                     <!--content goes here-->
                 </div>
             </div>
-
-
-
         <div class="row">
         	<section class="basic-info">
             	<div class="row">
@@ -53,14 +49,11 @@
             	</div>
         	</section>
     	</div>
-
         <br><br>
         <div class="row">
         	<h2>Allocated Trips</h2>
         </div>	
-
         <br><br>
-
         <div class="row">
             <div class="col-xs-12">
                 <div class="container my-card">
@@ -68,7 +61,7 @@
                         <div class="col-xs-12 col-md-9">
                             <div class="row">
                                 <div class="col-md-12">
-                                        <h2>Trip 1</h2>
+                                        <h2>Trip1</h2>
                                 </div>
                             </div>
                             <div class="row">
@@ -96,10 +89,7 @@
            		 </div>
            	</div>
         </div>
-
         <br><br>
-
-
         <div class="row">
             <div class="col-xs-12">
                 <div class="container my-card">
@@ -135,11 +125,7 @@
            		 </div>
            	</div>
         </div>
-
-
         <br><br>
-
-
         <div class="row">
             <div class="col-xs-12">
                 <div class="container my-card">
@@ -174,19 +160,8 @@
                 	</div>
            		 </div>
            	</div>
-        </div>
-
-        <br><br>
-
-
-            </div>
-    </div>
-
-
-
-
-    
-        </div>
+        </div><br><br></div>
+        </div></div>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
     </body>
