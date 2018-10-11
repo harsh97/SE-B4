@@ -1,6 +1,15 @@
+$('#usn,#password').keyup(function(){
+    if ($(this).val()) {
+        $('#login').attr('disabled', false);
+    }
+    else {
+        $('#login').attr('disabled', true);
+    }
+});
+
 $('#login').click(() => {
     var data = { usn : $('#usn').val(), pass: $('#pass').val()};
-    var url = `/login`;
+    var url = '/login';
    
     // Function which displays whether the login password is right and takes actions accordingly   
     displayMessage = (resHTML) => {
