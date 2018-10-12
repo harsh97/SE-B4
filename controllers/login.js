@@ -12,12 +12,23 @@ const validateLogin =  (user) => {
     return new Promise((resolve, reject) => {
         client.connect()
             .then(() => {
-                client.query(`SELECT name FROM stu_per_data WHERE usn='${user.usn}'AND password='${user.pass}';`)
+                var userQuery;
+                var response;
+                if(user.id == 'student') {
+                    userQuery = `SELECT name FROM stu_per_data WHERE usn='${user.usn}'AND password='${user.pass}';`;
+                    response = 'name';
+                    resUser = {id: user.id, usn: user.usn};
+                }
+                else if(user.id == 'driver') {
+                    userQuery = `SELECT driver_name FROM driver WHERE driver_id=${user.dId} AND password='${user.pass}';`;
+                    response = 'driver_name';
+                    resUser = {id:user.id, dId:user.dId};
+                }   
+                client.query(userQuery)
                     .then( res => {
                             res.rows.forEach(row => {
-                                sname = row.name;
-                                resUser={name: sname, usn:user.usn};
-                        });
+                                resUser.name = row[response];
+                            });
                     })
                     .catch(err => {
                         console.log(`Fetch error: ${err}`);
