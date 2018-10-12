@@ -1,7 +1,7 @@
 /**
  * Alert the user through a message if the USN is avaialble or not 
  */
-$('#usn').change(() => {
+$('#usn').focusout(() => {
     const data = { usn : $('#usn').val() };
     const url = "/existUSN"; 
     // Function which displays whether the USN is avaialable for use or not
@@ -23,7 +23,26 @@ $('#usn').change(() => {
         success:displayMessage
     });
 });
-
+/**
+*Below function disables submit button when input value is empty
+*/
+$(document).ready(function(){
+                $('input').focusout(function(){
+                    var empty = false;
+                    $('input').each(function(){
+                        if ($(this).val().length == 0){
+                            empty = true;
+                        }
+                    });
+                    
+                    if (empty){
+                        $('#regForm').attr('disabled','disabled');
+                    }
+                    else{
+                        $('#regForm').removeAttr('disabled');
+                    }
+                });
+            });
 /**
  * Registration form 
  */
