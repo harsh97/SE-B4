@@ -19,16 +19,18 @@
             <h2 class="text-light">Driver Login</h2>
             <hr class="thin mt-4 mb-4 bg-white">
             <div class="form-group">
-                <input type="text" data-role="input" data-prepend="<span class='mif-envelop'>" placeholder="Driver-ID" required>
+                <input type="text"  id="dId" data-role="input" data-prepend="<span class='mif-envelop'>" placeholder="Driver-ID" required>
             </div>
             <div class="form-group">
-                <input type="password" data-role="input" data-prepend="<span class='mif-key'>" placeholder="Enter your password..." data-validate="required minlength=6" required>
-                </div>
+                <input type="password"id="pass" data-role="input" data-prepend="<span class='mif-key'>" placeholder="Enter your password..." data-validate="required minlength=6" required>
+            </div>
+            <div id="invalidUSNError" class="response"></div>
             <div class="form-group mt-10">
-                <button class="button">Login</button>
+                <button id="loginDriver" class="button" disabled>Login</button>
             </div>
         </form>       
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+        <script src="/js/login.js"></script>
     </body>
 </html>
