@@ -1,4 +1,4 @@
-$('#usn,#password,#dId,#pass').keyup(function(){
+$('#usn,#password,#dId,#pass,#AId,#pass').keyup(function(){
     if ($(this).val()) {
         $('[id^=login]').attr('disabled', false);
     }
@@ -29,6 +29,12 @@ $('#loginStudent').click(() => {
 $('#loginDriver').click(() => {
     var data = { dId : $('#dId').val(), pass: $('#pass').val(),id:'driver'};
     var url = '/login/driver';  
+    loginRequest(data, url);
+});
+
+$('#loginAdmin').click(() => {
+    var data = { AId : $('#AId').val(), pass: $('#pass').val(),id:'admin'};
+    var url = '/login/admin';  
     loginRequest(data, url);
 });
 

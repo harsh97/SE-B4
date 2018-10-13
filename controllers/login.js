@@ -8,8 +8,20 @@ const config = require('../config');
  */
 const validateLogin =  (user) => {
     var resUser ={};
-    const client = new pg.Client(config)
     return new Promise((resolve, reject) => {
+        if(user.id == 'admin') {
+            // console.log(user);
+            if(user.AId == '1' && user.pass == 'admin') {
+                resUser = {id: user.id, validAdmin:true};
+                // console.log(resUser);
+                resolve(resUser);
+            }
+            else {
+                reject(new Error('Authentication failed'));
+            }
+    }
+    else {
+        const client = new pg.Client(config)
         client.connect()
             .then(() => {
                 var userQuery;
@@ -43,6 +55,7 @@ const validateLogin =  (user) => {
                 console.log(`Connection error: ${err}`);
                 reject(err);
             });
+        }
     });
 }
 module.exports = validateLogin;
