@@ -13,7 +13,24 @@ function onMapClick(e) {
     endMarker = L.marker(e.latlng).addTo(map);
     var l = e.latlng.toString();
     var lllength = l.length;
-    document.getElementById('end').value = l.slice(7, lllength - 1);
+    $('#end').val(l.slice(7, lllength - 1));
 }
 
-map.on('click', onMapClick);
+$(document).ready(function(){
+    map.on('click', onMapClick);
+    $('#map').on('click',function(){
+                    var empty = false;
+                    $('#end').each(function(){
+                        if ($(this).val().length == 0){
+                            empty = true;
+                        }
+                    });
+                    
+                    if (empty){
+                        $('#regForm').attr('disabled','disabled');
+                    }
+                    else{
+                        $('#regForm').removeAttr('disabled');
+                    }
+                });
+});

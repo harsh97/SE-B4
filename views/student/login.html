@@ -19,18 +19,19 @@
             <h2 class="text-light">Student Login</h2>
             <hr class="thin mt-4 mb-4 bg-white">
             <div class="form-group">
-                <input type="text" data-role="input" data-prepend="<span class='mif-envelop'>" placeholder="Enter your USN..." required>
-                </div>
-                <div class="form-group">
-                    <input type="password" data-role="input" data-prepend="<span class='mif-key'>" placeholder="Enter your password..."
-                        required data-validate="required minlength=6">
-                    </div>
-                    <div class="form-group mt-10">
-                        <input type="checkbox" data-role="checkbox" data-caption="Remember me" class="place-right">
-                <button class="button" type="submit">Login</button>
-                <button class="button" formnovalidate formaction="signup.html">Signup</button>
-                <a href="#" id="forgotPassword" >Forgot the Password...?</a>
+                <input type="text" id="usn" data-role="input" data-prepend="<span class='mif-envelop'>" placeholder="Enter your USN..." required>
             </div>
+            <div class="form-group">
+                <input type="password" id="pass" data-role="input" data-prepend="<span class='mif-key'>" placeholder="Enter your password..."
+                    required data-validate="required minlength=6">
+            </div>
+            <div class="form-group mt-10">
+                    <input type="checkbox" data-role="checkbox" data-caption="Remember me" class="place-right">
+            </div>
+            <div id="invalidUSNError" class="response"></div>
+            <button class="button" id="loginStudent" disabled>Login</button>
+            <button class="button" formnovalidate formaction="signup.html">Signup</button>
+            <a href="#" id="forgotPassword">Forgot the Password...?</a>
         </form>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>

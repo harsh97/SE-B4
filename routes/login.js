@@ -1,6 +1,6 @@
 const express = require('express');
 const loginRouter = express.Router();
-const { sendEmail } = require('../controllers/login');
+const { sendEmail, validateLogin } = require('../controllers/login');
 
 /**
  * Router to check if the USN has already registered.
@@ -11,6 +11,35 @@ loginRouter.get('/forgotPassword', (req, res, next) => {
     sendEmail(req.query.usn)
     .then(sent => {
         res.send({'sent':sent}).status(200);
+    })
+    .catch(err => console.log(err));
+});
+
+
+/**
+ * Router to handle login request
+ * Request parameters => USN and Password
+ * Response parameters => { user:name }
+ */
+loginRouter.post('/login/:id', (req, res, next) => {
+    validateLogin(req.body)
+    .then(responseUser => {
+        if(responseUser.name) {
+            if(responseUser.id=="student") {
+                res.render('UserProfile.html',{
+                user:responseUser
+                })
+            }
+            else if(responseUser.id=="driver") {
+                res.render('driver/driverui.html',{
+                user:responseUser
+                })
+            }
+        }
+        else {
+            exist= false;
+            res.send(exist).status(204);
+        }
     })
     .catch(err => console.log(err));
 });
