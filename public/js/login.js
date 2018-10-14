@@ -38,13 +38,16 @@ $('#loginAdmin').click(() => {
     loginRequest(data, url);
 });
 
-
+displayError = (error) => {
+    console.log(error);
+}
 // Ajax request to check the existence of USN
 loginRequest = (data, url) => {
     $.ajax({
         url:url,
         data:data,
         method:'POST',
-        success:displayMessage
+        success:displayMessage,
+        error:displayError
     });    
 }

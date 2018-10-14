@@ -25,9 +25,7 @@ loginRouter.post('/login/:id', (req, res, next) => {
         }
         else if(responseUser.id=='admin') {
             // console.log('Rendering admin page');
-            res.render('admin/adminui.html',{
-            user:responseUser
-            })
+            res.render('admin/adminui.html')
         }
         else {
             exist= false;
