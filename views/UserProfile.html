@@ -9,12 +9,12 @@
         <link href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css" rel="stylesheet">
         <link href="/css/signup.css" rel="stylesheet">
         <link href="/css/mainui.css" rel="stylesheet">
- 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-            crossorigin="" />
-    </head>
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+		crossorigin="" />
+	</head>
     <body>
         <div class="container">
-            <aside class="sidebar z-2 csidebar" data-role="sidebar" data-toggle="#sidebar-toggle" id="sb1">
+            <aside class="sidebar z-2" data-role="sidebar" data-toggle="#sidebar-toggle" id="sb1">
                 <div class="sidebar-header color-effect csidebar-header">
                     <a href="/" class="fg-white sub-action" onclick="Metro.sidebar.close('#sb1'); return false;"><span
 							class="mif-arrow-left mif-2x"></span>
@@ -210,10 +210,12 @@
 										<div class="dialog" data-role="dialog" id="demoDialog2">
 											<div class="dialog-title">Change Address</div>
 											<div class="dialog-content">
-												<div data-role="panel">
-													<div id="map"></div>
-												</div>
-												<input class="mt-4 mb-4 ml-2 mr-2" type="text" data-role="input" id="end" data-prepend="Lat.,Long." style="width:100%!important;" disabled="disabled"/>
+													<div class="mb-4">
+															<div data-role="panel">
+																<div id="map"></div>
+															</div>
+															<input class="mt-4 mb-4 ml-2 mr-2" type="text" data-role="input" id="end" data-prepend="Lat.,Long." style="width:100%!important;" disabled="disabled"/>
+													</div>
 											</div>
 											<div class="dialog-actions">
 												<button class="button js-dialog-close">Ok</button>
@@ -235,11 +237,11 @@
                 <button class="button cbutton alert cycle large drop-shadow">SOS</button>
 			</div>
 			<br><br>
-    	</div>
-   		<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+		</div>
+        <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
             crossorigin=""></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+		<script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="/js/userTripUpdate.js"></script>
         <script type="text/javascript" src="/js/staticMarker.js"></script>
     </body>
