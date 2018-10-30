@@ -5,8 +5,9 @@ const server = express();
 
 const signUp = require('./routes/signup');
 const login = require('./routes/login');
+const userProfile = require('./routes/canceltrip');
 
-server.set('PORT', 4001);
+server.set('PORT', 4002);
 // Static pages which doesn't require Rest API calls. 
 server.use(express.static('public'));
 server.use(express.static('views'));
