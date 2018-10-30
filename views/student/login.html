@@ -4,34 +4,37 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <link rel="shortcut icon" href="../img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
-        <link rel="icon" href="../img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
+        <link rel="icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
         <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
         <link rel="stylesheet" href="/css/login.css">
-        
+          
         <title>Student Login</title>
     </head>
     <body class="h-vh-100">
         <div class="bg-student"></div>
-        <form class="login-form clogin-pos bg-white p-6 mx-auto border bd-default win-shadow"
-        action="/login/student" method="POST" data-clear-invalid="2000">
-        <span class="mif-vpn-lock mif-4x place-right mt-2-minus"></span>
-        <h2 class="text-light">Student Login</h2>
-        <hr class="thin mt-4 mb-4 bg-white">
-        <div class="form-group">
-            <input type="text" data-role="input" data-prepend="<span class='mif-envelop'>" placeholder="Enter your USN..." required>
+        <form class="login-form clogin-pos bg-white p-6 mx-auto border bd-default win-shadow" action="javascript:" 
+            data-clear-invalid="2000">
+            <span class="mif-vpn-lock mif-4x place-right mt-2-minus"></span>
+            <h2 class="text-light">Student Login</h2>
+            <hr class="thin mt-4 mb-4 bg-white">
+            <div class="form-group">
+                <input type="text" id="usn" data-role="input" data-prepend="<span class='mif-envelop'>" placeholder="Enter your USN..." required>
             </div>
             <div class="form-group">
-                <input type="password" data-role="input" data-prepend="<span class='mif-key'>" placeholder="Enter your password..." required>
+                <input type="password" id="pass" data-role="input" data-prepend="<span class='mif-key'>" placeholder="Enter your password..."
+                    required data-validate="required minlength=6">
             </div>
             <div class="form-group mt-10">
-                <input type="checkbox" data-role="checkbox" data-caption="Remember me" class="place-right">
-                <button type="submit" class="button">Login</button>
-                <button class="button"><a href="signup.html" style="color:inherit">Signup</a></button>
-                <a href="#">Forgot the Password...?</a>
+                    <input type="checkbox" data-role="checkbox" data-caption="Remember me" class="place-right">
             </div>
+            <div id="invalidUSNError" class="response"></div>
+            <button class="button" id="loginStudent" disabled>Login</button>
+            <button class="button" formnovalidate formaction="signup.html">Signup</button>
+            <a href="#">Forgot the Password...?</a>
         </form>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+        <script src="/js/login.js"></script>
     </body>
 </html>
