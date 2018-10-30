@@ -15,7 +15,7 @@ displayMessage = (resHTML) => {
     }
     else
     {
-        html = $.parseHTML(resHTML);
+        html = $.parseHTML(resHTML, true);
         $('body').html(html);
     }
 }
