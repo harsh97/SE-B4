@@ -127,9 +127,6 @@
                 background-color: #607D8B;
             }
         }
-.csidebar{
-    left:-1px;
-}
 .csidebar-header{
     height:150px;
     top:0px;
@@ -153,15 +150,13 @@
 }
 .cappbar-item{
     padding:0px 0px !important;
-    top:-4.5px!important;
-    left:4.5px!important;
 }
 .cappbar-menu{
     font-size:34px;
 }
 .cappbar-header{
-    font-size:18px!important;
-    top:0px!important
+    font-size:24px!important;
+    top:2px;
     left:-8px;
     padding:0px!important;
 }
@@ -204,8 +199,4 @@
 }
 .sidebar-header~.sidebar-menu{
     height: auto!important;
-}
-.driver-sidebar-title{
-    font-size:22px!important;
-    top:88px!important;
 }

@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path=require('path');
+const path = require('path');
 const server = express();
 
 const signUp = require('./routes/signup');
@@ -9,6 +9,7 @@ const userProfile = require('./routes/canceltrip');
 
 server.set('PORT', 4002);
 // Static pages which doesn't require Rest API calls. 
+// server.use(express.static(__dirname + '/public'));
 server.use(express.static('public'));
 server.use(express.static('views'));
 server.use(bodyParser.urlencoded({ extended: true }));
