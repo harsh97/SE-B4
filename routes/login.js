@@ -10,7 +10,6 @@ const validateLogin = require('../controllers/login');
 loginRouter.post('/login/:id', (req, res, next) => {
     validateLogin(req.body)
     .then(responseUser => {
-        // console.log(responseUser);
         if(responseUser.name) {
             if(responseUser.id=="student") {
                 res.render('UserProfile.html',{
@@ -24,7 +23,6 @@ loginRouter.post('/login/:id', (req, res, next) => {
             }
         }
         else if(responseUser.id=='admin') {
-            // console.log('Rendering admin page');
             res.render('admin/adminui.html')
         }
         else {
