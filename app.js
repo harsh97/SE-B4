@@ -5,7 +5,7 @@ const server = express();
 
 const signUp = require('./routes/signup');
 const login = require('./routes/login');
-const userProfile = require('./routes/canceltrip');
+const userTripUpdate = require('./routes/userTripUpdate');
 
 server.set('PORT', 4002);
 // Static pages which doesn't require Rest API calls. 
@@ -19,7 +19,8 @@ server.set('views',path.join(__dirname,'views/'));
 server.set('view engine','html');
 
 server.use('/', signUp);
-server.use('/',login)
+server.use('/',login);
+server.use('/',userTripUpdate);
 
 server.get('/', (req, res, next) => {
     res.sendFile('index.html',{root: './views'});

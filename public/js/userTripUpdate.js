@@ -8,6 +8,8 @@ $(document).ready(function(){
             {
                 caption: "Yes",
                 cls: "js-dialog-close alert",
+                onclick: cancelTrip,
+                
             },
             {
                 caption: "No",
@@ -17,3 +19,31 @@ $(document).ready(function(){
         });
     });
 });
+
+
+const cancelTrip =(user) =>{
+    console.log('cancel trip function');
+    var data = user;
+    var url = '/userTripUpdate';
+    cancelRequest(data,url);
+    console.log('cancel trip function');
+}
+
+reloadPage = () => {
+    //to be filled
+    console.log('Im still remaining');
+}
+
+displayError = (error) => {
+    console.log(error);
+}
+
+cancelRequest =(data,url) => {
+    $.ajax({
+        url:url,
+        data:data,
+        method:'PUT',
+        success:reloadPage,
+        error:displayError
+    });
+}
