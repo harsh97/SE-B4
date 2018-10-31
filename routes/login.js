@@ -22,6 +22,9 @@ loginRouter.post('/login/:id', (req, res, next) => {
                 })
             }
         }
+        else if(responseUser.id=='admin') {
+            res.render('admin/adminui.html')
+        }
         else {
             exist= false;
             res.send(exist).status(204);

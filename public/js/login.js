@@ -1,4 +1,4 @@
-$('#usn,#password,#dId,#pass').keyup(function(){
+$('#usn,#password,#dId,#pass,#AId,#pass').keyup(function(){
     if ($(this).val()) {
         $('[id^=login]').attr('disabled', false);
     }
@@ -15,7 +15,7 @@ displayMessage = (resHTML) => {
     }
     else
     {
-        html = $.parseHTML(resHTML);
+        html = $.parseHTML(resHTML, true);
         $('body').html(html);
     }
 }
@@ -32,13 +32,22 @@ $('#loginDriver').click(() => {
     loginRequest(data, url);
 });
 
+$('#loginAdmin').click(() => {
+    var data = { AId : $('#AId').val(), pass: $('#pass').val(),id:'admin'};
+    var url = '/login/admin';  
+    loginRequest(data, url);
+});
 
+displayError = (error) => {
+    console.log(error);
+}
 // Ajax request to check the existence of USN
 loginRequest = (data, url) => {
     $.ajax({
         url:url,
         data:data,
         method:'POST',
-        success:displayMessage
+        success:displayMessage,
+        error:displayError
     });    
 }
