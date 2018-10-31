@@ -10,26 +10,25 @@ const validateLogin = require('../controllers/login');
 loginRouter.post('/login/:id', (req, res, next) => {
     validateLogin(req.body)
     .then(responseUser => {
-        if(responseUser.name){
-            if(responseUser.id=="student")
-            {
-        res.render('UserProfile.html',{
-            user:responseUser
-        })
+        if(responseUser.name) {
+            if(responseUser.id=="student") {
+                res.render('UserProfile.html',{
+                user:responseUser
+                })
             }
-            if(responseUser.id=="driver")
-            {
-        res.render('driver/driverui.html',{
-            user:responseUser
-        },true)
+            else if(responseUser.id=="driver") {
+                res.render('driver/driverui.html',{
+                user:responseUser
+                })
             }
-
-    }
-    else
-    {
-        Exist= false;
-        res.send(Exist).status(204);
-    }
+        }
+        else if(responseUser.id=='admin') {
+            res.render('admin/adminui.html')
+        }
+        else {
+            exist= false;
+            res.send(exist).status(204);
+        }
     })
     .catch(err => console.log(err));
 });
