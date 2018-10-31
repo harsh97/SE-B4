@@ -21,7 +21,7 @@ loginRouter.post('/login/:id', (req, res, next) => {
             {
         res.render('driver/driverui.html',{
             user:responseUser
-        })
+        },true)
             }
 
     }

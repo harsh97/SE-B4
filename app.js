@@ -5,7 +5,7 @@ var login = require('./routes/login');
 const path=require('path');
 const server = express();
 
-server.set('PORT', 4002);
+server.set('PORT', 4001);
 // Static pages which doesn't require Rest API calls. 
 server.use(express.static('public'));
 server.use(express.static('views'));

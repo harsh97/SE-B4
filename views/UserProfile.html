@@ -9,7 +9,7 @@
         <link href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css" rel="stylesheet">
         <link href="/css/mainui.css" rel="stylesheet">
     </head>
-    <body>
+    <body onload="load()">
         <div class="container">
             <aside class="sidebar z-2 csidebar" data-role="sidebar" data-toggle="#sidebar-toggle" id="sb1">
                 <div class="sidebar-header color-effect csidebar-header">
@@ -54,19 +54,19 @@
         	<h2>Allocated Trips</h2>
         </div>	
         <br><br>
-        <div class="row">
+        <div class="row" id="trips" >
             <div class="col-xs-12">
                 <div class="container my-card">
                     <div class="row">
                         <div class="col-xs-12 col-md-9">
                             <div class="row">
                                 <div class="col-md-12">
-                                        <h2>Trip1</h2>
+                                        <h2>Trip <span id="change"></span></h2>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-muted">
-                                    <p>Pickup Location: ABC <br> Drop Location: XYZ <br> Time of Pickup: 8:00 AM </p>
+                                    <p>Pickup Location:<span id="change1"></span> <br> Drop Location: <span id="change2"></span><br> Time of Pickup:<span id="change3"></span> </p>
                                 </div>
                             </div>
                             <br>
@@ -87,82 +87,28 @@
                     	</div>
                 	</div>
            		 </div>
-           	</div>
+               </div>
+               <br><br>
         </div>
-        <br><br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="container my-card">
-                    <div class="row">
-                        <div class="col-xs-12 col-md-9">
-                            <div class="row">
-                                <div class="col-md-12">
-                                        <h2>Trip 2</h2>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 text-muted">
-                                    <p>Pickup Location: ABC <br> Drop Location: XYZ <br> Time of Pickup: 8:00 AM </p>
-                                </div>
-                            </div>
-                            <br>
-                             <div class="row">
-                             	<div class="pr-2">
-                                	<button type="button" name="button" class="button info outline"> Cancel Trip <i class="mif-cancel"></i></button>
-                            	</div>
-                            	<div class="pr-2">
-                                	<button type="button" name="button" class="button info outline"> Change Time <span class="mif-alarm"></span></button>
-                                </div>
-                                <div class="pr-2">
-                                	<button type="button" name="button" class="button info outline"> Change Address <span class="mif-location-city"></span></button>
-                                </div>
-                                <div class="pr-2">
-                                	<button type="button" name="button" class="button info outline"> Track Bus Location <span class="mif-location"></span></button>
-                                </div>
-                        	</div>
-                    	</div>
-                	</div>
-           		 </div>
-           	</div>
-        </div>
-        <br><br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="container my-card">
-                    <div class="row">
-                        <div class="col-xs-12 col-md-9">
-                            <div class="row">
-                                <div class="col-md-12">
-                                        <h2>Trip 3</h2>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 text-muted">
-                                    <p>Pickup Location: ABC <br> Drop Location: XYZ <br> Time of Pickup: 8:00 AM </p>
-                                </div>
-                            </div>
-                            <br>
-                             <div class="row">
-                             	<div class="pr-2">
-                                	<button type="button" name="button" class="button info outline"> Cancel Trip <i class="mif-cancel"></i></button>
-                            	</div>
-                            	<div class="pr-2">
-                                	<button type="button" name="button" class="button info outline"> Change Time <span class="mif-alarm"></span></button>
-                                </div>
-                                <div class="pr-2">
-                                	<button type="button" name="button" class="button info outline"> Change Address <span class="mif-location-city"></span></button>
-                                </div>
-                                <div class="pr-2">
-                                	<button type="button" name="button" class="button info outline"> Track Bus Location <span class="mif-location"></span></button>
-                                </div>
-                        	</div>
-                    	</div>
-                	</div>
-           		 </div>
-           	</div>
-        </div><br><br></div>
-        </div></div>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+
+        <script>
+            function load()
+            {
+                alert("Here");
+            var count=0;
+            info= {};
+
+            while(count<3)
+            {
+                var dom =  document.getElementById("trips");
+                var dom1= dom;
+                dom1.getElementsByTagName("change").innerHTML=count+1;
+                document.appendchild(dom1);   
+                count=count +1; 
+            }
+        }
+        </script>
     </body>
 </html>
