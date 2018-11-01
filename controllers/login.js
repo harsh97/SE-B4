@@ -80,7 +80,6 @@ const validateLogin =  (user) => {
                                     if(resUser.id == 'student'){
                                         fetchFutureTrips(resUser.usn).then(futureTrips => {
                                             resUser.futureTrips = futureTrips;
-                                            // console.log(resUser);
                                             resolve(resUser);
                                         });
                                     }
