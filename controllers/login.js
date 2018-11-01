@@ -57,7 +57,7 @@ const validateLogin =  (user) => {
             }
         }
         else {
-            const client = new pg.Pool(config);
+            const client = new pg.Client(config);
             client.connect()
                 .then(() => {
                     var userQuery;

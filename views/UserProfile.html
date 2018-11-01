@@ -59,44 +59,70 @@
             <div class="col-xs-12">
                 <div class="container my-card">
                     <div class="row">
-                    <% for(var trip=0; trip< user.futureTrips.length; trip++) { %>
-                    <div class="col-xs-12 col-md-9">
-                        <p id="tripID" hidden><%= user.futureTrips[trip].trip_id%></p>
-                        <div class="row">
-                            <div class="col-md-12">
-                                    <h2> <span id="change"><%= new Date(user.futureTrips[trip].trip_date).toDateString()%></span></h2>
+                        <% for(var trip=0; trip< user.futureTrips.length; trip++) { %>
+                        <div class="col-xs-12 col-md-9">
+                            <p id="tripID" hidden><%= user.futureTrips[trip].trip_id%></p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                        <h2> <span id="change"><%= new Date(user.futureTrips[trip].trip_date).toDateString()%></span></h2>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12 text-muted">
+                                    <p>Pickup Location:<span id="change1"><% if(!user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> Yet to be updated <% }%></span> <br> 
+                                        Drop Location: <span id="change2"><% if(user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> Yet to be updated <% }%></span><br> 
+                                        Time of Pickup:<span id="change3"><%= user.futureTrips[trip].timing%></span> </p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="pr-2">
+                                    <button type="button" name="button" class="button info outline" id="CancelTrip"> Cancel Trip <i class="mif-cancel"></i></button>
+                                </div>
+                                <div class="pr-2">
+                                    <div class="dialog" data-role="dialog" id="changeTimeClick">	
+                                        <div class="dialog-title">Change Time</div>	
+                                        <div class="dialog-content">	
+                                            <input data-role="timepicker">	
+                                        </div>	
+                                        <div class="dialog-actions">	
+                                            <button class="button js-dialog-close">Ok</button>	
+                                            <button class="button js-dialog-close">Cancel</button>	
+                                        </div>
+                                    </div>	
+                                    <button type="button" name="button" class="button info outline" onclick="Metro.dialog.open('#changeTimeClick')"> Change Time <span class="mif-alarm"></span></button>
+                                </div>
+                                <div class="pr-2">
+                                    <div class="dialog" data-role="dialog" id="changeAddressClick">	
+                                            <div class="dialog-title">Change Address</div>	
+                                            <div class="dialog-content">	
+                                                <div data-role="panel">	
+                                                    <div id="map"></div>	
+                                                </div>	
+                                                <input class="mt-4 mb-4 ml-2 mr-2" type="text" data-role="input" id="end" data-prepend="Lat.,Long." style="width:100%!important;" disabled="disabled"/>	
+                                            </div>	
+                                            <div class="dialog-actions">	
+                                                <button class="button js-dialog-close">Ok</button>	
+                                                <button class="button js-dialog-close">Cancel</button>	
+                                            </div>	
+                                    </div>
+                                    <button type="button" name="button" class="button info outline" onclick="Metro.dialog.open('#changeAddressClick')"> Change Address <span class="mif-location-city"></span></button>
+                                </div>
+                                <div class="pr-2">
+                                    <button type="button" name="button" class="button info outline">Track Bus Location <span class="mif-location"></span></button>
+                                </div>
+                            </div>
+                            <br><br><br> 
                         </div>
-                        <div class="row">
-                            <div class="col-md-12 text-muted">
-                                <p>Pickup Location:<span id="change1"><% if(!user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].timing%> <% }%></span> <br> 
-                                    Drop Location: <span id="change2"><% if(user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].timing%> <% }%></span><br> 
-                                    Time of Pickup:<span id="change3"><%= user.futureTrips[trip].timing%></span> </p>
-                            </div>
-                        </div>
-                        <br>
-                         <div class="row">
-                             <div class="pr-2">
-                                <button type="button" name="button" class="button info outline"> Cancel Trip <i class="mif-cancel"></i></button>
-                            </div>
-                            <div class="pr-2">
-                                <button type="button" name="button" class="button info outline"> Change Time <span class="mif-alarm"></span></button>
-                            </div>
-                            <div class="pr-2">
-                                <button type="button" name="button" class="button info outline"> Change Address <span class="mif-location-city"></span></button>
-                            </div>
-                            <div class="pr-2">
-                                <button type="button" name="button" class="button info outline"> Track Bus Location <span class="mif-location"></span></button>
-                            </div>
-                        </div>
+                        <% } %>
                     </div>
-                    <br><br><br> 
-                    <% } %>
-                </div>
+                    <div class="p-4">	
+                            <button class="button cbutton alert cycle large drop-shadow">SOS</button>	
+                    </div>
                 </div>
            </div>       
         </div>
-        <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+        <script src="/js/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
         crossorigin=""></script>
         <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
