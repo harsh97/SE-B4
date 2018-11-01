@@ -55,7 +55,46 @@
         	<h2>Allocated Trips</h2>
         </div>	
         <br><br>
-        <div id="trips"></div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="container my-card">
+                    <div class="row">
+                    <% for(var trip=0; trip< user.futureTrips.length; trip++) { %>
+                    <div class="col-xs-12 col-md-9">
+                        <p id="tripID" hidden><%= user.futureTrips[trip].trip_id%></p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <h2> <span id="change"><%= new Date(user.futureTrips[trip].trip_date).toDateString()%></span></h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-muted">
+                                <p>Pickup Location:<span id="change1"><% if(!user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].timing%> <% }%></span> <br> 
+                                    Drop Location: <span id="change2"><% if(user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].timing%> <% }%></span><br> 
+                                    Time of Pickup:<span id="change3"><%= user.futureTrips[trip].timing%></span> </p>
+                            </div>
+                        </div>
+                        <br>
+                         <div class="row">
+                             <div class="pr-2">
+                                <button type="button" name="button" class="button info outline"> Cancel Trip <i class="mif-cancel"></i></button>
+                            </div>
+                            <div class="pr-2">
+                                <button type="button" name="button" class="button info outline"> Change Time <span class="mif-alarm"></span></button>
+                            </div>
+                            <div class="pr-2">
+                                <button type="button" name="button" class="button info outline"> Change Address <span class="mif-location-city"></span></button>
+                            </div>
+                            <div class="pr-2">
+                                <button type="button" name="button" class="button info outline"> Track Bus Location <span class="mif-location"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br><br> 
+                    <% } %>
+                </div>
+                </div>
+           </div>       
         </div>
         <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
         crossorigin=""></script>
