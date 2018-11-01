@@ -1,0 +1,3 @@
+{
+    "pgsql.connection": "postgres://postgres:yashu@localhost:5432/transport_management_system"
+}

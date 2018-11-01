@@ -56,4 +56,3 @@ $$ LANGUAGE 'plpgsql';
 
 
 SELECT studentCancels('01FB15ECS083',2) ;
-

@@ -1,6 +1,6 @@
 const express = require('express');
 const cancelTripRouter = express.Router();
-const cancelTrip = require('./controllers/canceltrip');
+const cancelTrip = require('../controllers/cancelTrip');
 
 /**
  * Router to handle login request
@@ -8,11 +8,10 @@ const cancelTrip = require('./controllers/canceltrip');
  * Response parameters => { user:status }
  */
 cancelTripRouter.put('/userTripUpdate', (req, res, next) => {
-    alert('in routes canceltrip');
     console.log('IN routes controller');
     cancelTrip(req.body)
     .then(responseUser => {
-        if(responseUser.name){
+        if(responseUser.tripStatus==0){
             res.render('UserProfile.html',{
                 user:responseUser
             })

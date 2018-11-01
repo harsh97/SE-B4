@@ -8,22 +8,22 @@ const config = require('../config');
  */
 const cancelTrip =  (user) => {
     var resStatus ={};
-    const client = new pg.Client(config)
+    const client = new pg.Client(config);
     return new Promise((resolve, reject) => {
         client.connect()
             .then(() => {
-                var cancelQuery= `SELECT studentCancels ('$user.usn'), ${user.tripId});`;
+                var cancelQuery= `SELECT studentCancels('${user.usn}', ${user.tripId});`;
+                console.log(cancelQuery);
                 client.query(cancelQuery)
-                    .then(()=>{ resStatus.tripStatus = 0; //0 implying cancelled
+                    .then(()=>{ 
+                        resStatus ={tripStatus: 0}; //0 implying cancelled
+                        client.end();
+                        resolve(resStatus);
                         })
                 
                     .catch(err => {
                         console.log(`Fetch error: ${err}`);
                         reject(err);
-                    })
-                    .then(() => {
-                        client.end();
-                        resolve(resUser);
                     });
             })
             .catch(err => {
@@ -32,4 +32,5 @@ const cancelTrip =  (user) => {
            });
     });
 }
+
 module.exports = cancelTrip;
