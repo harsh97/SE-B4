@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    loadTrips();
     $('#CancelTrip').click(() => {
         Metro.dialog.create({
         title: "Cancel Trip",
@@ -19,37 +20,3 @@ $(document).ready(function(){
         });
     });
 });
-
-
-const cancelTrip = () =>{
-    usn = document.getElementById("studentUSN").innerHTML;
-    console.log(`cancel trip function with user ${usn}`);
-    var data = {usn: usn , tripId : 1};
-    var url = '/userTripUpdate';
-    cancelRequest(data,url);
-    console.log('cancel trip function2');
-}
-
-reloadPage = (resHTML) => {
-
-    console.log('Im still remaining');
-    html = $.parseHTML(resHTML, true);
-    $('body').html(html);
-    console.log('Im still remaining2');
-
-}
-
-displayError = (error) => {
-    console.log(`resulted in error`);
-    console.log(error);
-}
-
-cancelRequest =(data,url) => {
-    $.ajax({
-        url:url,
-        data:data,
-        method:'PUT',
-        success:reloadPage,
-        error:displayError
-    });
-}
