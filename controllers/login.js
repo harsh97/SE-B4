@@ -3,7 +3,7 @@ const config = require('../config');
 
 var resUser = {};
 
-const fetchFutureTrips = ( userUSN) => {
+const fetchFutureTrips = (userUSN) => {
     const clientTrip = new pg.Client(config);
     const futureTripQuery = `SELECT Fut_trip.trip_id , Fut_trip.drop_pick,Fut_trip.trip_date, Fut_trip.timing
                             FROM Fut_trip
@@ -82,6 +82,9 @@ const validateLogin =  (user) => {
                                             resUser.futureTrips = futureTrips;
                                             resolve(resUser);
                                         });
+                                    }
+                                    else if(resUser.id == 'driver'){
+                                        resolve(resUser);
                                     }
                                 });
                         })
