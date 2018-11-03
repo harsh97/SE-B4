@@ -25,16 +25,19 @@ loginRouter.post('/login/:id', (req, res, next) => {
     validateLogin(req.body)
     .then(responseUser => {
         if(responseUser.name) {
-            if(responseUser.id=="student") {
+            if(req.params.id=="student") {
                 res.render('UserProfile.html',{
                 user:responseUser
                 })
             }
-            else if(responseUser.id=="driver") {
+            else if(req.params.id=="driver") {
                 res.render('driver/driverui.html',{
                 user:responseUser
                 })
             }
+        }
+        else if(req.params.id=='admin') {
+            res.render('admin/adminui.html')
         }
         else {
             exist= false;

@@ -127,9 +127,6 @@
                 background-color: #607D8B;
             }
         }
-.csidebar{
-    left:-1px;
-}
 .csidebar-header{
     height:150px;
     top:0px;
@@ -202,4 +199,65 @@
 }
 .sidebar-header~.sidebar-menu{
     height: auto!important;
+}
+.cbrand{
+    font-size: 26px;
+    font-weight:300;
+    text-align:center;
+    padding:0px 15px 0px 96px;
+    cursor: default;
+}
+.navview .navview-pane{
+    border-left:2px solid #e5e5e5;
+    /*border-right:2px solid #fff;*/
+    background-color: #309b93;
+    color: #fff;
+}
+.navview .navview-menu{
+    height:100%!important;
+}
+.navview .item-separator {
+    height: 2px!important;
+    background-color: #0000001f;
+    cursor: default;
+}
+.navview .navview-menu li a:active, .navview .navview-menu li a:focus, .navview .navview-menu .ui-selected{
+    background-color: #ffffff;
+    color: #000;
+    border: 0px;
+    border-left: 4px solid blue;
+}
+.navview .navview-menu li a:hover:not(:active), .navview .navview-menu .ui-selecting{
+    background-color: #203432;
+    color: #fff;
+    border: 0px;
+}
+.admin-appbar{
+    width:inherit;
+    left:auto;    
+    background-color: #ffffff;
+    color: #257cad;
+    border-bottom:2px solid #e5e5e5;
+}
+.d-menu li a{
+    min-width:auto;
+}
+.navview-content{
+    width:calc(100% - 280px)!important;
+}
+.app-bar .app-bar-menu > li > a{
+    font-size:16px;
+}
+.navview .navview-pane .navview-menu li a{
+    font-size:20px;
+}
+.navview .navview-pane img{
+    /*-webkit-filter: grayscale(100%);
+    filter: grayscale(100%);*/
+    border-radius: 25px;
+    margin:16px 0px 0px 2px;
+    width: 90px;
+}
+.navview .navview-menu li a{
+    height:52px;
 }
