@@ -19,7 +19,7 @@ server.set('views',path.join(__dirname,'views/'));
 server.set('view engine','html');
 
 server.use('/', signUp);
-server.use('/',login)
+server.use('/', login);
 
 server.get('/', (req, res, next) => {
     res.sendFile('index.html',{root: './views'});
