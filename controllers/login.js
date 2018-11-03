@@ -68,7 +68,7 @@ const sendMail = (user) => {
         service: 'gmail',
         auth: {
             user: 'testpesub4@gmail.com',
-            pass: 'qmpzal123'
+            pass: process.env.NODE_PASSWORD
         },
         maxConnections: 5,
         maxMessages: 10
