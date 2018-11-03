@@ -68,8 +68,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 text-muted">
-                                        <p>Pickup Location:<span id="change1"><% if(!user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> Yet to be updated <% }%></span> <br> 
-                                            Drop Location: <span id="change2"><% if(user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> Yet to be updated <% }%></span><br> 
+                                        <p>Pickup Location:<span id="change1"><% if(!user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].getlocation %> <% }%></span> <br> 
+                                            Drop Location: <span id="change2"><% if(user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].getlocation %> <% }%></span><br> 
                                             Time of Pickup:<span id="change3"><%= user.futureTrips[trip].timing%></span> </p>
                                     </div>
                                 </div>
@@ -92,11 +92,11 @@
                                         <button type="button" name="button" class="button info outline" onclick="Metro.dialog.open('#changeTimeClick')"> Change Time <span class="mif-alarm"></span></button>
                                     </div>
                                     <div class="pr-2">
-                                        <div class="dialog" data-role="dialog" id="changeAddressClick">	
+                                        <div class="dialog" data-role="dialog" id="changeAddressClick" style="height:300px">	
                                                 <div class="dialog-title">Change Address</div>	
                                                 <div class="dialog-content">	
                                                     <div data-role="panel">	
-                                                        <div id="map"></div>	
+                                                        <div id="map" style="height:200px"></div>	
                                                     </div>	
                                                     <input class="mt-4 mb-4 ml-2 mr-2" type="text" data-role="input" id="end" data-prepend="Lat.,Long." style="width:100%!important;" disabled="disabled"/>	
                                                 </div>	
