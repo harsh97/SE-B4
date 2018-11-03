@@ -8,8 +8,10 @@ const cancelTrip = require('../controllers/cancelTrip');
  * Response parameters => { user:status }
  */
 cancelTripRouter.put('/userTripUpdate', (req, res, next) => {
-    console.log('IN routes controller');
-    cancelTrip(req.body)
+    
+    //console.log(`IN routes controller`+ JSON.stringify(req.body) );
+   // cancelTrip(JSON.stringify(req.body))
+   cancelTrip(req.body)
     .then(responseUser => {
         if(responseUser.tripStatus==0){
             res.render('UserProfile.html',{

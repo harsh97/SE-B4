@@ -12,7 +12,7 @@ const cancelTrip =  (user) => {
     return new Promise((resolve, reject) => {
         client.connect()
             .then(() => {
-                var cancelQuery= `SELECT studentCancels('${user.usn}', ${user.tripId});`;
+                var cancelQuery= `SELECT studentCancels('${JSON.stringify( user.usn)}', ${JSON.stringify(user.tripID)});`;
                 console.log(cancelQuery);
                 client.query(cancelQuery)
                     .then(()=>{ 

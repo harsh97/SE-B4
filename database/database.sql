@@ -107,5 +107,9 @@ CREATE TABLE Chan_loc(
 );
 
 
+DELETE FROM Stu_trip_data WHERE UID = 
+DELETE FROM USN_UID WHERE UID =
+
+
 
 
