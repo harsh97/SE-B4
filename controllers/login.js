@@ -1,11 +1,19 @@
 const pg = require('pg');
 const config = require('../config');
+var NodeGeocoder = require('node-geocoder');
+
+var options = {
+    provider: 'google',
+    httpAdapter: 'https', 
+    apiKey: 'AIzaSyDE6qV3CJulQ8g2zcpulwWnv9MQDUdoXHw', 
+    formatter: null
+  };
 
 var resUser = {};
 
 const fetchFutureTrips = (userUSN) => {
     const clientTrip = new pg.Client(config);
-    const futureTripQuery = `SELECT Fut_trip.trip_id , Fut_trip.drop_pick,Fut_trip.trip_date, Fut_trip.timing
+    const futureTripQuery = `SELECT Fut_trip.trip_id , Fut_trip.drop_pick,Fut_trip.trip_date, Fut_trip.timing, (SELECT getLocation('${userUSN}',Fut_trip.trip_id))
                             FROM Fut_trip
                             WHERE Fut_trip.trip_id NOT IN (
                             SELECT Cancel_trip.trip_id FROM Cancel_trip
@@ -21,13 +29,22 @@ const fetchFutureTrips = (userUSN) => {
                         resUser.futureTrips = [];
                         res.rows.forEach(row => {
                             resUser.futureTrips.push(row);
+                            var tripIndex = resUser.futureTrips.indexOf(row);
+                            resUser.futureTrips[tripIndex].getlocation = resUser.futureTrips[tripIndex].getlocation.slice(1,-1).split(',');
                         });
                 })
                 .catch(err => {
                     reject(err);
                     console.log(`Fetch error: ${err}`);
                 })
-                .then(() => {
+                .then(async () => {
+                    var geocoder = NodeGeocoder(options);
+                    for(var tripIndex=0; tripIndex < resUser.futureTrips.length; tripIndex++) {
+                        if(resUser.futureTrips[tripIndex].getlocation[0] != '') {
+                            var location = await geocoder.reverse({lat:resUser.futureTrips[tripIndex].getlocation[0], lon:resUser.futureTrips[tripIndex].getlocation[1]})
+                                resUser.futureTrips[tripIndex].getlocation = location[0].formattedAddress;
+                        }
+                    }
                     resolve(resUser.futureTrips);
                     clientTrip.end();
                 })
