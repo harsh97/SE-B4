@@ -3,7 +3,7 @@ var path = require('path');
 var config = {
 		host: 'localhost',
 		user: 'postgres',
-		password: 'yashu',
+		password: 'qmpzal',
 		port: 5432,
 		database: 'transport_management_system',
 		max: '10',
