@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const signUp = require('./routes/signup');
 const login = require('./routes/login');
+const sos = require('./routes/sos');
 
 server.set('PORT', 4001);
 // Static pages which doesn't require Rest API calls. 
@@ -20,6 +21,7 @@ server.set('view engine','html');
 
 server.use('/', signUp);
 server.use('/',login)
+server.use('/',sos);
 
 server.get('/', (req, res, next) => {
     res.sendFile('index.html',{root: './views'});
