@@ -108,8 +108,8 @@ CREATE TABLE Cancel_trip(
 CREATE TABLE Chan_loc(
 	UID Serial REFERENCES USN_UID(UID),
 	trip_id Serial REFERENCES Fut_trip(trip_id),
-	latitude real,
-	longitude real,
+	latitude DOUBLE PRECISION,
+	longitude DOUBLE PRECISION,
 	PRIMARY KEY(UID, trip_id)
 
 );

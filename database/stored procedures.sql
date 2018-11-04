@@ -36,11 +36,10 @@ VALUES
 END;
 $$ LANGUAGE 'plpgsql';
 
-
 --SELECT locChanges('01FB15ECS083', 2 , 12.99999, 13.678552);
 
 
---SELECT getLocation('01FB15ECS084',1);
+
 
 
 
@@ -53,10 +52,9 @@ INSERT INTO Cancel_trip ( trip_id, UID)
 VALUES (_tripid ,(SELECT USN_UID.UID FROM USN_UID WHERE USN = _USN));
 END;
 $$ LANGUAGE 'plpgsql';
-
-
 --SELECT studentCancels('01FB15ECS083',2) ;
 
+--SELECT getLocation('01FB15ECS084',1);
 CREATE OR REPLACE FUNCTION studentFutureTrips(_USN VARCHAR)
 RETURNS void AS $$
 BEGIN
