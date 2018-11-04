@@ -13,7 +13,7 @@
 		CREATE DATABASE transport_management_system ;
 
 	5. Type the following command to connect/select this database
-		# \c transport_mangement_system
+		# \c transport_management_system
 	
 	6. To Create the relations locallcy in the system run the following queries in your system
 
@@ -40,19 +40,20 @@ CREATE TABLE Stu_Per_Data (
 	Mobile_No VARCHAR NOT NULL,
 	Par_Mobile_No VARCHAR ,
 	Status boolean NOT NULL DEFAULT false,
-	latitude real,
-	longitude real,
+	latitude DOUBLE PRECISION,
+	longitude DOUBLE PRECISION,
 	password VARCHAR 
 );
 
 CREATE TABLE USN_UID(
 	USN VARCHAR REFERENCES Stu_Per_Data(USN),
-	UID Serial NOT NULL PRIMARY KEY 
+	UID Serial NOT NULL PRIMARY KEY,
+	UNIQUE (USN, UID)
 );
 
 
 CREATE TABLE Driver (
-	Driver_id INT PRIMARY KEy,
+	Driver_id VARCHAR PRIMARY KEy,
 	Driver_name CHAR(50),
 	Mobile_No VARCHAR ,
 	password VARCHAR
@@ -63,12 +64,18 @@ CREATE TABLE Bus (
 	Capacity INT 
 );
 
+
+CREATE TABLE Bus_Driver(
+	Driver_id VARCHAR REFERENCES Driver,
+	Bus_no VARCHAR REFERENCES Bus,
+	PRIMARY KEY(Driver_id, Bus_no)
+);
 CREATE TABLE Trip (
 	 Route_no INT PRIMARY KEY,
 	 No_of_stu INT ,
 	 timing TIME,
 	 Bus_no VARCHAR REFERENCES Bus(Bus_no),
-	 Driver_id INT REFERENCES Driver (Driver_id)
+	 Driver_id VARCHAR REFERENCES Driver (Driver_id)
 );
 
 CREATE TABLE Stu_Trip_Data (
@@ -76,8 +83,8 @@ CREATE TABLE Stu_Trip_Data (
 	timing TIME ,
 	cancelled boolean DEFAULT false,
 	changed boolean DEFAULT false,
-	latitude real,
-	longitude real,
+	latitude DOUBLE PRECISION,
+	longitude DOUBLE PRECISION,
 	Route_no INT REFERENCES Trip(Route_no)
 );
 
@@ -102,13 +109,19 @@ CREATE TABLE Chan_loc(
 	UID Serial REFERENCES USN_UID(UID),
 	trip_id Serial REFERENCES Fut_trip(trip_id),
 	latitude real,
-	longitude real
+	longitude real,
+	PRIMARY KEY(UID, trip_id)
 
 );
 
+CREATE TABLE Chan_time(
+	UID Serial REFERENCES USN_UID(UID),
+	trip_id Serial REFERENCES Fut_trip(trip_id),
+	timing TIME,
+	PRIMARY KEY (UID,trip_id)
+);
 
-DELETE FROM Stu_trip_data WHERE UID = 
-DELETE FROM USN_UID WHERE UID =
+
 
 
 

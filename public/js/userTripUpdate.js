@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    $('#CancelTrip').click(() => {
+    $('.cancelHandeller').click((event) => {
+        tripID =  event.target.parentElement.parentElement.parentElement.id;
         Metro.dialog.create({
         title: "Cancel Trip",
         content: "<div>Are you sure you want to cancel this trip ?</div>",
@@ -19,49 +20,32 @@ $(document).ready(function(){
         });
     });
     
-    `
-    $('#ChangeTimeConfirm').click(()=>{
-        changeTime();
-    });
-
-    function changeTime(){
-        usn = document.getElementById("studentUSN").innerHTML;
-        tripID = document.getElementById("tripID").innerHTML;
-    }
-    `
 
 
     function cancelTrip () {
-        usn = document.getElementById("studentUSN").innerHTML;
-        var tripID = document.getElementById("tripID").innerHTML;
-        console.log(`cancel trip function with user ${usn} and tripId ${tripID}`);
-        var data = {usn: usn , tripID : tripID};
-        console.log(`${data.usn}  ${data.tripID}`);
+        usn1 = document.getElementById("studentUSN").innerHTML;
+        usn = usn1.replace(/\s+/g,'');
+        var data = {usn: usn , tripID :tripID};
         var url = '/userTripUpdate';
         cancelRequest(data,url);
     }
 
-    reloadPage = (resHTML) => {
-        
-        console.log('Im still remaining');
-        html = $.parseHTML(resHTML, true);
-        $('body').html(html);
-        console.log('Im still remaining2');
+    removerTrip = (responseUser) => {
+        $("#" +tripID).remove();
 
     }
 
     displayError = (error) => {
-        console.log(`resulted in error`);
         console.log(error);
     }
 
     cancelRequest =(data,url) => {
-        console.log(`sending request ${data.usn}  ${data.tripID}`);
+       
         $.ajax({
             url:url,
             data:data,
             method:'PUT',
-            success:reloadPage,
+            success:removerTrip,
             error:displayError
         });
     }

@@ -11,6 +11,11 @@
         <link href="/css/mainui.css" rel="stylesheet">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
             crossorigin="" />
+        <style>
+            .cancelHandeller{
+                color: blue;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
@@ -20,9 +25,9 @@
                             class="mif-arrow-left mif-2x"></span>
                     </a>
                     <span class="title csidebar-title fg-white" id="studentName">
-                        <%= user.name%></span>
+                        <%=user.name%></span>
                     <span class="subtitle csidebar-subtitle fg-white" id="studentUSN">
-                        <%= user.usn%></span>
+                        <%=user.usn%></span>
                 </div>
                 <ul class="sidebar-menu">
                     <li><a><span class="mif-home fg-red icon"></span>Profile</a></li>
@@ -59,7 +64,7 @@
                     <div class="container my-card">
                         <div class="row">
                             <% for(var trip=0; trip< user.futureTrips.length; trip++) { %>
-                            <div class="col-xs-12 col-md-9">
+                                <div class="col-xs-12 col-md-9"  id = '<%=user.futureTrips[trip].trip_id%>'>
                                 <p id="tripID" hidden><%= user.futureTrips[trip].trip_id%></p>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -76,7 +81,7 @@
                                 <br>
                                 <div class="row">
                                     <div class="pr-2">
-                                        <button type="button" name="button" class="button info outline" id="CancelTrip" > Cancel Trip <i class="mif-cancel"></i></button>
+                                        <button type="button" name="button" class="button info outline cancelHandeller" id="CancelTrip" > Cancel Trip <i class="mif-cancel"></i></button>
                                     </div>
                                     <div class="pr-2">
                                         <div class="dialog" data-role="dialog" id="ChangeTime">	
@@ -85,7 +90,7 @@
                                                 <input data-role="timepicker">	
                                             </div>	
                                             <div class="dialog-actions">	
-                                                <button class="button js-dialog-close">Ok</button>	
+                                                <button class="button js-dialog-close" id = "ChangeTimeConfirm">Ok</button>	
                                                 <button class="button js-dialog-close">Cancel</button>	
                                             </div>
                                         </div>	
@@ -113,8 +118,9 @@
                                 </div>
                                 <br><br><br> 
                             </div>
+                          
                             <% } %>
-                        </div>
+                        
                         <div class="p-4">	
                                 <button class="button cbutton alert cycle large drop-shadow">SOS</button>	
                         </div>
@@ -122,28 +128,6 @@
             </div>       
             </div>
         </div>
-        <script>
-         function cancelTripConfirm1s(){
-        console.log('function called');
-        Metro.dialog.create({
-            title: "Cancel Trip",
-            content: "<div>Are you sure you want to cancel this trip ?</div>",
-            actions: 
-            [
-                {
-                    caption: "Yes",
-                    cls: "js-dialog-close alert",
-                    onclick: cancelTrip,
-                    
-                },
-                {
-                    caption: "No",
-                    cls: "js-dialog-close",
-                }
-            ]
-            });
-    };
-        </script>
         <script src="/js/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
         crossorigin=""></script>
         <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
