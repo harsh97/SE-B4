@@ -54,7 +54,37 @@
                 <h2>Allocated Trips</h2>
             </div>	
             <br><br>
+            
             <div class="row">
+                <div class="col-xs-12">
+                    <div class="container my-card">
+                        <div class="row">
+                                <div class="col-xs-12 col-md-9"  id = '<%=user.futureTrips[0].trip_id%>'>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                            <h2> <span id="change">Ongoing Trip</span></h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 text-muted">
+                                        <p>Pickup Location:<span id="pickUp"><% if(!user.futureTrips[0].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[0].getlocation %> <% }%></span> <br> 
+                                            Drop Location: <span id="drop"><% if(user.futureTrips[0].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[0].getlocation %> <% }%></span><br> 
+                                            Time of Pickup:<span id="timeOfPickUp"><%= user.futureTrips[0].timing%></span> </p>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="pr-2">
+                                        <button type="button" name="button" class="button info outline">Track Bus Location <span class="mif-location"></span></button>
+                                    </div>
+                                </div>
+                                <br><br><br> 
+                            </div>
+                        </div>
+                        <div class="p-4">	
+                                <button class="button cbutton alert cycle large drop-shadow" id="SOS">SOS</button>	
+                        </div>
+                    </div>
                 <div class="col-xs-12">
                     <div class="container my-card">
                         <div class="row">
@@ -107,9 +137,6 @@
                                         </div>
                                         <button type="button" name="button" class="button info outline" onclick="Metro.dialog.open('#changeAddressClick')"> Change Address <span class="mif-location-city"></span></button>
                                     </div>
-                                    <div class="pr-2">
-                                        <button type="button" name="button" class="button info outline">Track Bus Location <span class="mif-location"></span></button>
-                                    </div>
                                 </div>
                                 <br><br><br> 
                             </div>
@@ -120,7 +147,7 @@
                                 <button class="button cbutton alert cycle large drop-shadow" id="SOS">SOS</button>	
                         </div>
                     </div>
-            </div>       
+                 </div>       
             </div>
         </div>
         <script src="/js/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
