@@ -46,11 +46,11 @@
                                 
                                 <div class="p-2">
                                     <ul data-role="listview" class="mb-2 rounded newnode disabled fg-black">
-                                        <li data-icon="<span class='mif-map'></span>" data-caption="Route-No. : "><br><br><%= user.driverTrips[0].route_no%></li>
-                                        <li data-icon="<span class='mif-bus'></span>" data-caption="Vehicle-No. : "><br><br><%= user.driverTrips[0].bus_no%></li>
-                                        <li data-icon="<span class='mif-users'></span>" data-caption="Students Count : "><br><br><%= user.driverTrips[0].no_of_stu%></li>
+                                        <li data-icon="<span class='mif-map'></span>" data-caption="Route-No. : "><%= user.driverTrips[0].route_no%></li>
+                                        <li data-icon="<span class='mif-bus'></span>" data-caption="Vehicle-No. : "><%= user.driverTrips[0].bus_no%></li>
+                                        <li data-icon="<span class='mif-users'></span>" data-caption="Students Count : "><%= user.driverTrips[0].no_of_stu%></li>
                                         <li data-icon="<span class='mif-calendar'></span>" data-caption="Date : "></li>
-                                        <li data-icon="<span class='mif-alarm'></span>" data-caption="Time : "><br><br><%= user.driverTrips[0].timing%></li>
+                                        <li data-icon="<span class='mif-alarm'></span>" data-caption="Time : "><%= user.driverTrips[0].timing%></li>
                                     </ul>
                                     <button class="button bg-green rounded drop-shadow fg-white">Track Location</button>
                                 </div>
