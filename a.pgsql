@@ -1,1 +1,0 @@
-SELECT Driver_name FROM Driver WHERE Driver_id='1'AND password='RAM';
