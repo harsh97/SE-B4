@@ -20,7 +20,7 @@ END;
 $$ LANGUAGE 'plpgsql';
 
 
-SELECT adminApproves('01FB15ECS084');
+-- SELECT adminApproves('01FB15ECS084');
 
 
 --to update Chan_loc table 
@@ -37,10 +37,6 @@ END;
 $$ LANGUAGE 'plpgsql';
 
 --SELECT locChanges('01FB15ECS083', 2 , 12.99999, 13.678552);
-
-
-
-
 
 
 --to update cancel trip;
@@ -71,8 +67,6 @@ $$ LANGUAGE 'plpgsql';
 
 --SELECT studentFutureTrips('01FB15ECS001');
 
-
-
 CREATE OR REPLACE FUNCTION getLocation(_USN VARCHAR, _tripid INT)
 RETURNS RECORD  AS $$
 DECLARE location RECORD;
@@ -96,3 +90,5 @@ END IF ;
 RETURN location;
 END;
 $$ LANGUAGE plpgsql;
+
+-- SELECT getLocation('01FB15ECS084',1);
