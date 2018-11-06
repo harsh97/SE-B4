@@ -26,7 +26,7 @@ $(document).ready(function(){
         usn1 = document.getElementById("studentUSN").innerHTML;
         usn = usn1.replace(/\s+/g,'');
         var data = {usn: usn , tripID :tripID};
-        var url = '/userTripUpdate';
+        var url = '/cancelTrip';
         cancelRequest(data,url);
     }
 

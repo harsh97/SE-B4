@@ -7,7 +7,7 @@ const cancelTrip = require('../controllers/cancelTrip');
  * Request parameters => USN and tripId
  * Response parameters => { user:status }
  */
-cancelTripRouter.put('/userTripUpdate', (req, res, next) => {
+cancelTripRouter.put('/cancelTrip', (req, res, next) => {
    cancelTrip(req.body)
     .then(responseUser => {
         if(responseUser.tripStatus==0){
