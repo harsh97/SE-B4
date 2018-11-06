@@ -20,7 +20,7 @@ END;
 $$ LANGUAGE 'plpgsql';
 
 
-SELECT adminApproves('01FB15ECS001');
+-- SELECT adminApproves('01FB15ECS084');
 
 
 --to update Chan_loc table 
@@ -36,12 +36,7 @@ VALUES
 END;
 $$ LANGUAGE 'plpgsql';
 
-
-SELECT locChanges('01FB15ECS083', 2 , 12.99999, 13.678552);
-
-
-
-
+--SELECT locChanges('01FB15ECS083', 2 , 12.99999, 13.678552);
 
 
 --to update cancel trip;
@@ -53,10 +48,9 @@ INSERT INTO Cancel_trip ( trip_id, UID)
 VALUES (_tripid ,(SELECT USN_UID.UID FROM USN_UID WHERE USN = _USN));
 END;
 $$ LANGUAGE 'plpgsql';
+--SELECT studentCancels('01FB15ECS083',2) ;
 
-
-SELECT studentCancels('01FB15ECS083',2) ;
-
+--SELECT getLocation('01FB15ECS084',1);
 CREATE OR REPLACE FUNCTION studentFutureTrips(_USN VARCHAR)
 RETURNS void AS $$
 BEGIN
@@ -67,11 +61,11 @@ SELECT Cancel_trip.trip_id FROM Cancel_trip
 INNER JOIN USN_UID ON Cancel_trip.UID = USN_UID.UID
 WHERE USN_UID.USN = _USN)
 ORDER BY Fut_trip.trip_id
-limit 14
+limit 14;
 END;
 $$ LANGUAGE 'plpgsql';
 
-SELECT studentFutureTrips('01FB15ECS001');
+--SELECT studentFutureTrips('01FB15ECS001');
 
 CREATE OR REPLACE FUNCTION getLocation(_USN VARCHAR, _tripid INT)
 RETURNS RECORD  AS $$
@@ -97,4 +91,4 @@ RETURN location;
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT getLocation('01FB15ECS084',1);
+-- SELECT getLocation('01FB15ECS084',1);
