@@ -10,6 +10,41 @@ var options = {
   };
 
 var resUser = {};
+/**
+ * Checks the availability of the USN during registration
+ * @param {userdID} 
+ * @returns Promise<object> 
+ */
+
+const fetchDriverTrips = (userdID) => {
+    const clientTrip = new pg.Client(config);
+    const futureTripQuery = `SELECT Route_no,No_of_stu,Bus_no,timing from Trip where Trip.driver_id='${userdID}'`;
+    return new Promise((resolve, reject) => {
+        clientTrip.connect()
+        .then(() => 
+            clientTrip.query(futureTripQuery)
+                .then(res => {
+                        resUser.driverTrips = [];
+                        res.rows.forEach(row => {
+                            resUser.driverTrips.push(row);
+                        });
+                })
+                .catch(err => {
+                    reject(err);
+                    console.log(`Fetch error: ${err}`);
+                })
+                .then(async () => {
+                    resolve(resUser.driverTrips);
+                    clientTrip.end();
+                })
+        )
+        .catch(err => {
+            reject(err);
+            console.log(`Connection error: ${err}`);
+        });
+    });
+
+}
 
 const fetchFutureTrips = (userUSN) => {
     const clientTrip = new pg.Client(config);
@@ -152,7 +187,7 @@ const validateLogin =  (user) => {
                         resUser = {id: user.id, usn: user.usn};
                     }
                     else if(user.id == 'driver') {
-                        userQuery = `SELECT driver_name FROM driver WHERE driver_id=${user.dId} AND password='${user.pass}';`;
+                        userQuery = `SELECT driver_name FROM driver WHERE driver_id='${user.dId}' AND password='${user.pass}';`;
                         response = 'driver_name';
                         resUser = {id:user.id, dId:user.dId};
                     }   
@@ -168,10 +203,14 @@ const validateLogin =  (user) => {
                                         });
                                     }
                                     else if(resUser.id == 'driver'){
-                                        resolve(resUser);
+                                        fetchDriverTrips(resUser.dId).then(driverTrips =>{
+                                            resUser.driverTrips=driverTrips;
+                                            resolve(resUser);
+                                        });
                                     }
                                 });
                         })
+
                         .catch(err => {
                             console.log(`Fetch error: ${err}`);
                             reject(err);
