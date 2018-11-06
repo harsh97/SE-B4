@@ -4,9 +4,10 @@ const path = require('path');
 const server = express();
 require('dotenv').config();
 
+const sos = require('./routes/sos');
 const signUp = require('./routes/signup');
 const login = require('./routes/login');
-const sos = require('./routes/sos');
+const userTripUpdate = require('./routes/userTripUpdate');
 
 server.set('PORT', 4001);
 // Static pages which doesn't require Rest API calls. 
@@ -19,9 +20,10 @@ server.engine('.html',require('ejs').__express);
 server.set('views',path.join(__dirname,'views/'));
 server.set('view engine','html');
 
-server.use('/', signUp);
-server.use('/',login)
 server.use('/',sos);
+server.use('/',login);
+server.use('/', signUp);
+server.use('/',userTripUpdate);
 
 server.get('/', (req, res, next) => {
     res.sendFile('index.html',{root: './views'});

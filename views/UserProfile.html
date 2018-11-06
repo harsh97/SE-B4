@@ -19,10 +19,10 @@
                     <a href="/" class="fg-white sub-action" onclick="Metro.sidebar.close('#sb1'); return false;"><span
                             class="mif-arrow-left mif-2x"></span>
                     </a>
-                    <span class="title csidebar-title fg-white">
-                        <%= user.name%></span>
+                    <span class="title csidebar-title fg-white" id="studentName">
+                        <%=user.name%></span>
                     <span class="subtitle csidebar-subtitle fg-white" id="studentUSN">
-                        <%= user.usn%></span>
+                        <%=user.usn%></span>
                 </div>
                 <ul class="sidebar-menu">
                     <li><a><span class="mif-home fg-red icon"></span>Profile</a></li>
@@ -59,7 +59,7 @@
                     <div class="container my-card">
                         <div class="row">
                             <% for(var trip=0; trip< user.futureTrips.length; trip++) { %>
-                            <div class="col-xs-12 col-md-9">
+                                <div class="col-xs-12 col-md-9"  id = '<%=user.futureTrips[trip].trip_id%>'>
                                 <p id="tripID" hidden><%= user.futureTrips[trip].trip_id%></p>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -76,25 +76,25 @@
                                 <br>
                                 <div class="row">
                                     <div class="pr-2">
-                                            <button type="button" name="button" class="button info outline" id="CancelTrip"> Cancel Trip <i class="mif-cancel"></i></button>
+                                        <button type="button" name="button" class="button info outline cancelHandeller" id="CancelTrip" > Cancel Trip <i class="mif-cancel"></i></button>
                                     </div>
                                     <div class="pr-2">
-                                        <div class="dialog" data-role="dialog" id="changeTimeClick">	
+                                        <div class="dialog" data-role="dialog" id="ChangeTime">	
                                             <div class="dialog-title">Change Time</div>	
                                             <div class="dialog-content">	
                                                 <input data-role="timepicker">	
                                             </div>	
                                             <div class="dialog-actions">	
-                                                <button class="button js-dialog-close">Ok</button>	
+                                                <button class="button js-dialog-close" id = "ChangeTimeConfirm">Ok</button>	
                                                 <button class="button js-dialog-close">Cancel</button>	
                                             </div>
                                         </div>	
-                                        <button type="button" name="button" class="button info outline" onclick="Metro.dialog.open('#changeTimeClick')"> Change Time <span class="mif-alarm"></span></button>
+                                        <button type="button" name="button" class="button info outline" onclick="Metro.dialog.open('#ChangeTime')"> Change Time <span class="mif-alarm"></span></button>
                                     </div>
                                     <div class="pr-2">
                                         <div class="dialog" data-role="dialog" id="changeAddressClick" style="height:300px">	
                                                 <div class="dialog-title">Change Address</div>	
-                                                <div class="dialog-content">	
+                                                <div class="dialog-content" style="height:300px">	
                                                     <div data-role="panel">	
                                                         <div id="map" style="height:200px"></div>	
                                                     </div>	
@@ -113,6 +113,7 @@
                                 </div>
                                 <br><br><br> 
                             </div>
+                          
                             <% } %>
                         </div>
                         <div class="p-4">	
@@ -130,3 +131,4 @@
         <script type="text/javascript" src="/js/staticMarker.js"></script>
     </body>
 </html>
+

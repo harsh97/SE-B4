@@ -31,8 +31,6 @@
 
 		All commands will be executed
 */ 
-create database se1;
-\c se1
 
 CREATE TABLE Stu_Per_Data (
 	USN VARCHAR PRIMARY KEY NOT NULL,
