@@ -75,7 +75,9 @@ CREATE TABLE Trip (
 	 No_of_stu INT ,
 	 timing TIME,
 	 Bus_no VARCHAR REFERENCES Bus(Bus_no),
-	 Driver_id VARCHAR REFERENCES Driver (Driver_id)
+	 Driver_id VARCHAR REFERENCES Driver (Driver_id),
+	 trip_id INT,
+	 trip_date DATE
 );
 
 CREATE TABLE Stu_Trip_Data (
