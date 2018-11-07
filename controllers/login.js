@@ -47,7 +47,7 @@ const fetchDriverTrips = (userdID) => {
 
 const fetchCurrentTrips = (userUSN) => {
     const clientTrip = new pg.Client(config);
-    const futureTripQuery = `SELECT trip.bus_no, driver.driver_name, trip.timing, (select getCurentLocation('${userUSN}'))FROM stu_trip_data, trip, driver WHERE stu_trip_data.route_no = trip.route_no AND stu_trip_data.uid = (select uid from usn_uid where usn='${userUSN}') AND trip.driver_id = driver.driver_id;`;
+    const futureTripQuery = `SELECT trip.bus_no, driver.driver_name, driver.mobile_no, trip.timing, (select getCurentLocation('${userUSN}'))FROM stu_trip_data, trip, driver WHERE stu_trip_data.route_no = trip.route_no AND stu_trip_data.uid = (select uid from usn_uid where usn='${userUSN}') AND trip.driver_id = driver.driver_id;`;
     resUser.CurrentTrip = null;
     return new Promise((resolve, reject) => {
         clientTrip.connect()
@@ -56,6 +56,7 @@ const fetchCurrentTrips = (userUSN) => {
                 .then(res => {
                         res.rows.forEach(row => {
                             resUser.CurrentTrip =  row;
+                            resUser.CurrentTrip.getcurentlocation = resUser.CurrentTrip.getcurentlocation.slice(1,-1).split(',');
                         });
                 })
                 .catch(err => {
@@ -63,6 +64,11 @@ const fetchCurrentTrips = (userUSN) => {
                     console.log(`Fetch error: ${err}`);
                 })
                 .then(async () => {
+                    var geocoder = NodeGeocoder(options);
+                        if(resUser.CurrentTrip != null && resUser.CurrentTrip.getcurentlocation != null) {
+                            var location = await geocoder.reverse({lat:resUser.CurrentTrip.getcurentlocation[0], lon:resUser.CurrentTrip.getcurentlocation[1]})
+                            resUser.CurrentTrip.getcurentlocation = location[0].formattedAddress;
+                        }
                     resolve(resUser.CurrentTrip);
                     clientTrip.end();
                 })
