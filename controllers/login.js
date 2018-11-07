@@ -61,7 +61,7 @@ const fetchCurrentTrips = (userUSN) => {
                 })
                 .catch(err => {
                     reject(err);
-                    console.log(`Fetch error: ${err}`);
+                    console.log(`Fetch error CurrentTrip: ${err}`);
                 })
                 .then(async () => {
                     var geocoder = NodeGeocoder(options);
@@ -208,7 +208,7 @@ const validateLogin =  (user) => {
                 resolve(resUser);
             }
             else {
-                reject(new Error('Authentication failed'));
+                resolve(null);
             }
         }
         else {
@@ -229,13 +229,18 @@ const validateLogin =  (user) => {
                     }   
                     client.query(userQuery)
                         .then( res => {
-                                res.rows.forEach(async(row) => {
-                                    resUser.name = row[response];
-                                    resUser.futureTrips = [];
-                                    if(resUser.id == 'student'){
-                                        resUser.CurrentTrip = await fetchCurrentTrips(resUser.usn);
-                                        fetchFutureTrips(resUser.usn).then(futureTrips => {
-                                            resUser.futureTrips = futureTrips;
+                                console.log(res.rowCount);
+                                if(res.rowCount == 0) {
+                                    resolve(null);
+                                }
+                                else {
+                                    res.rows.forEach(async(row) => {
+                                        resUser.name = row[response];
+                                        resUser.futureTrips = [];
+                                        if(resUser.id == 'student'){
+                                            resUser.CurrentTrip = await fetchCurrentTrips(resUser.usn);
+                                            fetchFutureTrips(resUser.usn).then(futureTrips => {
+                                                resUser.futureTrips = futureTrips;
                                             resolve(resUser);
                                         });
                                     }
@@ -245,9 +250,9 @@ const validateLogin =  (user) => {
                                             resolve(resUser);
                                         });
                                     }
-                                });
+                                    });
+                                }
                         })
-
                         .catch(err => {
                             console.log(`Fetch error: ${err}`);
                             reject(err);

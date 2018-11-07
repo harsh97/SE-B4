@@ -68,11 +68,11 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 text-muted">
-                                        <p>Pickup Location:<span id="pickUp"><%= user.CurrentTrip.getcurentlocation %></span> <br> 
-                                           Time of Pickup:<span id="timeOfPickUp"><%= user.CurrentTrip.timing %></span> <br> 
-                                           Bus Number:<span id="timeOfPickUp"><%= user.CurrentTrip.bus_no %></span> <br> 
-                                           Driver Name:<span id="timeOfPickUp"><%= user.CurrentTrip.driver_name %></span> <br> 
-                                           Driver Contact Number:<span id="timeOfPickUp"><%= user.CurrentTrip.mobile_no %></span> 
+                                        <p>Pickup Location : <span id="pickUp"><%= user.CurrentTrip.getcurentlocation %></span> <br> 
+                                           Time of Pickup  : <span id="timeOfPickUp"><%= user.CurrentTrip.timing %></span> <br> 
+                                           Bus Number      : <span id="timeOfPickUp"><%= user.CurrentTrip.bus_no %></span> <br> 
+                                           Driver Name     : <span id="timeOfPickUp"><%= user.CurrentTrip.driver_name %></span> <br> 
+                                           Contact Number  : <span id="timeOfPickUp"><%= user.CurrentTrip.mobile_no %></span> 
                                         </p>
                                     </div>
                                 </div>
@@ -100,9 +100,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 text-muted">
-                                        <p>Pickup Location:<span id="pickUp"><% if(!user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].getlocation %> <% }%></span> <br> 
-                                            Drop Location: <span id="drop"><% if(user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].getlocation %> <% }%></span><br> 
-                                            Time of Pickup:<span id="timeOfPickUp"><%= user.futureTrips[trip].timing%></span> </p>
+                                        <p>Pickup Location : <span id="pickUp"><% if(!user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].getlocation %> <% }%></span> <br> 
+                                            Drop Location  : <span id="drop"><% if(user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].getlocation %> <% }%></span><br> 
+                                            Time of Pickup : <span id="timeOfPickUp"><%= user.futureTrips[trip].timing%></span> </p>
                                     </div>
                                 </div>
                                 <br>

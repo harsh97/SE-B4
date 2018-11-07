@@ -24,20 +24,20 @@ loginRouter.get('/forgotPassword', (req, res, next) => {
 loginRouter.post('/login/:id', (req, res, next) => {
     validateLogin(req.body)
     .then(responseUser => {
-        if(responseUser.name) {
-            if(req.params.id=="student") {
-                res.render('UserProfile.html',{
-                user:responseUser
-                })
+        if(responseUser != null) {
+            if(req.params.id=='admin') {
+                res.render('admin/adminui.html')
             }
+            else if(req.params.id=="student") {
+                    res.render('UserProfile.html',{
+                    user:responseUser
+                    })
+                }
             else if(req.params.id=="driver") {
                 res.render('driver/driverui.html',{
                 user:responseUser
                 })
             }
-        }
-        else if(req.params.id=='admin') {
-            res.render('admin/adminui.html')
         }
         else {
             exist= false;
