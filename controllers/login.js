@@ -15,7 +15,6 @@ var resUser = {};
  * @param {userdID} 
  * @returns Promise<object> 
  */
-
 const fetchDriverTrips = (userdID) => {
     const clientTrip = new pg.Client(config);
     const futureTripQuery = `SELECT Route_no,No_of_stu,Bus_no,timing from Trip where Trip.driver_id='${userdID}'`;
@@ -45,6 +44,37 @@ const fetchDriverTrips = (userdID) => {
     });
 
 }
+
+const fetchCurrentTrips = (userUSN) => {
+    const clientTrip = new pg.Client(config);
+    const futureTripQuery = `SELECT trip.bus_no, driver.driver_name, trip.timing, (select getCurentLocation('${userUSN}'))FROM stu_trip_data, trip, driver WHERE stu_trip_data.route_no = trip.route_no AND stu_trip_data.uid = (select uid from usn_uid where usn='${userUSN}') AND trip.driver_id = driver.driver_id;`;
+    resUser.CurrentTrip = null;
+    return new Promise((resolve, reject) => {
+        clientTrip.connect()
+        .then(() => 
+            clientTrip.query(futureTripQuery)
+                .then(res => {
+                        res.rows.forEach(row => {
+                            resUser.CurrentTrip =  row;
+                        });
+                })
+                .catch(err => {
+                    reject(err);
+                    console.log(`Fetch error: ${err}`);
+                })
+                .then(async () => {
+                    resolve(resUser.CurrentTrip);
+                    clientTrip.end();
+                })
+        )
+        .catch(err => {
+            reject(err);
+            console.log(`Connection error: ${err}`);
+        });
+    });
+
+}
+
 
 const fetchFutureTrips = (userUSN) => {
     const clientTrip = new pg.Client(config);
@@ -193,10 +223,11 @@ const validateLogin =  (user) => {
                     }   
                     client.query(userQuery)
                         .then( res => {
-                                res.rows.forEach(row => {
+                                res.rows.forEach(async(row) => {
                                     resUser.name = row[response];
                                     resUser.futureTrips = [];
                                     if(resUser.id == 'student'){
+                                        resUser.CurrentTrip = await fetchCurrentTrips(resUser.usn);
                                         fetchFutureTrips(resUser.usn).then(futureTrips => {
                                             resUser.futureTrips = futureTrips;
                                             resolve(resUser);
