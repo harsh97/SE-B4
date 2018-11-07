@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
+    <link rel="icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
+
+    <link href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css" rel="stylesheet">
+    <link href="/css/mainui.css" rel="stylesheet">
+
+
+
+    <title>Administration Dashboard</title>
+    <style type="text/css">
+
+        .hide {
+            display: none;
+        }
+        
+        .section-title {
+            margin-bottom: 100px;
+        }
+
+        .approve-student{
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 15px;
+            padding-top: 15px;
+            border-bottom: 1px solid #bbb;
+        }
+
+        .button.alert{
+            float: right;
+        }
+
+         * {
+          box-sizing: border-box;
+        }
+
+        #myInput {
+          background-image: url('/css/searchicon.png');
+          background-position: 10px 12px;
+          background-repeat: no-repeat;
+          width: 100%;
+          font-size: 16px;
+          padding: 12px 20px 12px 40px;
+          border: 1px solid #ddd;
+          margin-bottom: 12px;
+        }
+
+        #myUL {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        #myUL li div{
+          border: 1px solid #ddd;
+          margin-top: -1px; /* Prevent double borders */
+          background-color: #f6f6f6;
+          padding: 12px;
+          text-decoration: none;
+          font-size: 18px;
+          color: black;
+          display: block
+        }
+
+        #myUL li div:hover:not(.header) {
+          background-color: #eee;
+        }        
+    </style>
+
+
+    <script>
+            function ConfirmBlock()
+            {
+                Metro.dialog.create({
+                title: "Confirm Blocking",
+                content: "<div>Are you sure you want to block this student ?</div>",
+                actions: 
+                [
+                    {
+                        caption: "Yes",
+                        cls: "js-dialog-close alert",
+                    },
+                    {
+                        caption: "No",
+                        cls: "js-dialog-close",
+                    }
+                ]
+               });
+            }
+        </script>
+</head>
+
+<body>
+    <div class="fluid-container">
+        <div data-role="navview" data-compact="false" data-expanded="fs" class="open">
+            <nav class="navview-pane pos-fixed">
+                <div class="ml-1 mr-1 pt-6 pb-6">
+                    <img src="/img/Graphicloads-Transport-Bus-4.ico" class="pos-absolute" />
+                    <div class="cbrand">
+                        <span>Transport Management System</span>
+                    </div>
+                </div>
+                <div class="item-separator"></div>
+
+                <ul class="navview-menu">
+                    <li class="ui-widget-content" onclick="selectTab('student-approval-tab');">
+                        <a href="#">
+                            <span class="icon"><span class="mif-users"></span></span>
+                            <span class="caption">Student Approval</span>
+                        </a>
+                    </li>
+                    <li class="ui-widget-content"">
+                        <a href="#">
+                            <span class="icon"><span class="mif-notification"></span></span>
+                            <span class="caption">Notify Student</span>
+                        </a>
+                    </li>
+                    <li class="ui-widget-content">
+                        <a href="#">
+                            <span class="icon"><span class="mif-profile"></span></span>
+                            <span class="caption">Drivers</span>
+                        </a>
+                    </li>
+
+                    <li class="ui-widget-content" onclick="selectTab('block-user-tab');">
+                        <a href="#">
+                            <span class="icon"><span class="mif-blocked"></span></span>
+                            <span class="caption">Block User</span>
+                        </a>
+                    </li>
+
+                    <li class="ui-widget-content">
+                        <a href="#">
+                            <span class="icon"><span class="mif-flag"></span></span>
+                            <span class="caption" style="line-height: 24px;">Addition/Deletion<br>of a User</span>
+                        </a>
+                    </li>
+
+                    <li class="ui-widget-content">
+                        <a href="#">
+                            <span class="icon"><span class="mif-drive-eta"></span></span>
+                            <span class="caption">Update Driver</span>
+                        </a>
+                    </li>
+
+                    <li class="ui-widget-content">
+                        <a href="#">
+                            <span class="icon"><span class="mif-bus"></span></span>
+                            <span class="caption">Update Buses</span>
+                        </a>
+                    </li>
+
+                    <li class="ui-widget-content">
+                        <a href="#">
+                            <span class="icon"><span class="mif-location"></span></span>
+                            <span class="caption">Track Buses</span>
+                        </a>
+                    </li>
+
+                    <li class="ui-widget-content" onclick="selectTab('track-trips-tab');">
+                        <a href="#">
+                            <span class="icon"><span class="mif-location"></span></span>
+                            <span class="caption">Track Trips</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="navview-content">
+                <div data-role="appbar" data-expand-point="md" class="admin-appbar" dir="rtl">
+                    <ul class="app-bar-menu">
+                        <li>
+                            <a href="#" class="dropdown-toggle">Admin</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="#">Profile Settings<span class="mif-tools mif-lg mr-3"></span></a></li>
+                                <li class="divider bg-lightGray"></li>
+                                <li><a href="login.html">Logout<span class="mif-exit mif-lg mr-3"></span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="fluid-container pl-5-md pr-4-md pt-8 mt-8 ">
+                    <div>
+                        <div id="student-approval-tab" class="hide">
+                            <div class="section-title"><center><h1>Requested Approvals</h1></center></div>
+                            <div class="approve-student">
+                                <div class="approve-student-details">
+                                    <div><p>User 1</p></div>
+                                    <div><p>USN : 01FB15ECS001</p></div>
+                                </div>
+                                <div class="approve-student-buttons">
+                                    <button class="button">Approve</button>
+                                    <button class="button">Disapprove</button>
+                                </div>
+                            </div>
+
+                            <div class="approve-student">
+                                <div class="approve-student-details">
+                                    <div><p>User 2</p></div>
+                                    <div><p>USN : 01FB15ECS002</p></div>
+                                </div>
+                                <div class="approve-student-buttons">
+                                    <button class="button">Approve</button>
+                                    <button class="button">Disapprove</button>
+                                </div>
+                            </div>
+
+                            <div class="approve-student">
+                                <div class="approve-student-details">
+                                    <div><p>User 3</p></div>
+                                    <div><p>USN : 01FB15ECS003</p></div>
+                                </div>
+                                <div class="approve-student-buttons">
+                                    <button class="button">Approve</button>
+                                    <button class="button">Disapprove</button>
+                                </div>
+                            </div>
+
+                            <div class="approve-student">
+                                <div class="approve-student-details">
+                                    <div><p>User 4</p></div>
+                                    <div><p>USN : 01FB15ECS004</p></div>
+                                </div>
+                                <div class="approve-student-buttons">
+                                    <button class="button">Approve</button>
+                                    <button class="button">Disapprove</button>
+                                </div>
+                            </div>
+
+                            <div class="approve-student">
+                                <div class="approve-student-details">
+                                    <div><p>User 5</p></div>
+                                    <div><p>USN : 01FB15ECS005</p></div>
+                                </div>
+                                <div class="approve-student-buttons">
+                                    <button class="button">Approve</button>
+                                    <button class="button">Disapprove</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="block-user-tab" class="hide">
+                            <div class="section-title"><center><h1>Block User</h1></center></div>
+                            <div class="search-bar">
+                                <input type="text" name="student-name" id="myInput" onkeyup="myFunction()" placeholder="Enter student name">
+
+                                <ul id="myUL">
+                                  <li><div>User 1<button onclick="ConfirmBlock()" class="button alert" type="button">Block User</button></div></li>
+                                  <li><div>User 2<button onclick="ConfirmBlock()" class="button alert" type="button">Block User</button></div></li>
+                                  <li><div>User 3<button onclick="ConfirmBlock()" class="button alert" type="button">Block User</button></div></li>
+                                  <li><div>User 4<button onclick="ConfirmBlock()" class="button alert" type="button">Block User</button></div></li>
+                                  <li><div>User 5<button onclick="ConfirmBlock()" class="button alert" type="button">Block User</button></div></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="track-trips-tab" class="hide">
+                            <div class="section-title"><center><h1>Track Trips</h1></center></div>
+
+                        </div>
+                            <!-- <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?origin=place_id:ChIJz5ILsP8-rjsR5pwHymp-1i0&destination=place_id:ChIJo3hiMTw-rjsRIDkardJq6v4&key=AIzaSyCxzHPI52PxoU0M9M2_NJkVsri0VwM4mag" allowfullscreen></iframe> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+
+        $(function(){
+            $(".navview-menu").selectable();
+        });
+
+
+
+
+
+        function selectTab(id) {
+            var others = document.getElementsByClassName("hide");
+            for (var i = 0; i < others.length; i++) {
+                others[i].style.display = "none";
+            }
+            var tab = document.getElementById(id);
+            tab.style.display = "block";
+        }
+
+
+
+        function myFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("div")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                }
+                else {
+                    li[i].style.display = "none";
+                }
+             }
+        }
+
+
+
+    </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+        <script type="text/javascript" src="/js/signup.js"></script>
+        <script type="text/javascript" src="/js/staticMarker.js"></script>
+</body>
+
+</html>
