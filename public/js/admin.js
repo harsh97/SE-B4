@@ -40,3 +40,33 @@ $(document).ready(function(){
         dropdownStudentsList();
     });
 });
+
+displayMessage = (resHTML) => {
+   alert("done!!!");
+}
+
+$(".approve").click( function() {
+    get1=$(this).parent().parent().children().children().children('span').text();
+    var data = { AId : get1,Func:"approve"};
+    var url = '/admin/approve';  
+    adminRequest(data, url);
+
+});
+$(".disapprove").click( function() {
+   get1=$(this).parent().parent().children().children().children('span').text();
+    var data = { AId : get1,Func:"disapprove"};
+    var url = '/admin/disapprove';  
+    adminRequest(data, url);
+
+});
+
+adminRequest = (data, url) => {
+    $.ajax({
+        async: true,
+        url:url,
+        data:data,
+        method:'POST',
+        success:displayMessage,
+        error:displayError
+    });    
+}
