@@ -9,8 +9,44 @@ $(document).ready(function(){
         tab.style.display = "block";
     }
 
+    renderTrips = (trips) => {
+        var trackTripsTab = document.getElementById('track-trips-tab');
+        for(var tripIndex=0 ; tripIndex < trips.length ; tripIndex++) {
+            var trip = document.createElement('div');
+            trip.className = 'approve-student';
+            trip.innerHTML = `
+                        <div class="approve-student-details">
+                            <div><p>Route Number : ${trips[tripIndex].routenumber}</p></div>
+                            <div><p>Bus Number   : ${trips[tripIndex].busnumber}</p></div>
+                            <div><p>Driver Name : ${trips[tripIndex].drivername}</p></div>
+                            <div><p>Time : ${trips[tripIndex].timing}</p></div>
+                            <div><p>Number of Students : ${trips[tripIndex].noofstudents}</p></div>
+                        </div>
+                        <div class="approve-student-buttons">
+                            <button class="button trips${tripIndex}">Track Location</button>
+                        </div>
+                            `;
+            trackTripsTab.appendChild(trip);
+        }
+    }
+
+    displayError = (error) => {
+        console.log(error);
+    }
+
+    getTripsRequest = (url) => {
+        $.ajax({
+            url:url,
+            method:'GET',
+            success:renderTrips,
+            error:displayError
+        });
+    }
+
     $('#track-trips').on('click', () => {
-        selectTab('track-trips-tab')
+        getTripsRequest('/tripList');
+        selectTab('track-trips-tab');
+        
     });
     $('#block-user').on('click',() => {
         selectTab('block-user-tab')
