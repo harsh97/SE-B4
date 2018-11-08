@@ -70,9 +70,9 @@
                                     <div class="col-md-12 text-muted">
                                         <p>Pickup Location : <span id="pickUp"><%= user.CurrentTrip.getcurentlocation %></span> <br> 
                                            Time of Pickup  : <span id="timeOfPickUp"><%= user.CurrentTrip.timing %></span> <br> 
-                                           Bus Number      : <span id="timeOfPickUp"><%= user.CurrentTrip.bus_no %></span> <br> 
-                                           Driver Name     : <span id="timeOfPickUp"><%= user.CurrentTrip.driver_name %></span> <br> 
-                                           Contact Number  : <span id="timeOfPickUp"><%= user.CurrentTrip.mobile_no %></span> 
+                                           Bus Number      : <span id="busNumber"><%= user.CurrentTrip.bus_no %></span> <br> 
+                                           Driver Name     : <span id="driverName"><%= user.CurrentTrip.driver_name %></span> <br> 
+                                           Contact Number  : <span id="contactNumber"><%= user.CurrentTrip.mobile_no %></span> 
                                         </p>
                                     </div>
                                 </div>
@@ -85,8 +85,19 @@
                                 <br><br><br> 
                             </div>
                         </div>
-                        <% } %>
+                        <% } else { %>
+                        <div class="row">
+                                <div class="col-xs-12 col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                                <h2> <span id="change">No Ongoing Trips</span></h2>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
                     </div>
+                    <br><br><br>
+                    <% } %>
                 <div class="col-xs-12">
                     <div class="container my-card">
                         <div class="row">
@@ -100,9 +111,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 text-muted">
-                                        <p>Pickup Location : <span id="pickUp"><% if(!user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].getlocation %> <% }%></span> <br> 
-                                            Drop Location  : <span id="drop"><% if(user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].getlocation %> <% }%></span><br> 
-                                            Time of Pickup : <span id="timeOfPickUp"><%= user.futureTrips[trip].timing%></span> </p>
+                                        <p>Pickup Location : <span id="futurepickUp"><% if(!user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].getlocation %> <% }%></span> <br> 
+                                            Drop Location  : <span id="futuredrop"><% if(user.futureTrips[trip].drop_pick) { %> PES UNIVERSITY <% } else { %> <%= user.futureTrips[trip].getlocation %> <% }%></span><br> 
+                                            Time of Pickup : <span id="futuretimeOfPickUp"><%= user.futureTrips[trip].timing%></span> </p>
                                     </div>
                                 </div>
                                 <br>

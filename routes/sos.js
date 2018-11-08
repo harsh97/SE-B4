@@ -8,7 +8,7 @@ sosRouter.get('/sos', (req, res, next) => {
 
     client.messages
     .create({
-        body: `Emergency required for USN : ${req.query.usn}.\nPlease inform police to look into it.\nPickUp Location : ${req.query.pickUp}.\nDrop Location : ${req.query.drop}\n Route number will be updated shortly`,
+        body: `Emergency required for USN : ${req.query.usn}.\nPlease inform police to look into it.\nPickUp Location : ${req.query.pickUp}.\nBus Number : ${req.query.busNumber}\nDriver Name : ${req.query.driverName}\n Driver Contact Details : ${req.query.contactNumber}\n`,
         from: process.env.TWILIO_PHONE_NO,
         to: process.env.TWILIO_ADMIN
     })
