@@ -9,15 +9,39 @@ $(document).ready(function(){
         tab.style.display = "block";
     }
 
-    $('#track-trips').on('click', () => {
-        selectTab('track-trips-tab')
-    });
-    $('#block-user').on('click',() => {
-        selectTab('block-user-tab')
-    });
-    $('#student-approval').on('click',() => {
-        selectTab('student-approval-tab')
-    });
+    renderUsers = (users) => {
+        var userApprovalTab = document.getElementById('student-approval-tab');
+        for(var Index=0 ; Index < users.length ; Index++) {
+            var User = document.createElement('div');
+            User.className = 'approve-student';
+            User.innerHTML = `
+            <div class="approve-student-details">
+            <div><p>User ${Index}</p></div>
+            <div>USN : <span id="usn">${users[Index].usn}</span></div>
+        </div>
+        <div class="approve-student-buttons">
+            <button  class="approve"> Approve</button>
+        </div>
+    </div>`;
+            userApprovalTab.appendChild(User);
+            
+        }
+    
+    }
+
+    displayError = (error) => {
+        console.log(error);
+    }
+
+    getUsersRequest = (url) => {
+        $.ajax({
+            url:url,
+            method:'GET',
+            success:renderUsers,
+            error:displayError
+        });
+    }
+
 
     function dropdownStudentsList() {
         var input, filter, ul, li, a, i;
@@ -39,24 +63,25 @@ $(document).ready(function(){
     $('#myInput').on('keyup', () => {
         dropdownStudentsList();
     });
-});
+
 
 displayMessage = (resHTML) => {
    alert("done!!!");
 }
 
-$(".approve").click( function() {
-    get1=$(this).parent().parent().children().children().children('span').text();
-    var data = { AId : get1,Func:"approve"};
-    var url = '/admin/approve';  
-    adminRequest(data, url);
 
+$('#track-trips').on('click', () => {
+    getTripsRequest('/tripList');
+    selectTab('track-trips-tab');
+    
 });
-$(".disapprove").click( function() {
-   get1=$(this).parent().parent().children().children().children('span').text();
-    var data = { AId : get1,Func:"disapprove"};
-    var url = '/admin/disapprove';  
-    adminRequest(data, url);
+$('#block-user').on('click',() => {
+    selectTab('block-user-tab');
+});
+$('#student-approval').on('click',() => {
+    getUsersRequest('/userList');
+    selectTab('student-approval-tab');
+});
 
 });
 
@@ -70,3 +95,13 @@ adminRequest = (data, url) => {
         error:displayError
     });    
 }
+
+
+$('body').on('click','.approve',( function() {
+    console.log("here");
+    get1=$(this).parent().parent().children().children().children('span').text();
+    var data = { AId : get1,Func:"approve"};
+    var url = '/admin/approve';  
+    adminRequest(data, url);
+}));
+

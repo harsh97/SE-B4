@@ -1,6 +1,21 @@
 const express = require('express');
 const adminRouter = express.Router();
-const { approveUser, disapproveUser } = require('../controllers/admin');
+const { approveUser, blockUser ,getUsers} = require('../controllers/admin');
+
+adminRouter.get('/userList', (req, res, next) => {
+    getUsers()
+     .then(users => {
+         if(users != null){
+             res.send(users).status(200);
+         }
+         else
+         {
+             exist= false;
+             res.send(exist).status(204);
+         }
+     })
+     .catch(err => console.log(err));
+ });
 
 adminRouter.post('/admin/:id', (req, res, next) => {
     if(req.params.id=="approve")
@@ -11,16 +26,6 @@ adminRouter.post('/admin/:id', (req, res, next) => {
                 res.send({'func':req.params.id ,'Id':responseUser.AId});
     })
     .catch(err => console.log(err));
-}
-if(req.params.id=="disapprove")
-{
-    disapproveUser(req.body)
-    .then(responseUser => {
-        
-                res.send({'func':req.params.id ,'Id':responseUser.AId});
-    })
-    .catch(err => console.log(err));
-
 }
 if(req.params.id=="block")
 {
