@@ -57,6 +57,7 @@ const fetchCurrentTrips = (userUSN) => {
                         res.rows.forEach(row => {
                             resUser.CurrentTrip =  row;
                             resUser.CurrentTrip.getcurentlocation = resUser.CurrentTrip.getcurentlocation.slice(1,-1).split(',');
+                            resUser.CurrentTrip.latitudeLongitude = resUser.CurrentTrip.getcurentlocation;
                         });
                 })
                 .catch(err => {

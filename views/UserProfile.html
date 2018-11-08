@@ -74,12 +74,16 @@
                                            Driver Name     : <span id="driverName"><%= user.CurrentTrip.driver_name %></span> <br> 
                                            Contact Number  : <span id="contactNumber"><%= user.CurrentTrip.mobile_no %></span> 
                                         </p>
+                                        <p hidden id="latitude"><%= user.CurrentTrip.latitudeLongitude[0] %></p>
+                                        <p hidden id="longitude"><%= user.CurrentTrip.latitudeLongitude[1] %></p>
+                                        <div id="map" style="display: none"></div>
+                                        <div id="dvDistance" style="display: none"></div>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="pr-2">
-                                        <button type="button" name="button" class="button info outline">Track Bus Location <span class="mif-location"></span></button>
+                                        <button type="button" name="button" class="button info outline" onclick="getLocation()">Track Bus Location <span class="mif-location"></span></button>
                                     </div>
                                 </div>
                                 <br><br><br> 
@@ -169,6 +173,8 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="/js/userTripUpdate.js"></script>
         <script type="text/javascript" src="/js/staticMarker.js"></script>
+        <script type="text/javascript" src="/js/userTrackLocation.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"></script>
     </body>
 </html>
 
