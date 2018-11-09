@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <link rel="shortcut icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
         <link rel="icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
-
         <link href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css" rel="stylesheet">
         <link href="/css/mainui.css" rel="stylesheet">
         <link href="/css/adminui.css" rel="stylesheet">
@@ -13,89 +12,84 @@
     </head>
     <body>
         <div class="fluid-container">
-            <div data-role="navview" data-compact="false" data-expanded="fs" class="open">
-                <nav class="navview-pane pos-fixed">
-                    <div class="ml-1 mr-1 pt-6 pb-6">
-                        <img src="/img/Graphicloads-Transport-Bus-4.ico" class="pos-absolute" />
-                        <div class="cbrand">
-                            <span>Transport Management System</span>
+                <div data-role="navview" data-compact="false" data-expanded="fs" class="open">
+                    <nav class="navview-pane pos-fixed">
+                        <div class="ml-1 mr-1 pt-6 pb-6">
+                            <img src="/img/Graphicloads-Transport-Bus-4.ico" class="pos-absolute" />
+                            <div class="cbrand">
+                                <span>Transport Management System</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item-separator"></div>
-
-                    <ul class="navview-menu">
-                        <li class="ui-widget-content" id='student-approval'>
-                            <a href="#">
-                                <span class="icon"><span class="mif-users"></span></span>
-                                <span class="caption">Student Approval</span>
-                            </a>
-                        </li>
-                        <li class="ui-widget-content">
-                            <a href="#">
-                                <span class="icon"><span class="mif-notification"></span></span>
-                                <span class="caption">Notify Student</span>
-                            </a>
-                        </li>
-
-                        <li class="ui-widget-content" id='block-user'>
-                            <a href="#">
-                                <span class="icon"><span class="mif-blocked"></span></span>
-                                <span class="caption">Block User</span>
-                            </a>
-                        </li>
-
-                        <li class="ui-widget-content">
-                            <a href="#">
-                                <span class="icon"><span class="mif-bus"></span></span>
-                                <span class="caption">Update Trips</span>
-                            </a>
-                        </li>
-
-                        <li class="ui-widget-content" id='track-trips'>
-                            <a href="#">
-                                <span class="icon"><span class="mif-location"></span></span>
-                                <span class="caption">Track Trips</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-
-                <div class="navview-content">
-                    <div data-role="appbar" data-expand-point="md" class="admin-appbar" dir="rtl">
-                        <ul class="app-bar-menu">
-                            <li>
-                                <a href="#" class="dropdown-toggle">Admin</a>
-                                <ul class="d-menu" data-role="dropdown">
-                                    <li><a href="#">Profile Settings<span class="mif-tools mif-lg mr-3"></span></a></li>
-                                    <li class="divider bg-lightGray"></li>
-                                    <li><a href="login.html">Logout<span class="mif-exit mif-lg mr-3"></span></a></li>
-                                </ul>
+                        <div class="item-separator"></div>
+                        <ul class="navview-menu">
+                            <li class="ui-widget-content" id='student-approval'>
+                                <a href="#">
+                                    <span class="icon"><span class="mif-users"></span></span>
+                                    <span class="caption">Student Approval</span>
+                                </a>
+                            </li>
+                            <li class="ui-widget-content">
+                                <a href="#">
+                                    <span class="icon"><span class="mif-notification"></span></span>
+                                    <span class="caption">Notify Student</span>
+                                </a>
+                            </li>
+                            <li class="ui-widget-content" id='block-user'>
+                                <a href="#">
+                                    <span class="icon"><span class="mif-blocked"></span></span>
+                                    <span class="caption">Block User</span>
+                                </a>
+                            </li>
+                            <li class="ui-widget-content">
+                                <a href="#">
+                                    <span class="icon"><span class="mif-bus"></span></span>
+                                    <span class="caption">Update Trips</span>
+                                </a>
+                            </li>
+                            <li class="ui-widget-content" id='track-trips'>
+                                <a href="#">
+                                    <span class="icon"><span class="mif-location"></span></span>
+                                    <span class="caption">Track Trips</span>
+                                </a>
                             </li>
                         </ul>
-                    </div>
-                    <div class="fluid-container pl-5-md pr-4-md pt-8 mt-8 ">
-                        <div>
-                            <div id="student-approval-tab" class="hide">
-                                <div class="section-title"><center><h1>Requested Approvals</h1></center></div>
-                            </div>
-
+                    </nav>
+                    <div class="navview-content">
+                        <div data-role="appbar" data-expand-point="md" class="admin-appbar" dir="rtl">
+                            <ul class="app-bar-menu">
+                                <li>
+                                    <a href="#" class="dropdown-toggle">Admin</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="#">Profile Settings<span class="mif-tools mif-lg mr-3"></span></a></li>
+                                        <li class="divider bg-lightGray"></li>
+                                        <li><a href="login.html">Logout<span class="mif-exit mif-lg mr-3"></span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fluid-container pl-5-md pr-4-md pt-8 mt-8 ">
+                                <div>
+                                    <div id="student-approval-tab" class="hide">
+                                        <div class="section-title"><center><h1>Requested Approvals</h1></center></div>
+                                    </div>
+                                </div>
                             <div id="block-user-tab" class="hide">
                                 <div class="section-title"><center><h1>Block User</h1></center></div>
                                 <div class="search-bar">
-                                    <input type="text" id="blockName" name="student-name" id="myInput" placeholder="Enter student name">
-                                    <button class="approve" id="block">Block</button>
-                                    <p></p>
-                                    <p></p>
-                                    <ul id="myUL">
-                                        <li><a href="#">User 1</a></li>
-                                        <li><a href="#">User 2</a></li>
-                                        <li><a href="#">User 3</a></li>
-                                        <li><a href="#">User 4</a></li>
-                                        <li><a href="#">User 5</a></li>
+                                    <input type="text" name="student-name" id="myInput" placeholder="Enter student name">
+                                    <button class="button alert" id="confirmBlock">Block</button>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <ul id="myUL" style="display: none">
+                                        <li><div><p>User 1</p></div></li>
+                                        <li><div><p>User 2</p></div></li>
+                                        <li><div><p>User 3</p></div></li>
+                                        <li><div><p>User 4</p></div></li>
+                                        <li><div><p>User 5</p></div></li>
                                     </ul>
                                 </div>
                             </div>
-
                             <div id="track-trips-tab" class="hide">
                                 <div class="section-title"><center><h1>Track Trips</h1></center></div>
                             </div>
