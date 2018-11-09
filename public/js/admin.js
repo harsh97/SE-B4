@@ -28,6 +28,17 @@ $(document).ready(function(){
         }
     }
 
+    renderUsers1 = (users) => {
+        var userApprovalTab = document.getElementById('myUL');
+        for(var Index=0 ; Index < users.length ; Index++) {
+            var User = document.createElement('li');
+            User.innerHTML = `
+            <div><p>${users[Index].name}</p></div>
+                `;
+            userApprovalTab.appendChild(User);
+        }
+    }
+
     renderTrips = (trips) => {
         var trackTripsTab = document.getElementById('track-trips-tab');
         for(var tripIndex=0 ; tripIndex < trips.length ; tripIndex++) {
@@ -60,6 +71,15 @@ $(document).ready(function(){
        adminBlockRequest(data, url);
     }
 
+    getToBlock = (url) => {
+        $.ajax({
+            url:url,
+            method:'GET',
+            success:renderUsers1,
+            error:displayError
+        });
+    }
+
     getUsersRequest = (url) => {
         $.ajax({
             url:url,
@@ -85,6 +105,7 @@ $(document).ready(function(){
     });
 
     $('#block-user').on('click',() => {
+        getToBlock('/blockUserList');
         selectTab('block-user-tab')
     });
     
