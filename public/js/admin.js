@@ -76,36 +76,44 @@ $(document).ready(function(){
         selectTab('track-trips-tab');
         
     });
+
     $('#block-user').on('click',() => {
         selectTab('block-user-tab')
     });
+    
     $('#student-approval').on('click',() => {
         selectTab('student-approval-tab')
     });
 
-    $('#myInput').on('keyup', () => {
-        SearchFilter();
+    $('#confirmBlock').on('click',() => {
+        ConfirmBlock();
     });
 
-    $('#confirmBlock').on('click', () => {
-        ConfirmBlock();
+    removeStudent = (student) => {
+        alert("Approved the student successfully");
+        $("#" +student.Id).remove();
+    }
+
+    $('#student-approval').on('click',() => {
+        getUsersRequest('/userList');
+        selectTab('student-approval-tab');
     });
 
     ConfirmBlock = () => {
         Metro.dialog.create({
-            title: "Confirm Blocking",
-            content: "<div>Are you sure you want to block this student ?</div>",
-            actions: 
-            [
-                {
-                    caption: "Yes",
-                    cls: "js-dialog-close alert",
-                },
-                {
-                    caption: "No",
-                    cls: "js-dialog-close",
-                }
-            ]
+        title: "Confirm Blocking",
+        content: "<div>Are you sure you want to block this student ?</div>",
+        actions: 
+        [
+            {
+                caption: "Yes",
+                cls: "js-dialog-close alert",
+            },
+            {
+                caption: "No",
+                cls: "js-dialog-close",
+            }
+        ]
         });
     }
 
@@ -114,46 +122,47 @@ $(document).ready(function(){
         input = document.getElementById("myInput");
         x=input.value;
         ul = document.getElementById("myUL");
-         if(x==null || x == ""){
+        if(x==null || x == ""){
             ul.style.display="none";
-        } else {
+        } 
+        else {
             ul.style.display="block";
             filter = input.value.toUpperCase();
             li = ul.getElementsByTagName("li");
             for (i = 0; i < li.length; i++) {
                 a = li[i].getElementsByTagName("div")[0].getElementsByTagName("p")[0];
                 if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    console.log(a.innerHTML.toUpperCase());
                     li[i].style.display = "";
                 }
                 else {
                     li[i].style.display = "none";
                 }
-             }
+            }
         }
     }
-    
-    removeStudent = (student) => {
-        alert("Approved the student successfully");
-    $("#" +student.Id).remove();
-    }
 
-    adminRequest = (data, url) => {
-        $.ajax({
-            async: true,
-            url:url,
-            data:data,
-            method:'POST',
-            success:removeStudent,
-            error:displayError
-        });    
-    }
-    
-    $('body').on('click','.approve',( function() {
-        console.log("here");
-        get1=$(this).parent().parent().children().children().children('span').text();
-        var data = { AId : get1,Func:"approve"};
-        var url = '/admin/approve';  
-        adminRequest(data, url);
-    }));
+    $('#myInput').on('keyup', () => {
+        SearchFilter();
+    });
+
 });
+
+adminRequest = (data, url) => {
+    $.ajax({
+        async: true,
+        url:url,
+        data:data,
+        method:'POST',
+        success:removeStudent,
+        error:displayError
+    });    
+}
+
+
+$('body').on('click','.approve',( function() {
+    console.log("here");
+    get1=$(this).parent().parent().children().children().children('span').text();
+    var data = { AId : get1,Func:"approve"};
+    var url = '/admin/approve';  
+    adminRequest(data, url);
+}));
