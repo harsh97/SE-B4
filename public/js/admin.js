@@ -160,7 +160,6 @@ adminRequest = (data, url) => {
 
 
 $('body').on('click','.approve',( function() {
-    console.log("here");
     get1=$(this).parent().parent().children().children().children('span').text();
     var data = { AId : get1,Func:"approve"};
     var url = '/admin/approve';  
