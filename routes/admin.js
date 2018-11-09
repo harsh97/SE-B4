@@ -1,6 +1,6 @@
 const express = require('express');
 const adminRouter = express.Router();
-const { approveUser, blockUser ,getUsers} = require('../controllers/admin');
+const { approveUser, blockUser ,getUsers, getTrips} = require('../controllers/admin');
 
 adminRouter.get('/userList', (req, res, next) => {
     getUsers()
@@ -36,4 +36,25 @@ adminRouter.post('/admin/:id', (req, res, next) => {
     }
 });
 
-module.exports = adminRouter;
+/**
+ * Router to handle login request
+ * Request parameters => USN and tripId
+ * Response parameters => { user:status }
+ */
+adminRouter.get('/tripList', (req, res, next) => {
+   getTrips()
+    .then(trips => {
+        if(trips != null){
+            // res.render('admin/trips.html')
+            res.send(trips).status(200);
+        }
+        else
+        {
+            exist= false;
+            res.send(exist).status(204);
+        }
+    })
+    .catch(err => console.log(err));
+});
+
+module.exports = adminRouter ;

@@ -62,7 +62,7 @@ const getUsers =  (user) => {
     return new Promise((resolve, reject) => {
         client.connect()
             .then(() => {
-               var usersQuery = `SELECT  usn as usn from Stu_per_data where status='f';`;
+                var usersQuery = `SELECT  usn as usn from Stu_per_data where status='f';`;
                 client.query(usersQuery)
                     .then((res)=>{
                         res.rows.forEach(user1 => {
@@ -71,6 +71,34 @@ const getUsers =  (user) => {
                         resolve(users);
                         client.end();
                         })
+                        .catch(err => {
+                            console.log(`Fetch error: ${err}`);
+                            reject(err);
+                        });
+                })
+                .catch(err => {
+                   console.log(`Connection error: ${err}`);
+                   reject(err);
+               });
+        }); 
+}
+
+const getTrips =  (user) => {
+    var trips = [];
+    const client = new pg.Client(config);
+    return new Promise((resolve, reject) => {
+        client.connect()
+            .then(() => {
+               var tripsQuery = `SELECT route_no as routeNumber, no_of_stu as noOfStudents, timing, bus_no as busNumber, driver.driver_name as driverName from trip, driver where driver.driver_id = trip.driver_id;`;
+                client.query(tripsQuery)
+                    .then((res)=>{
+                        res.rows.forEach(trip => {
+                            trips.push(trip);
+                        })
+                        resolve(trips);
+                        client.end();
+                        })
+                
                     .catch(err => {
                         console.log(`Fetch error: ${err}`);
                         reject(err);
@@ -83,4 +111,4 @@ const getUsers =  (user) => {
     });
 }
 
-module.exports = { approveUser, blockUser, getUsers };
+module.exports = { approveUser, blockUser, getUsers, getTrips };
