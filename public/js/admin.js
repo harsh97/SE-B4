@@ -53,6 +53,13 @@ $(document).ready(function(){
         console.log(error);
     }
 
+    function blockStudents () {
+        var get1 = document.getElementById("myInput").value;
+       var data = { AId : get1,Func:"block"};
+       var url = '/admin/block';  
+       adminBlockRequest(data, url);
+    }
+
     getUsersRequest = (url) => {
         $.ajax({
             url:url,
@@ -85,13 +92,17 @@ $(document).ready(function(){
         selectTab('student-approval-tab')
     });
 
-    $('#confirmBlock').on('click',() => {
+    $('body').on('click','#confirmBlock',( function() { 
         ConfirmBlock();
-    });
+    }));
 
     removeStudent = (student) => {
         alert("Approved the student successfully");
         $("#" +student.Id).remove();
+    }
+
+    blockStudent = (student) => {
+        alert("blocked the student successfully");
     }
 
     $('#student-approval').on('click',() => {
@@ -108,6 +119,7 @@ $(document).ready(function(){
             {
                 caption: "Yes",
                 cls: "js-dialog-close alert",
+               onclick:blockStudents,
             },
             {
                 caption: "No",
@@ -154,6 +166,17 @@ adminRequest = (data, url) => {
         data:data,
         method:'POST',
         success:removeStudent,
+        error:displayError
+    });    
+}
+
+adminBlockRequest = (data, url) => {
+    $.ajax({
+        async: true,
+        url:url,
+        data:data,
+        method:'POST',
+        success:blockStudent,
         error:displayError
     });    
 }

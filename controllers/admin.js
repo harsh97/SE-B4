@@ -32,7 +32,7 @@ const approveUser = (userUSN) => {
 
 const blockUser = (userUSN) => {
     const clientTrip = new pg.Client(config);
-    const disapproveQuery = `UPDATE Stu_Per_Data SET Status = 'f' WHERE USN = '${userUSN.AId}'`;
+    const disapproveQuery = `UPDATE Stu_Per_Data SET Status = 'f' WHERE name = '${userUSN.AId}'`;
     return new Promise((resolve, reject) => {
         clientTrip.connect()
         .then(() => 
