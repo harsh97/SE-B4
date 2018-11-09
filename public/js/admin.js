@@ -14,19 +14,18 @@ $(document).ready(function(){
         for(var Index=0 ; Index < users.length ; Index++) {
             var User = document.createElement('div');
             User.className = 'approve-student';
+            User.id = users[Index].usn;
             User.innerHTML = `
-            <div class="approve-student-details">
-            <div><p>User ${Index}</p></div>
-            <div>USN : <span id="usn">${users[Index].usn}</span></div>
-        </div>
-        <div class="approve-student-buttons">
-            <button  class="approve"> Approve</button>
-        </div>
-    </div>`;
+                <div class="approve-student-details">
+                  <div><p>User ${Index}</p></div>
+                   <div>USN : <span id="usn">${users[Index].usn}</span></div>
+                </div>
+                <div class="approve-student-buttons">
+                    <button  class="approve"> Approve</button>
+                </div>
+                `;
             userApprovalTab.appendChild(User);
-            
         }
-    
     }
 
     displayError = (error) => {
@@ -65,8 +64,9 @@ $(document).ready(function(){
     });
 
 
-displayMessage = (resHTML) => {
-   alert("done!!!");
+removeStudent = (student) => {
+    alert("Approved the student successfully");
+   $("#" +student.Id).remove();
 }
 
 
@@ -91,7 +91,7 @@ adminRequest = (data, url) => {
         url:url,
         data:data,
         method:'POST',
-        success:displayMessage,
+        success:removeStudent,
         error:displayError
     });    
 }
@@ -104,4 +104,3 @@ $('body').on('click','.approve',( function() {
     var url = '/admin/approve';  
     adminRequest(data, url);
 }));
-

@@ -71,7 +71,6 @@ const getUsers =  (user) => {
                         resolve(users);
                         client.end();
                         })
-                
                     .catch(err => {
                         console.log(`Fetch error: ${err}`);
                         reject(err);
@@ -83,4 +82,5 @@ const getUsers =  (user) => {
            });
     });
 }
-module.exports = { approveUser,blockUser,getUsers};
+
+module.exports = { approveUser, blockUser, getUsers };
