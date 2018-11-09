@@ -1,6 +1,6 @@
 const express = require('express');
 const cancelTripRouter = express.Router();
-const cancelTrip = require('../controllers/cancelTrip');
+const cancelTrip = require('../controllers/canceltrip');
 
 /**
  * Router to handle login request
