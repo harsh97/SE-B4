@@ -33,7 +33,7 @@ $(document).ready(function(){
         for(var Index=0 ; Index < users.length ; Index++) {
             var User = document.createElement('li');
             User.innerHTML = `
-            <div><p>${users[Index].name}</p></div>
+            <div><p class="users">${users[Index].name}</p></div>
                 `;
             userApprovalTab.appendChild(User);
         }
@@ -151,7 +151,7 @@ $(document).ready(function(){
     }
 
     SearchFilter = () => {
-        var input, filter, ul, li, a, i, x;
+        var input, filter, ul, li, i, x;
         input = document.getElementById("myInput");
         x=input.value;
         ul = document.getElementById("myUL");
@@ -208,4 +208,9 @@ $('body').on('click','.approve',( function() {
     var data = { AId : get1,Func:"approve"};
     var url = '/admin/approve';  
     adminRequest(data, url);
+}));
+
+$('body').on('click','.users',( function() {
+   def1 =$(this).text();
+   $("#myInput").val(def1);
 }));
