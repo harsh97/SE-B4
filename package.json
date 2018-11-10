@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon --watch src app.js"
+    "dev": "nodemon --watch src app.js",
+    "test": "jest \"./tests/**.test.js\"",
+    "coverage": "jest --coverage \"./tests/**.test.js\""
   },
   "author": "",
   "license": "ISC",
@@ -14,10 +16,12 @@
     "dotenv": "^6.1.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
+    "jest": "^23.6.0",
+    "node-geocoder": "^3.22.0",
     "nodemailer": "^4.6.8",
     "nodemailer-smtp-pool": "^2.8.3",
-    "node-geocoder": "^3.22.0",
     "pg": "^7.5.0",
+    "supertest": "^3.3.0",
     "twilio": "^3.23.2"
   },
   "devDependencies": {
