@@ -85,8 +85,6 @@ $$ LANGUAGE 'plpgsql';
 
 --SELECT studentFutureTrips('01FB15ECS001');
 
-
-
 CREATE OR REPLACE FUNCTION getLocation(_USN VARCHAR, _tripid INT)
 RETURNS RECORD  AS $$
 DECLARE location RECORD;

@@ -73,6 +73,7 @@ $(document).ready(function(){
     */
     });
     
+<<<<<<< HEAD
 
 
     $('.changeTimeHandeller').click((event) => {
@@ -155,6 +156,14 @@ $(document).ready(function(){
         console.log(`tripId: ${data.tripID} Usn:  ${data.usn}  time: ${data.timing}}`);
         var url = '/changeTime';
         sendRequest(data, url);
+=======
+    function cancelTrip () {
+        usn1 = document.getElementById("studentUSN").innerHTML;
+        usn = usn1.replace(/\s+/g,'');
+        var data = {usn: usn , tripID :tripID};
+        var url = '/cancelTrip';
+        cancelRequest(data,url);
+>>>>>>> bdfb5b9ec5e8aaed70cc6add6ed1cd09d8176952
     }
 
     function cancelTrip () {   
@@ -170,8 +179,12 @@ $(document).ready(function(){
         console.log(error);
     }
 
+<<<<<<< HEAD
     sendRequest =(data,url) => { 
         console.log(`sending request`);
+=======
+    cancelRequest =(data,url) => {
+>>>>>>> bdfb5b9ec5e8aaed70cc6add6ed1cd09d8176952
         $.ajax({
             url:url,
             data:data,
@@ -180,6 +193,30 @@ $(document).ready(function(){
             error:displayError
         });
     }
+
+    $('#SOS').click(() => {
+        const usn = document.getElementById('studentUSN').innerHTML;
+        const pickupAddress = document.getElementById('pickUp').innerHTML;
+        const dropAddress = document.getElementById('drop').innerHTML;
+        emergencyRequest({usn: usn.replace(/\s+/g, ''), pickUp: pickupAddress, drop: dropAddress}, '/sos');
+    });
+    
+    emergencyMessage = () => {
+        alert('Alert sent to admin');
+    }
+    
+    emergencyError = (error) => {
+        console.log(error);
+        alert('Unable to alert the admin');
+    }
+    
+    emergencyRequest = (data, url) => {
+        $.ajax({
+            url:url,
+            data:data,
+            method:'GET',
+            success:emergencyMessage,
+            error:emergencyError
+        });    
+    }
 });
-
-
