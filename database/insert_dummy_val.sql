@@ -619,15 +619,15 @@ INSERT INTO Bus_Driver VALUES('PESDR9','KA190213' );
 
 
 
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id) VALUES(1,40,'15:00:00', 'KA190996', 'PESDR1');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id) VALUES(2,46,'15:00:00', 'KA190978', 'PESDR2');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id) VALUES(3,38,'15:00:00', 'KA780096', 'PESDR3');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id) VALUES(4,43,'15:00:00', 'KA090996', 'PESDR4');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id) VALUES(5,32,'15:00:00', 'KA010926', 'PESDR5');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id) VALUES(6,40,'15:00:00', 'KA060926', 'PESDR6');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id) VALUES(7,41,'15:00:00', 'KA902196', 'PESDR7');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id) VALUES(8,45,'15:00:00', 'KA900991', 'PESDR8');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id) VALUES(9,50,'15:00:00', 'KA190213', 'PESDR9');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(1,40,'15:00:00', 'KA190996', 'PESDR1',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(2,46,'15:00:00', 'KA190978', 'PESDR2',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(3,38,'15:00:00', 'KA780096', 'PESDR3',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(4,43,'15:00:00', 'KA090996', 'PESDR4',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(5,32,'15:00:00', 'KA010926', 'PESDR5',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(6,40,'15:00:00', 'KA060926', 'PESDR6',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(7,41,'15:00:00', 'KA902196', 'PESDR7',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(8,45,'15:00:00', 'KA900991', 'PESDR8',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(9,50,'15:00:00', 'KA190213', 'PESDR9',1,'2018-10-19');
 
 
 
@@ -711,3 +711,52 @@ VALUES('1', '2018-11-01', '06:00:00' );
 
 INSERT INTO Fut_trip(drop_pick , trip_date, timing)
 VALUES('0', '2018-11-01', '15:00:00' );
+
+
+
+SELECT locChanges('01FB15ECS083', 2 , 12.3473464, 13.67856432);
+SELECT locChanges('01FB15ECS084', 2 , 12.8743468, 13.43443552);
+SELECT locChanges('01FB15ECS093', 1 , 12.3473464, 13.67856432);
+SELECT locChanges('01FB15ECS098', 5 , 12.74843468,11.43443552);
+SELECT locChanges('01FB15ECS068', 3 , 12.8233464, 12.67856432);
+SELECT locChanges('01FB15ECS069', 4 , 12.9933468, 13.43443552);
+SELECT locChanges('01FB15ECS089', 1 , 12.5663464, 11.63456432);
+SELECT locChanges('01FB15ECS090', 2 , 12.3443468, 12.34443552);
+SELECT locChanges('01FB15ECS091', 1 , 12.5663464, 11.63456432);
+SELECT locChanges('01FB15ECS092', 2 , 12.3443908, 12.34443552);
+
+
+
+
+SELECT changeTime('01FB15ECS061', 1, '13:00:00');
+SELECT changeTime('01FB15ECS062', 2, '15:00:00');
+SELECT changeTime('01FB15ECS061', 1, '18:00:00');
+SELECT changeTime('01FB15ECS067', 3, '13:00:00');
+SELECT changeTime('01FB15ECS069', 6, '15:00:00');
+SELECT changeTime('01FB15ECS070', 8, '18:00:00');
+SELECT changeTime('01FB15ECS081', 1, '18:00:00');
+SELECT changeTime('01FB15ECS082', 3, '12:00:00');
+SELECT changeTime('01FB15ECS089', 6, '11:00:00');
+SELECT changeTime('01FB15ECS092', 9, '19:00:00');
+SELECT changeTime('01FB15ECS095', 7, '18:00:00');
+SELECT changeTime('01FB15ECS097', 5, '12:00:00');
+SELECT changeTime('01FB15ECS083', 4, '11:00:00');
+SELECT changeTime('01FB15ECS090', 4, '19:00:00');
+
+
+
+SELECT studentCancels('01FB15ECS083',2) ;
+SELECT studentCancels('01FB15ECS081',1) ;
+SELECT studentCancels('01FB15ECS063',1) ;
+SELECT studentCancels('01FB15ECS078',1) ;
+SELECT studentCancels('01FB15ECS083',2) ;
+SELECT studentCancels('01FB15ECS074',2) ;
+SELECT studentCancels('01FB15ECS075',1) ;
+SELECT studentCancels('01FB15ECS076',7) ;
+SELECT studentCancels('01FB15ECS077',7) ;
+SELECT studentCancels('01FB15ECS078',7) ;
+SELECT studentCancels('01FB15ECS090',8) ;
+SELECT studentCancels('01FB15ECS091',8) ;
+SELECT studentCancels('01FB15ECS092',9) ;
+SELECT studentCancels('01FB15ECS093',9) ;
+SELECT studentCancels('01FB15ECS094',9) ;

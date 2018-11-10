@@ -15,6 +15,12 @@
             .cancelHandeller{
                 color: blue;
             }
+            .changeAddHandeller{
+                color: #000;
+            }
+            .changeTimeHandeller{
+                color: #000;
+            }
         </style>
     </head>
     <body>
@@ -62,10 +68,10 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="container my-card">
-                        <div class="row">
+                        <div class="row" >
                             <% for(var trip=0; trip< user.futureTrips.length; trip++) { %>
-                                <div class="col-xs-12 col-md-9"  id = '<%=user.futureTrips[trip].trip_id%>'>
-                                <p id="tripID" hidden><%= user.futureTrips[trip].trip_id%></p>
+                            <div class="col-xs-12 col-md-9"  id = '<%=user.futureTrips[trip].trip_id%>'>
+                                <p id="tripID" ><%= user.futureTrips[trip].trip_id%></p>
                                 <div class="row">
                                     <div class="col-md-12">
                                             <h2> <span id="change"><%= new Date(user.futureTrips[trip].trip_date).toDateString()%></span></h2>
@@ -79,12 +85,13 @@
                                     </div>
                                 </div>
                                 <br>
-                                <div class="row">
+                                <div class="row" id = '<%=user.futureTrips[trip].trip_id%>'>
                                     <div class="pr-2">
                                         <button type="button" name="button" class="button info outline cancelHandeller" id="CancelTrip" > Cancel Trip <i class="mif-cancel"></i></button>
                                     </div>
+                                     
                                     <div class="pr-2">
-                                        <div class="dialog" data-role="dialog" id="ChangeTime">	
+                                        <!-- <div class="dialog" data-role="dialog" id="ChangeTime">	
                                             <div class="dialog-title">Change Time</div>	
                                             <div class="dialog-content">	
                                                 <input data-role="timepicker">	
@@ -93,24 +100,28 @@
                                                 <button class="button js-dialog-close" id = "ChangeTimeConfirm">Ok</button>	
                                                 <button class="button js-dialog-close">Cancel</button>	
                                             </div>
-                                        </div>	
-                                        <button type="button" name="button" class="button info outline" onclick="Metro.dialog.open('#ChangeTime')"> Change Time <span class="mif-alarm"></span></button>
-                                    </div>
+                                        </div>	 -->
+                                        <button type="button" name="button" class="button info outline changeTimeHandeller" > Change Time <span class="mif-alarm"></span></button>
+                                    </div> 
                                     <div class="pr-2">
-                                        <div class="dialog" data-role="dialog" id="changeAddressClick">	
+                                        <div class="dialog" data-role="dialog" id="changeAddressClick" style="height:300px">	
+                                                <script>
+                                                        console.log(`for where evnt occured ${event.target.nodeName}`);
+                                                </script>
+                                                
                                                 <div class="dialog-title">Change Address</div>	
-                                                <div class="dialog-content" style="height:300px">	
+                                                <div class="dialog-content">	
                                                     <div data-role="panel">	
                                                         <div id="map" style="height:200px"></div>	
                                                     </div>	
                                                     <input class="mt-4 mb-4 ml-2 mr-2" type="text" data-role="input" id="end" data-prepend="Lat.,Long." style="width:100%!important;" disabled="disabled"/>	
                                                 </div>	
                                                 <div class="dialog-actions">	
-                                                    <button class="button js-dialog-close">Ok</button>	
+                                                    <button class="button js-dialog-close changeAddHandeller ">Ok</button>	
                                                     <button class="button js-dialog-close">Cancel</button>	
                                                 </div>	
                                         </div>
-                                        <button type="button" name="button" class="button info outline" onclick="Metro.dialog.open('#changeAddressClick')"> Change Address <span class="mif-location-city"></span></button>
+                                        <button type="button" name="button"  class="button info outline changeAddHandeller " id = '<%=user.futureTrips[trip].trip_id%>' onclick="Metro.dialog.open('#changeAddressClick')"> Change Address <span class="mif-location-city"></span></button>
                                     </div>
                                     <div class="pr-2">
                                         <button type="button" name="button" class="button info outline">Track Bus Location <span class="mif-location"></span></button>
