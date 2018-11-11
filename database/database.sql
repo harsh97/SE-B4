@@ -32,6 +32,12 @@
 		All commands will be executed
 */ 
 
+/*
+DROP DATABASE transport_management_system ;
+CREATE DATABASE transport_management_system ;
+\c transport_management_system
+*/
+
 CREATE TABLE Stu_Per_Data (
 	USN VARCHAR PRIMARY KEY NOT NULL,
 	Name CHAR(30) NOT NULL,
@@ -77,7 +83,9 @@ CREATE TABLE Trip (
 	 Bus_no VARCHAR REFERENCES Bus(Bus_no),
 	 Driver_id VARCHAR REFERENCES Driver (Driver_id),
 	 trip_id INT,
-	 trip_date DATE
+	 trip_date DATE,
+	 status BOOLEAN DEFAULT FALSE
+
 );
 
 CREATE TABLE Stu_Trip_Data (
@@ -98,6 +106,9 @@ CREATE TABLE Fut_trip(
 	timing TIME
 );
 
+/* drop_pick 1=> from home
+			0=> from college
+*/
 
 
 CREATE TABLE Cancel_trip(
@@ -124,7 +135,10 @@ CREATE TABLE Chan_time(
 );
 
 
-
-
-
+CREATE TABLE College_Loc(
+	latitude DOUBLE PRECISION,
+	longitude DOUBLE  PRECISION,
+	PRIMARY KEY(latitude, longitude)
+);
+--INSERT INTO College_Loc VALUES (12.9345,77.5345);
 
