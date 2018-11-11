@@ -52,9 +52,6 @@ $(document).ready(function(){
                             <div><p>Time : ${trips[tripIndex].timing}</p></div>
                             <div><p>Number of Students : ${trips[tripIndex].noofstudents}</p></div>
                         </div>
-                        <div class="approve-student-buttons">
-                            <button class="button trips${tripIndex}">Track Location</button>
-                        </div>
                             `;
             trackTripsTab.appendChild(trip);
         }

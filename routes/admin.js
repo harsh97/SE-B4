@@ -1,6 +1,7 @@
 const express = require('express');
 const adminRouter = express.Router();
-const { approveUser, blockUser ,getUsers, getTrips,getBlockUsers} = require('../controllers/admin');
+const { approveUser, blockUser ,getUsers, getTrips, getBlockUsers } = require('../controllers/admin');
+const { sendEmail } = require('../controllers/login');
 
 adminRouter.get('/userList', (req, res, next) => {
     getUsers()
@@ -38,6 +39,12 @@ adminRouter.post('/admin/:id', (req, res, next) => {
     {
         approveUser(req.body)
         .then(responseUser => {
+            if(responseUser!= null) {
+                sendEmail(responseUser)
+                .then(sent => {
+                })
+                .catch(err => console.log(err));
+            }
             res.send({func:req.params.id ,Id:responseUser});
         })
         .catch(err => console.log(err));
