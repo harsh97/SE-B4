@@ -69,12 +69,14 @@ const validateLogin =  (user) => {
                         resUser = {id: user.id, usn: user.usn};
                     }
                     else if(user.id == 'driver') {
-                        userQuery = `SELECT driver_name FROM driver WHERE driver_id=${user.dId} AND password='${user.pass}';`;
+                        userQuery = `SELECT driver_name FROM driver WHERE driver_id='${user.dId}' AND password='${user.pass}';`;
                         response = 'driver_name';
                         resUser = {id:user.id, dId:user.dId};
+                       // console.log(`Before query execution`);
                     }   
                     client.query(userQuery)
                         .then( res => {
+                           // console.log(`After query execution1`);
                                 res.rows.forEach(row => {
                                     resUser.name = row[response];
                                     resUser.futureTrips = [];
@@ -85,6 +87,7 @@ const validateLogin =  (user) => {
                                         });
                                     }
                                     else if(resUser.id == 'driver'){
+                                        console.log(`After query execution2`);
                                         resolve(resUser);
                                     }
                                 });

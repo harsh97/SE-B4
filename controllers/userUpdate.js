@@ -12,7 +12,6 @@ const cancelTrip =  (user) => {
     return new Promise((resolve, reject) => {
         client.connect()
             .then(() => {
-                console.log(`in cancel trip`);
                var cancelQuery= `SELECT studentCancels('${user.usn}',${user.tripID});`;
                 client.query(cancelQuery)
                     .then(()=>{ 
@@ -40,9 +39,7 @@ const changeAddress = (user) =>{
     return new Promise((resolve,reject) => {
         client.connect()
             .then(() => {
-                console.log(`in controller`);
                 var changeAddQuery =`SELECT locChanges('${user.usn}', ${user.tripID} , ${user.latitude}, ${user.longitude});` 
-                console.log(`${changeAddQuery}`);
                 client.query(changeAddQuery)
                     .then(() =>{
                         resStatus = {changeAddStatus:1 , tripID:user.tripID, action:"changeAddress"};
@@ -68,9 +65,7 @@ const changeTime = (user) =>{
     return new Promise((resolve,reject) => {
         client.connect()
             .then(() => {
-                console.log(`In controller of change time`);
                 var changeTimeQuery = `SELECT changeTime('${user.usn}', ${user.tripID}, '${user.timing}' );`
-                console.log(`${changeTimeQuery}`);
                 client.query(changeTimeQuery)
                     .then(() => {
                         resStatus = {changeTimeStatus:1 , tripID:user.tripID, action: "changeTime" };

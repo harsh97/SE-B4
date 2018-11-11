@@ -9,12 +9,8 @@ const { cancelTrip, changeAddress, changeTime } = require('../controllers/userUp
  * Response parameters => { user:status }
  */
 userTripRouter.put('/cancelTrip', (req, res, next) => {
-    //var action = req.params.id
-    // if(req.params.id== "cancelTrip"){
-        console.log('currently working in cancel trip');
         cancelTrip(req.body)
         .then(responseUser => {
-            console.log('cancel trip executed');
             if(responseUser.tripStatus==0){
                 res.send(responseUser)
             }
@@ -29,7 +25,6 @@ userTripRouter.put('/cancelTrip', (req, res, next) => {
 })
 
 userTripRouter.put('/changeAddress', (req, res, next) => {
-    console.log('Change Address request received');
     changeAddress(req.body)
     .then(responseUser =>{
         if(responseUser.changeAddStatus==1){
@@ -45,7 +40,6 @@ userTripRouter.put('/changeAddress', (req, res, next) => {
 
 
 userTripRouter.put('/changeTime', (req,res,next) => {
-    console.log(`Change Time request recived`);
     changeTime(req.body)
     .then(responseUser => {
         if(responseUser.changeTimeStatus ==1){
@@ -59,4 +53,3 @@ userTripRouter.put('/changeTime', (req,res,next) => {
     .catch (err => console.log(err));
 });
 module.exports = userTripRouter ;
-//module.exports = changeAddRouter ;
