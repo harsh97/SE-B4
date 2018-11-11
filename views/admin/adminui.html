@@ -1,95 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="shortcut icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
-    <link rel="icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
-
-    <link href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css" rel="stylesheet">
-    <link href="/css/mainui.css" rel="stylesheet">
-    <title>Administration Dashboard</title>
-</head>
-
-<body>
-    <div class="fluid-container">
-        <div data-role="navview" data-compact="false" data-expanded="fs" class="open">
-            <nav class="navview-pane pos-fixed">
-                <div class="ml-1 mr-1 pt-6 pb-6">
-                    <img src="/img/Graphicloads-Transport-Bus-4.ico" class="pos-absolute" />
-                    <div class="cbrand">
-                        <span>Transport Management System</span>
-                    </div>
-                </div>
-                <div class="item-separator"></div>
-
-                <ul class="navview-menu">
-                    <li class="ui-widget-content">
-                        <a href="#">
-                            <span class="icon"><span class="mif-users"></span></span>
-                            <span class="caption">Student Approval</span>
-                        </a>
-                    </li>
-                    <li class="ui-widget-content">
-                        <a href="#">
-                            <span class="icon"><span class="mif-notification"></span></span>
-                            <span class="caption">Notify Student</span>
-                        </a>
-                    </li>
-                    <li class="ui-widget-content">
-                        <a href="#">
-                            <span class="icon"><span class="mif-profile"></span></span>
-                            <span class="caption">Drivers</span>
-                        </a>
-                    </li>
-
-                    <li class="ui-widget-content">
-                        <a href="#">
-                            <span class="icon"><span class="mif-blocked"></span></span>
-                            <span class="caption">Block User</span>
-                        </a>
-                    </li>
-
-                    <li class="ui-widget-content">
-                        <a href="#">
-                            <span class="icon"><span class="mif-flag"></span></span>
-                            <span class="caption" style="line-height: 24px;">Addition/Deletion<br>of a User</span>
-                        </a>
-                    </li>
-
-                    <li class="ui-widget-content">
-                        <a href="#">
-                            <span class="icon"><span class="mif-drive-eta"></span></span>
-                            <span class="caption">Update Driver</span>
-                        </a>
-                    </li>
-
-                    <li class="ui-widget-content">
-                        <a href="#">
-                            <span class="icon"><span class="mif-bus"></span></span>
-                            <span class="caption">Update Buses</span>
-                        </a>
-                    </li>
-
-                    <li class="ui-widget-content">
-                        <a href="#">
-                            <span class="icon"><span class="mif-location"></span></span>
-                            <span class="caption">Track Buses</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-
-            <div class="navview-content">
-                <div data-role="appbar" data-expand-point="md" class="admin-appbar" dir="rtl">
-                    <ul class="app-bar-menu">
-                        <li>
-                            <a href="#" class="dropdown-toggle">Admin</a>
-                            <ul class="d-menu" data-role="dropdown">
-                                <li><a href="#">Profile Settings<span class="mif-tools mif-lg mr-3"></span></a></li>
-                                <li class="divider bg-lightGray"></li>
-                                <li><a href="login.html">Logout<span class="mif-exit mif-lg mr-3"></span></a></li>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="shortcut icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
+        <link rel="icon" href="/img/Graphicloads-Transport-Bus-4.ico" type="image/x-icon">
+        <link href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css" rel="stylesheet">
+        <link href="/css/mainui.css" rel="stylesheet">
+        <link href="/css/adminui.css" rel="stylesheet">
+        <title>Administration Dashboard</title>
+    </head>
+    <body>
+        <div class="fluid-container">
+                <div data-role="navview" data-compact="false" data-expanded="fs" class="open">
+                    <nav class="navview-pane pos-fixed">
+                        <div class="ml-1 mr-1 pt-6 pb-6">
+                            <img src="/img/Graphicloads-Transport-Bus-4.ico" class="pos-absolute" />
+                            <div class="cbrand">
+                                <span>Transport Management System</span>
+                            </div>
+                        </div>
+                        <div class="item-separator"></div>
+                        <ul class="navview-menu">
+                            <li class="ui-widget-content" id='student-approval'>
+                                <a href="#">
+                                    <span class="icon"><span class="mif-users"></span></span>
+                                    <span class="caption">Student Approval</span>
+                                </a>
+                            </li>
+                            <li class="ui-widget-content">
+                                <a href="#">
+                                    <span class="icon"><span class="mif-notification"></span></span>
+                                    <span class="caption">Notify Student</span>
+                                </a>
+                            </li>
+                            <li class="ui-widget-content" id='block-user'>
+                                <a href="#">
+                                    <span class="icon"><span class="mif-blocked"></span></span>
+                                    <span class="caption">Block User</span>
+                                </a>
+                            </li>
+                            <li class="ui-widget-content">
+                                <a href="#">
+                                    <span class="icon"><span class="mif-bus"></span></span>
+                                    <span class="caption">Update Trips</span>
+                                </a>
+                            </li>
+                            <li class="ui-widget-content" id='track-trips'>
+                                <a href="#">
+                                    <span class="icon"><span class="mif-location"></span></span>
+                                    <span class="caption">Track Trips</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="navview-content">
+                        <div data-role="appbar" data-expand-point="md" class="admin-appbar" dir="rtl">
+                            <ul class="app-bar-menu">
+                                <li>
+                                    <a href="#" class="dropdown-toggle">Admin</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="#">Profile Settings<span class="mif-tools mif-lg mr-3"></span></a></li>
+                                        <li class="divider bg-lightGray"></li>
+                                        <li><a href="login.html">Logout<span class="mif-exit mif-lg mr-3"></span></a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                         <div class="fluid-container pl-5-md pr-4-md pt-8 mt-8 ">
@@ -118,15 +93,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $(function(){
-            $(".navview-menu").selectable();
-        });
-    </script>
-</body>
-
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+        <script src="/js/admin.js"></script> 
+    </body>
 </html>

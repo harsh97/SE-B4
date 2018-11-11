@@ -12,7 +12,10 @@ signUpRouter.get('/existUSN', (req, res, next) => {
     .then(exist => {
         res.send({'exist':exist}).status(200);
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.send().status(503);
+    });
 });
 
 /**

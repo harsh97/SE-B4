@@ -110,10 +110,18 @@ $(document).ready(function(){
     }
 
     $('#SOS').click(() => {
-        const usn = document.getElementById('studentUSN').innerHTML;
-        const pickupAddress = document.getElementById('pickUp').innerHTML;
-        const dropAddress = document.getElementById('drop').innerHTML;
-        emergencyRequest({usn: usn.replace(/\s+/g, ''), pickUp: pickupAddress, drop: dropAddress}, '/sos');
+        if($('#pickUp').length) {
+            const usn = document.getElementById('studentUSN').innerHTML;
+            const pickupAddress = document.getElementById('pickUp').innerHTML;
+            const time = document.getElementById('timeOfPickUp').innerHTML;
+            const busNumber = document.getElementById('busNumber').innerHTML;
+            const driverName = document.getElementById('driverName').innerHTML;
+            const contactNumber = document.getElementById('contactNumber').innerHTML;
+            emergencyRequest({usn: usn.replace(/\s+/g, ''), pickUp: pickupAddress, time: time, busNumber: busNumber, driverName: driverName, contactNumber: contactNumber}, '/sos');
+        }
+        else {
+            alert('No current ongoing trips');
+        }
     });
     
     emergencyMessage = () => {

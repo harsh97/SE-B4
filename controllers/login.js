@@ -10,6 +10,78 @@ var options = {
   };
 
 var resUser = {};
+/**
+ * Checks the availability of the USN during registration
+ * @param {userdID} 
+ * @returns Promise<object> 
+ */
+const fetchDriverTrips = (userdID) => {
+    const clientTrip = new pg.Client(config);
+    const futureTripQuery = `SELECT Route_no,No_of_stu,Bus_no,timing from Trip where Trip.driver_id='${userdID}'`;
+    return new Promise((resolve, reject) => {
+        clientTrip.connect()
+        .then(() => 
+            clientTrip.query(futureTripQuery)
+                .then(res => {
+                        resUser.driverTrips = [];
+                        res.rows.forEach(row => {
+                            resUser.driverTrips.push(row);
+                        });
+                })
+                .catch(err => {
+                    reject(err);
+                    console.log(`Fetch error: ${err}`);
+                })
+                .then(async () => {
+                    resolve(resUser.driverTrips);
+                    clientTrip.end();
+                })
+        )
+        .catch(err => {
+            reject(err);
+            console.log(`Connection error: ${err}`);
+        });
+    });
+
+}
+
+const fetchCurrentTrips = (userUSN) => {
+    const clientTrip = new pg.Client(config);
+    const futureTripQuery = `SELECT trip.bus_no, driver.driver_name, driver.mobile_no, trip.timing, (select getCurentLocation('${userUSN}'))FROM stu_trip_data, trip, driver WHERE stu_trip_data.route_no = trip.route_no AND stu_trip_data.uid = (select uid from usn_uid where usn='${userUSN}') AND trip.driver_id = driver.driver_id;`;
+    resUser.CurrentTrip = null;
+    return new Promise((resolve, reject) => {
+        clientTrip.connect()
+        .then(() => 
+            clientTrip.query(futureTripQuery)
+                .then(res => {
+                        res.rows.forEach(row => {
+                            resUser.CurrentTrip =  row;
+                            resUser.CurrentTrip.getcurentlocation = resUser.CurrentTrip.getcurentlocation.slice(1,-1).split(',');
+                            resUser.CurrentTrip.latitudeLongitude = resUser.CurrentTrip.getcurentlocation;
+                        });
+                })
+                .catch(err => {
+                    reject(err);
+                    console.log(`Fetch error CurrentTrip: ${err}`);
+                })
+                .then(async () => {
+                    var geocoder = NodeGeocoder(options);
+                        if(resUser.CurrentTrip != null && resUser.CurrentTrip.getcurentlocation != null) {
+                            var location = await geocoder.reverse({lat:resUser.CurrentTrip.getcurentlocation[0], lon:resUser.CurrentTrip.getcurentlocation[1]})
+                            resUser.CurrentTrip.getcurentlocation = location[0].formattedAddress;
+                        }
+                    resolve(resUser.CurrentTrip);
+                    clientTrip.end();
+                })
+        )
+        .catch(err => {
+            reject(err);
+            console.log(`Connection error: ${err}`);
+        });
+    });
+
+}
+
 
 const fetchFutureTrips = (userUSN) => {
     const clientTrip = new pg.Client(config);
@@ -137,7 +209,7 @@ const validateLogin =  (user) => {
                 resolve(resUser);
             }
             else {
-                reject(new Error('Authentication failed'));
+                resolve(null);
             }
         }
         else {
@@ -155,25 +227,32 @@ const validateLogin =  (user) => {
                         userQuery = `SELECT driver_name FROM driver WHERE driver_id='${user.dId}' AND password='${user.pass}';`;
                         response = 'driver_name';
                         resUser = {id:user.id, dId:user.dId};
-                       // console.log(`Before query execution`);
                     }   
                     client.query(userQuery)
                         .then( res => {
-                           // console.log(`After query execution1`);
-                                res.rows.forEach(row => {
-                                    resUser.name = row[response];
-                                    resUser.futureTrips = [];
-                                    if(resUser.id == 'student'){
-                                        fetchFutureTrips(resUser.usn).then(futureTrips => {
-                                            resUser.futureTrips = futureTrips;
+                                console.log(res.rowCount);
+                                if(res.rowCount == 0) {
+                                    resolve(null);
+                                }
+                                else {
+                                    res.rows.forEach(async(row) => {
+                                        resUser.name = row[response];
+                                        resUser.futureTrips = [];
+                                        if(resUser.id == 'student'){
+                                            resUser.CurrentTrip = await fetchCurrentTrips(resUser.usn);
+                                            fetchFutureTrips(resUser.usn).then(futureTrips => {
+                                                resUser.futureTrips = futureTrips;
                                             resolve(resUser);
                                         });
                                     }
                                     else if(resUser.id == 'driver'){
-                                        console.log(`After query execution2`);
-                                        resolve(resUser);
+                                        fetchDriverTrips(resUser.dId).then(driverTrips =>{
+                                            resUser.driverTrips=driverTrips;
+                                            resolve(resUser);
+                                        });
                                     }
-                                });
+                                    });
+                                }
                         })
                         .catch(err => {
                             console.log(`Fetch error: ${err}`);
