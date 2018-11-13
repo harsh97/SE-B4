@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+
     function selectTab(id) {
         var others = document.getElementsByClassName("hide");
         for (var i = 0; i < others.length; i++) {
@@ -11,6 +11,7 @@ $(document).ready(function(){
 
     renderUsers = (users) => {
         var userApprovalTab = document.getElementById('student-approval-tab');
+
         for(var Index=0 ; Index < users.length ; Index++) {
             var User = document.createElement('div');
             User.className = 'approve-student';
@@ -27,12 +28,19 @@ $(document).ready(function(){
             userApprovalTab.appendChild(User);
         }
     }
+    updateTrips = (trips) => {
 
+    }
     renderTrips = (trips) => {
         var trackTripsTab = document.getElementById('track-trips-tab');
+        while (trackTripsTab.firstChild) {
+          trackTripsTab.removeChild(trackTripsTab.firstChild);
+        }
         for(var tripIndex=0 ; tripIndex < trips.length ; tripIndex++) {
             var trip = document.createElement('div');
             trip.className = 'approve-student';
+            var temp=trips[tripIndex].routenumber;
+
             trip.innerHTML = `
                         <div class="approve-student-details">
                             <div><p>Route Number : ${trips[tripIndex].routenumber}</p></div>
@@ -42,17 +50,34 @@ $(document).ready(function(){
                             <div><p>Number of Students : ${trips[tripIndex].noofstudents}</p></div>
                         </div>
                         <div class="approve-student-buttons">
-                            <button class="button trips${tripIndex}">Track Location</button>
+                            <button id="button-trips${trips[tripIndex].routenumber}">Track Location</button>
                         </div>
                             `;
             trackTripsTab.appendChild(trip);
+            console.log("Temp is "+temp);
+            $(`#button-trips${trips[tripIndex].routenumber}`).on('click',()=>{
+              console.log("Clicked " +this.id);
+              getTripDetails(`/getTripDetails/${temp}`);
+
+            });
+
         }
+
+
+
+    }
+    renderMap = (json) =>{
+      console.log(json);
     }
 
-    displayError = (error) => {
-        console.log(error);
+    getTripDetails = (url) => {
+        $.ajax({
+            url:url,
+            method:'GET',
+            success:renderMap,
+            error:displayError
+        });
     }
-
     getUsersRequest = (url) => {
         $.ajax({
             url:url,
@@ -61,7 +86,14 @@ $(document).ready(function(){
             error:displayError
         });
     }
-    
+    getUpdateRequest = (url) =>{
+      $.ajax({
+        url:url,
+        method:'GET',
+        success:updateTrips,
+        error:displayError
+      });
+    }
     getTripsRequest = (url) => {
         $.ajax({
             url:url,
@@ -74,13 +106,13 @@ $(document).ready(function(){
     $('#track-trips').on('click', () => {
         getTripsRequest('/tripList');
         selectTab('track-trips-tab');
-        
+
     });
 
     $('#block-user').on('click',() => {
         selectTab('block-user-tab')
     });
-    
+
     $('#student-approval').on('click',() => {
         selectTab('student-approval-tab')
     });
@@ -99,11 +131,16 @@ $(document).ready(function(){
         selectTab('student-approval-tab');
     });
 
+    $('#update-trips').on('click',()=>{
+      getUpdateRequest('/updateTrips');
+      selectTab('update-trips-tab');
+    })
+
     ConfirmBlock = () => {
         Metro.dialog.create({
         title: "Confirm Blocking",
         content: "<div>Are you sure you want to block this student ?</div>",
-        actions: 
+        actions:
         [
             {
                 caption: "Yes",
@@ -124,7 +161,7 @@ $(document).ready(function(){
         ul = document.getElementById("myUL");
         if(x==null || x == ""){
             ul.style.display="none";
-        } 
+        }
         else {
             ul.style.display="block";
             filter = input.value.toUpperCase();
@@ -155,13 +192,13 @@ adminRequest = (data, url) => {
         method:'POST',
         success:removeStudent,
         error:displayError
-    });    
+    });
 }
 
 
 $('body').on('click','.approve',( function() {
     get1=$(this).parent().parent().children().children().children('span').text();
     var data = { AId : get1,Func:"approve"};
-    var url = '/admin/approve';  
+    var url = '/admin/approve';
     adminRequest(data, url);
 }));
