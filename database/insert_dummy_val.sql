@@ -619,18 +619,6 @@ INSERT INTO Bus_Driver VALUES('PESDR9','KA190213' );
 
 
 
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(1,40,'15:00:00', 'KA190996', 'PESDR1',1,'2018-10-19');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(2,46,'15:00:00', 'KA190978', 'PESDR2',1,'2018-10-19');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(3,38,'15:00:00', 'KA780096', 'PESDR3',1,'2018-10-19');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(4,43,'15:00:00', 'KA090996', 'PESDR4',1,'2018-10-19');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(5,32,'15:00:00', 'KA010926', 'PESDR5',1,'2018-10-19');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(6,40,'15:00:00', 'KA060926', 'PESDR6',1,'2018-10-19');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(7,41,'15:00:00', 'KA902196', 'PESDR7',1,'2018-10-19');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(8,45,'15:00:00', 'KA900991', 'PESDR8',1,'2018-10-19');
-INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(9,50,'15:00:00', 'KA190213', 'PESDR9',1,'2018-10-19');
-
-
-
 INSERT INTO Fut_trip(drop_pick , trip_date, timing)
 VALUES('1', '2018-10-19', '06:00:00' );
 
@@ -713,12 +701,25 @@ INSERT INTO Fut_trip(drop_pick , trip_date, timing)
 VALUES('0', '2018-11-01', '15:00:00' );
 
 
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(1,40,'15:00:00', 'KA190996', 'PESDR1',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(2,46,'15:00:00', 'KA190978', 'PESDR2',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(3,38,'15:00:00', 'KA780096', 'PESDR3',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(4,43,'15:00:00', 'KA090996', 'PESDR4',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(5,32,'15:00:00', 'KA010926', 'PESDR5',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(6,40,'15:00:00', 'KA060926', 'PESDR6',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(7,41,'15:00:00', 'KA902196', 'PESDR7',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(8,45,'15:00:00', 'KA900991', 'PESDR8',1,'2018-10-19');
+INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_date) VALUES(9,50,'15:00:00', 'KA190213', 'PESDR9',1,'2018-10-19');
 
-SELECT locChanges('01FB15ECS083', 2 , 12.3473464, 13.67856432);
-SELECT locChanges('01FB15ECS084', 2 , 12.8743468, 13.43443552);
-SELECT locChanges('01FB15ECS093', 1 , 12.3473464, 13.67856432);
-SELECT locChanges('01FB15ECS098', 5 , 12.74843468,11.43443552);
-SELECT locChanges('01FB15ECS068', 3 , 12.8233464, 12.67856432);
-SELECT locChanges('01FB15ECS069', 4 , 12.9933468, 13.43443552);
-SELECT locChanges('01FB15ECS089', 1 , 12.5663464, 11.63456432);
-SELECT locChanges('01FB15ECS089', 2 , 12.3443468, 12.34443552);
+
+
+
+--
+-- SELECT locChanges('01FB15ECS083', 2 , 12.3473464, 13.67856432);
+-- SELECT locChanges('01FB15ECS084', 2 , 12.8743468, 13.43443552);
+-- SELECT locChanges('01FB15ECS093', 1 , 12.3473464, 13.67856432);
+-- -- SELECT locChanges('01FB15ECS098', 5 , 12.74843468,11.43443552);
+-- SELECT locChanges('01FB15ECS068', 3 , 12.8233464, 12.67856432);
+-- SELECT locChanges('01FB15ECS069', 4 , 12.9933468, 13.43443552);
+-- SELECT locChanges('01FB15ECS089', 1 , 12.5663464, 11.63456432);
+-- SELECT locChanges('01FB15ECS089', 2 , 12.3443468, 12.34443552);

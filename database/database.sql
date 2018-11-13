@@ -42,7 +42,7 @@ CREATE TABLE Trip (
 	 timing TIME,
 	 Bus_no VARCHAR REFERENCES Bus(Bus_no),
 	 Driver_id VARCHAR REFERENCES Driver (Driver_id),
-	 trip_id INT REFERENCES Fut_trip,
+	 trip_id INT,
 	 trip_date DATE,
 	 status BOOLEAN DEFAULT FALSE,
 	 route_data varchar
@@ -64,7 +64,7 @@ CREATE TABLE Fut_trip(
 	trip_id Serial PRIMARY KEY,
 	drop_pick boolean ,
 	trip_date DATE,
-	timing TIME
+	timing TIME  --Contains timing to depart or arrive at /from vollege
 );
 
 /* drop_pick 1=> from home

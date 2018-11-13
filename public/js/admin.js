@@ -1,4 +1,6 @@
+
 $(document).ready(function(){
+
 
     function selectTab(id) {
         var others = document.getElementsByClassName("hide");
@@ -33,9 +35,18 @@ $(document).ready(function(){
     }
     renderTrips = (trips) => {
         var trackTripsTab = document.getElementById('track-trips-tab');
-        while (trackTripsTab.firstChild) {
-          trackTripsTab.removeChild(trackTripsTab.firstChild);
-        }
+        var temp=trackTripsTab;
+
+        while (temp.firstChild) {
+          var x=trackTripsTab.firstChild;
+          if(typeof(x)!='undefined')
+          {  console.log("Id= ",x.id);
+              if(x.id!='map')
+                temp.removeChild(temp.firstChild);
+              else
+                temp=temp.firstChild;
+          }
+      }
         for(var tripIndex=0 ; tripIndex < trips.length ; tripIndex++) {
             var trip = document.createElement('div');
             trip.className = 'approve-student';
@@ -50,25 +61,35 @@ $(document).ready(function(){
                             <div><p>Number of Students : ${trips[tripIndex].noofstudents}</p></div>
                         </div>
                         <div class="approve-student-buttons">
-                            <button id="button-trips${trips[tripIndex].routenumber}">Track Location</button>
+                            <button id="button-trips">Track Location</button>
                         </div>
                             `;
             trackTripsTab.appendChild(trip);
             console.log("Temp is "+temp);
-            $(`#button-trips${trips[tripIndex].routenumber}`).on('click',()=>{
-              console.log("Clicked " +this.id);
-              getTripDetails(`/getTripDetails/${temp}`);
 
-            });
 
         }
+        $(`#button-trips`).on('click',()=>{
+          console.log("clicked");
+          getTripDetails(`/getTripDetails/1`);
+
+        });
 
 
 
     }
     renderMap = (json) =>{
-      console.log(json);
-    }
+      document.write('<script>initMap()</script>');
+
+      var trackTripsTab = document.getElementById('track-trips-tab');
+      var temp=trackTripsTab;
+
+
+      }
+
+
+
+  
 
     getTripDetails = (url) => {
         $.ajax({

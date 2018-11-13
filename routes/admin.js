@@ -18,8 +18,8 @@ adminRouter.get('/userList', (req, res, next) => {
 });
 adminRouter.get('/getTripDetails/:route_no',(req,res,next) =>
 {
-  console.log("Sent trip number ",req.route_no);
-  tripJson(req.route_no)
+  console.log("Sent trip number ",req.params.route_no);
+  tripJson(req.params.route_no)
   .then(result=>
   {
     console.log(result);

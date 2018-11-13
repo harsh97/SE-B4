@@ -3,6 +3,7 @@ var distance = require('euclidean-distance')
 var http = require('http');
 var fs = require('fs');
 const config = require('../config');
+var Moment = require('moment');
 const googleMapsClient = require('@google/maps').createClient({
   key: 'AIzaSyCCtwx1FLuy40tqWrXIBIxhxwCI-f71wXw',
   Promise: Promise
@@ -48,12 +49,16 @@ const tripJson = (routeNumber)=>
       clientTrip.query(get_json)
       .then((res)=>
       {
-        var file = fs.createWriteStream("file.jpg");
-        var request = http.get(res.rows[0].route_data, function(response) {
-          response.pipe(file);
-          resolve(file);
-        });
+        var request = require('request');
+        request(res.rows[0].route_data, function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+             var importedJSON = JSON.parse(body);
+             console.log(importedJSON);
+             resolve(importedJSON);
+          }
+        })
       })
+
     })
   })
 
@@ -63,7 +68,7 @@ const updateTrips = (user) => {
 
   const getTripId = () =>{
     return new Promise((resolve,reject) =>{
-      const get_trip_id='select trip_id from  Fut_trip order by  trip_date,timing';
+      const get_trip_id='select * from  Fut_trip order by  trip_date,timing';
       const clientTrip = new pg.Client(config);
       clientTrip.connect()
       .then(()=>
@@ -73,7 +78,7 @@ const updateTrips = (user) => {
         {
           clientTrip.end();
           console.log("current trip_id= "+res.rows[0].trip_id);
-          resolve(res.rows[0].trip_id);
+          resolve(res);
         },function(err)
         {
           clientTrip.end();
@@ -194,6 +199,7 @@ const updateTrips = (user) => {
     return clusters;
   }
   const calcRoutes = (cluster,res1,dict,i,res)=>{
+    console.log("points =",cluster.points);
     googleMapsClient.directions({
       origin: [12.934528, 77.533794],
       destination: [12.934528, 77.533794],
@@ -205,49 +211,86 @@ const updateTrips = (user) => {
 
 
     }) .asPromise()
-    .then((response) => {
-      // console.log(response.json);
+    .then((route_data) => {
+      console.log(route_data.json);
+
       const dbConn = new pg.Client(config);
       dbConn.connect();
       // console.log(response.requestUrl);
         res=res+i;
         console.log("res1= "+res1[0].rows[i].driver_id);
-        const storeTrip = `INSERT INTO Trip (route_no,No_of_stu, timing, Bus_no, Driver_id, trip_id,trip_date,route_data) VALUES(${res},${cluster.points.length},'8:00:00', '${res1[1].rows[i].bus_no}', '${res1[0].rows[i].driver_id}',1,'2018-11-12','${response.requestUrl}')`;
+        getTripId()
+        .then((fut_trip)=>
+        {
+          var durationObj=route_data.json.routes[0].legs;
+          var total_duration=0;
+          var datetime = Moment(fut_trip.rows[0].timing,'HH:mm:ss');
 
-
-        dbConn.query(storeTrip)
-        .then(res1=>{
-          // console.log(res1.rows[0]['max']);
-          for(var i=0;i<cluster.points.length;i++)
+          for(var iter=0;iter<durationObj.length;iter++)
           {
-            // console.log("key used= "+cluster.points[i][0]+''+cluster.points[i][1]);
-            var uid=dict[cluster.points[i][0]+''+cluster.points[i][1]].pop();
-
-            const store_stu_trip = `update stu_trip_data set route_no=${res} where uid = ${uid}`;
-
-            dbConn.query(store_stu_trip)
-            .then(res=>
-              {
-                console.log("Success");
-              })
+            total_duration+=durationObj[iter].duration.value;
           }
+          var bus_time=datetime.subtract(total_duration,'seconds')
+          console.log(bus_time);
+          var date=fut_trip.rows[0].trip_date.getFullYear()+'-'+fut_trip.rows[0].trip_date.getMonth()+'-'+fut_trip.rows[0].trip_date.getDate();
+          console.log(typeof(fut_trip.rows[0].trip_date));
+          var time=bus_time.hour()+":"+bus_time.minute()+":"+bus_time.second();
+          const storeTrip = `INSERT INTO Trip (route_no,No_of_stu, timing, Bus_no, Driver_id, trip_id,trip_date,route_data) VALUES(${res},${cluster.points.length},'${time}','${res1[1].rows[i].bus_no}', '${res1[0].rows[i].driver_id}',${fut_trip.rows[0].trip_id},'${date}','${route_data.requestUrl}')`;
 
 
-        })
+          dbConn.query(storeTrip)
+          .then(res1=>{
+            // console.log(res1.rows[0]['max']);
+
+            console.log("Total_duration=",total_duration);
+            for(var i=0;i<cluster.points.length;i++)
+            {
+              // console.log("key used= "+cluster.points[i][0]+''+cluster.points[i][1]);
+              var uid=dict[cluster.points[i][0]+''+cluster.points[i][1]].pop();
+              var wp_order=route_data.json.routes[0].waypoint_order;
+              var wp_index=0;
+              var stu_time=Moment(bus_time);
+              for(var itrer=0;iter<wp_order.length;iter++)
+              {
+                if (wp_order[iter]==i)
+                {
+                  wp_index=iter;
+
+                  break;
+                }
+              }
+
+              var durationObj=route_data.json.routes[0].legs;
+
+              var temp=0;
+              for(var iter=0;iter<wp_index+1;iter++)
+              {
+                  temp+=durationObj[iter].duration.value;
+                  console.log("Temp=",temp);
+              }
+
+              stu_time=stu_time.add(temp,'seconds');
+              var time=stu_time.hour()+":"+stu_time.minute()+":"+stu_time.second();
+              console.log("Time for student ",stu_time);
+              const store_stu_trip = `update stu_trip_data set route_no=${res} , timing='${time}'where uid = ${uid}`;
+
+              dbConn.query(store_stu_trip)
+              .then(res=>
+                {
+                  console.log("Success");
+                })
+            }
+
+
+          })
 
       })
-      .catch(err=>{
-        console.log("Error "+err);
-      })
 
-
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+  })
+}
   var dataset = new Array();
   const clientTrip = new pg.Client(config);
-  const getCoordsQuery = 'select uid,latitude,longitude from stu_trip_data';
+
   return new Promise((resolve,reject) => {
       clientTrip.connect()
         .then(() =>
@@ -293,12 +336,14 @@ const updateTrips = (user) => {
                       clientTrip.query('delete from trip')
                       .then(()=>{
                         clientTrip.end();
+                        var skipCount=0;
                         for(var i=0;i<clusters.length;i++)
                         {
 
                           if(typeof(clusters[i])!='undefined')
-                            calcRoutes(clusters[i],res1,dict,i,0);
-
+                            calcRoutes(clusters[i],res1,dict,i-skipCount,0);
+                          else
+                            skipCount+=1;
                         }
                       })
                     });

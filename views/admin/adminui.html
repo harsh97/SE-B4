@@ -9,6 +9,14 @@
         <link href="/css/mainui.css" rel="stylesheet">
         <link href="/css/adminui.css" rel="stylesheet">
         <title>Administration Dashboard</title>
+        <style>
+            #map {
+          height: 100%;
+          float: left;
+          width: 70%;
+          height: 100%;
+          }
+        </style>
     </head>
     <body>
         <div class="fluid-container">
@@ -97,14 +105,32 @@
                             </div>
                             <div id="track-trips-tab" class="hide">
                                 <div class="section-title"><center><h1>Track Trips</h1></center></div>
+                                <div id="map"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+        function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var x =document.getElementById('map');
+        x.style.display="block";
+        var map = new google.maps.Map(x          , {
+          zoom: 6,
+          center: {lat: 41.85, lng: -87.65}
+        });
+        directionsDisplay.setMap(map);
+        // directionsDisplay.setDirections(json);
+
+      }
+      </script>
+        <script src ="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCtwx1FLuy40tqWrXIBIxhxwCI-f71wXw&callback"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
         <script src="/js/admin.js"></script>
+
     </body>
 </html>
