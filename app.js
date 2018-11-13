@@ -5,6 +5,7 @@ const server = express();
 require('dotenv').config();
 
 const admin = require('./routes/admin');
+const driver = require('./routes/driver');
 const sos = require('./routes/sos');
 const signUp = require('./routes/signup');
 const login = require('./routes/login');
@@ -21,6 +22,7 @@ server.engine('.html',require('ejs').__express);
 server.set('views',path.join(__dirname,'views/'));
 server.set('view engine','html');
 
+server.use('/',driver);
 server.use('/',admin);
 server.use('/',sos);
 server.use('/',login);

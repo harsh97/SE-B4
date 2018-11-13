@@ -8,9 +8,14 @@
 
         <link href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css" rel="stylesheet">
         <link href="/css/mainui.css" rel="stylesheet">
+        <style>
+            #map {
+                height: 400px;
+              }
+        </style>
         <title>Driver Dashboard</title>
     </head>
-    <body>
+    <body onload="getLocation()">
         <div class="container">
             <aside class="sidebar z-2 csidebar" data-role="sidebar" data-toggle="#sidebar-toggle" id="sb1">
                 <div class="sidebar-header csidebar-header" data-image="/img/bggravatar.png" style="background-image:url('/img/bggravatar');"> 
@@ -21,7 +26,7 @@
                         <img data-role="gravatar" src="/img/user.png" data-role-gravatar="true">
                     </div>
                     <span class="title fg-white"><%= user.name%></span>
-                    <span class="subtitle fg-white"><%= user.dId%></span>
+                    <span class="subtitle fg-white" id="driverId"><%= user.dId%></span>
                 </div>
                 <ul class="sidebar-menu">
                         <li><a><span class="mif-home fg-red icon"></span>Profile</a></li>
@@ -43,17 +48,23 @@
                                 data-collapsible="true" data-cls-panel="shadow-3" data-cls-title="bg-red fg-white"
                                 data-cls-title-icon="bg-green fg-white" data-cls-content="bg-grey fg-white"
                                 data-cls-collapse-toggle="bg-dark fg-white marker-light">
-                                
+                                <% if(user.driverTrips[0] != null) {%>
                                 <div class="p-2">
                                     <ul data-role="listview" class="mb-2 rounded newnode disabled fg-black">
                                         <li data-icon="<span class='mif-map'></span>" data-caption="Route-No. : "><%= user.driverTrips[0].route_no%></li>
                                         <li data-icon="<span class='mif-bus'></span>" data-caption="Vehicle-No. : "><%= user.driverTrips[0].bus_no%></li>
                                         <li data-icon="<span class='mif-users'></span>" data-caption="Students Count : "><%= user.driverTrips[0].no_of_stu%></li>
-                                        <li data-icon="<span class='mif-calendar'></span>" data-caption="Date : "></li>
+                                        <li data-icon="<span class='mif-calendar'></span>" data-caption="Date : "><%= new Date(user.driverTrips[0].trip_date).toDateString()%></li>
                                         <li data-icon="<span class='mif-alarm'></span>" data-caption="Time : "><%= user.driverTrips[0].timing%></li>
                                     </ul>
-                                    <button class="button bg-green rounded drop-shadow fg-white">Track Location</button>
+                                    <button class="button bg-green rounded drop-shadow fg-white" id="trackLocation" >Track Location</button>
+                                    <div id="map"></div>
                                 </div>
+                                <% } else {%>
+                                    <div class="p-2">
+                                            No ongoing Trips
+                                    </div>
+                                <% } %>
                             </div>
                         </div>
                     </div>
@@ -62,5 +73,9 @@
         </div>
         <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="/js/driverTrackLocation.js"></script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCtwx1FLuy40tqWrXIBIxhxwCI-f71wXw&callback=initMap">
+        </script>    
     </body>
 </html>
