@@ -8,11 +8,10 @@ function initMap(e) {
     directionsDisplay.setMap(map);
 
     document.getElementById('trackLocation').addEventListener('click', function() {
+        console.log(e);
         calculateAndDisplayRoute(directionsService, directionsDisplay, e);
     });
 }
-
-    
 
 function displayError(err) {
     console.log(err);
