@@ -1,7 +1,5 @@
 
 $(document).ready(function(){
-
-
     function selectTab(id) {
         var others = document.getElementsByClassName("hide");
         for (var i = 0; i < others.length; i++) {
@@ -31,8 +29,19 @@ $(document).ready(function(){
         }
     }
     updateTrips = (trips) => {
-
     }
+    
+    renderUsers1 = (users) => {
+        var userApprovalTab = document.getElementById('myUL');
+        for(var Index=0 ; Index < users.length ; Index++) {
+            var User = document.createElement('li');
+            User.innerHTML = `
+            <div><p class="users">${users[Index].name}</p></div>
+                `;
+            userApprovalTab.appendChild(User);
+        }
+    }
+
     renderTrips = (trips) => {
         var trackTripsTab = document.getElementById('track-trips-tab');
         var temp=trackTripsTab;
@@ -60,36 +69,18 @@ $(document).ready(function(){
                             <div><p>Time : ${trips[tripIndex].timing}</p></div>
                             <div><p>Number of Students : ${trips[tripIndex].noofstudents}</p></div>
                         </div>
-                        <div class="approve-student-buttons">
-                            <button id="button-trips">Track Location</button>
-                        </div>
                             `;
             trackTripsTab.appendChild(trip);
-            console.log("Temp is "+temp);
-
-
         }
-        $(`#button-trips`).on('click',()=>{
-          console.log("clicked");
-          getTripDetails(`/getTripDetails/1`);
-
-        });
-
-
-
     }
+
     renderMap = (json) =>{
       document.write('<script>initMap()</script>');
 
       var trackTripsTab = document.getElementById('track-trips-tab');
       var temp=trackTripsTab;
 
-
       }
-
-
-
-  
 
     getTripDetails = (url) => {
         $.ajax({
@@ -99,6 +90,22 @@ $(document).ready(function(){
             error:displayError
         });
     }
+    function blockStudents () {
+        var get1 = document.getElementById("myInput").value;
+       var data = { AId : get1,Func:"block"};
+       var url = '/admin/block';  
+       adminBlockRequest(data, url);
+    }
+
+    getToBlock = (url) => {
+        $.ajax({
+            url:url,
+            method:'GET',
+            success:renderUsers1,
+            error:displayError
+        });
+    }
+
     getUsersRequest = (url) => {
         $.ajax({
             url:url,
@@ -131,6 +138,7 @@ $(document).ready(function(){
     });
 
     $('#block-user').on('click',() => {
+        getToBlock('/blockUserList');
         selectTab('block-user-tab')
     });
 
@@ -138,13 +146,17 @@ $(document).ready(function(){
         selectTab('student-approval-tab')
     });
 
-    $('#confirmBlock').on('click',() => {
+    $('body').on('click','#confirmBlock',( function() { 
         ConfirmBlock();
-    });
+    }));
 
     removeStudent = (student) => {
         alert("Approved the student successfully");
         $("#" +student.Id).remove();
+    }
+
+    blockStudent = (student) => {
+        alert("blocked the student successfully");
     }
 
     $('#student-approval').on('click',() => {
@@ -166,6 +178,7 @@ $(document).ready(function(){
             {
                 caption: "Yes",
                 cls: "js-dialog-close alert",
+               onclick:blockStudents,
             },
             {
                 caption: "No",
@@ -176,7 +189,7 @@ $(document).ready(function(){
     }
 
     SearchFilter = () => {
-        var input, filter, ul, li, a, i, x;
+        var input, filter, ul, li, i, x;
         input = document.getElementById("myInput");
         x=input.value;
         ul = document.getElementById("myUL");
@@ -216,10 +229,26 @@ adminRequest = (data, url) => {
     });
 }
 
+adminBlockRequest = (data, url) => {
+    $.ajax({
+        async: true,
+        url:url,
+        data:data,
+        method:'POST',
+        success:blockStudent,
+        error:displayError
+    });    
+}
+
 
 $('body').on('click','.approve',( function() {
     get1=$(this).parent().parent().children().children().children('span').text();
     var data = { AId : get1,Func:"approve"};
     var url = '/admin/approve';
     adminRequest(data, url);
+}));
+
+$('body').on('click','.users',( function() {
+   def1 =$(this).text();
+   $("#myInput").val(def1);
 }));

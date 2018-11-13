@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var map = new L.Map('map', { zoom: 9, center: new L.latLng([12.971599, 77.594566]), zoomControl: false });
+    var map = new L.Map('leafletMap', { zoom: 9, center: new L.latLng([12.971599, 77.594566]), zoomControl: false });
 
     map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));	//base layer
     

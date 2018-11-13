@@ -47,7 +47,7 @@ const fetchDriverTrips = (userdID) => {
 
 const fetchCurrentTrips = (userUSN) => {
     const clientTrip = new pg.Client(config);
-    const futureTripQuery = `SELECT trip.bus_no, driver.driver_name, driver.mobile_no, trip.timing, (select getCurentLocation('${userUSN}'))FROM stu_trip_data, trip, driver WHERE stu_trip_data.route_no = trip.route_no AND stu_trip_data.uid = (select uid from usn_uid where usn='${userUSN}') AND trip.driver_id = driver.driver_id;`;
+    const futureTripQuery = `SELECT trip.bus_no, driver.driver_name, driver.mobile_no, trip.timing, (select getPickUpLocation('${userUSN}')) as getcurentlocation FROM stu_trip_data, trip, driver WHERE stu_trip_data.route_no = trip.route_no AND stu_trip_data.uid = (select uid from usn_uid where usn='${userUSN}') AND trip.driver_id = driver.driver_id;`;
     resUser.CurrentTrip = null;
     return new Promise((resolve, reject) => {
         clientTrip.connect()

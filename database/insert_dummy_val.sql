@@ -2,38 +2,35 @@
 
 /*Adding values to stu_per_data for students who have registred but not yet payed fee*/
 
--- INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
--- VALUES ('01FB15ECS001' ,'ASHA', 'asha@gmail.com', 'Parent Name', '9999999999' ,'9008912129', 37.4238253802915, -122.0829009197085, 'asha');
---
--- INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
--- VALUES ('01FB15ECS002' ,'BRAZ', 'braz@gmail.com',  'Parent Name', '9999999999', '8365100089', 12.971599, 77.594566, 'braz');
---
--- INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
--- VALUES ('01FB15ECS003' ,'CARAWAY', 'caraway@gmail.com',  'Parent Name', '9999999999', '9000156662', 12.295810, 76.639381, 'caraway');
---
--- INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
--- VALUES ('01FB15ECS004' ,'DRACULA', 'dracula@gmail.com',  'Parent Name', '9999999999', '6000018888', 17.385044, 78.486671, 'dracula');
---
--- INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
--- VALUES ('01FB15ECS005' ,'EPSILON', 'epsilon@gmail.com', 'Parent Name', '9999999999', '7893214567', 36.204823, 138.252930, 'epsilon');
---
--- INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
--- VALUES ('01FB15ECS006' ,'FATOOSH', 'fatoosh@gmail.com', 'Parent Name', '9999999999', '9547619998', 35.861660, 104.195396, 'fatoosh');
---
--- INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
--- VALUES ('01FB15ECS007' ,'GRAY', 'gray@gmail.com', 'Parent Name', '9999999999', '8796573241', 40.339851,127.510094, 'gray');
---
--- INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
--- VALUES ('01FB15ECS08' ,'HADIPPA', 'hadippa@gmail.com', 'Parent Name', '9999999999', '7128967554', 35.907757, 127.766922, 'hadippa');
---
--- INSERT INTO Stu_Per_Data (USN ,Name,Email,  Parent_name, Par_Mobile_No,Mobile_No, latitude, longitude,password)
--- VALUES ('01FB15ECS009' ,'IONA', 'iona@gmail.com', 'Parent Name', '9999999999', '7463528940', 18.109581, -77.297508, 'iona');
---
--- INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
--- VALUES ('01FB15ECS010' ,'JACK', 'jack@gmail.com', 'Parent Name', '9999999999', '9034278012', 48.856613, 2.352222, 'jack');
+INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
+VALUES ('01FB15ECS001' ,'ASHA', 'asha@gmail.com', 'Parent Name', '9999999999' ,'9008912129', 37.4238253802915, -122.0829009197085, 'asha');
 
+INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
+VALUES ('01FB15ECS002' ,'BRAZ', 'braz@gmail.com',  'Parent Name', '9999999999', '8365100089', 12.971599, 77.594566, 'braz');
 
+INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
+VALUES ('01FB15ECS003' ,'CARAWAY', 'caraway@gmail.com',  'Parent Name', '9999999999', '9000156662', 12.295810, 76.639381, 'caraway');
 
+INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
+VALUES ('01FB15ECS004' ,'DRACULA', 'dracula@gmail.com',  'Parent Name', '9999999999', '6000018888', 17.385044, 78.486671, 'dracula');
+
+INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
+VALUES ('01FB15ECS005' ,'EPSILON', 'epsilon@gmail.com', 'Parent Name', '9999999999', '7893214567', 36.204823, 138.252930, 'epsilon');
+
+INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
+VALUES ('01FB15ECS006' ,'FATOOSH', 'fatoosh@gmail.com', 'Parent Name', '9999999999', '9547619998', 35.861660, 104.195396, 'fatoosh');
+
+INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
+VALUES ('01FB15ECS007' ,'GRAY', 'gray@gmail.com', 'Parent Name', '9999999999', '8796573241', 40.339851,127.510094, 'gray');
+
+INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
+VALUES ('01FB15ECS08' ,'HADIPPA', 'hadippa@gmail.com', 'Parent Name', '9999999999', '7128967554', 35.907757, 127.766922, 'hadippa');
+
+INSERT INTO Stu_Per_Data (USN ,Name,Email,  Parent_name, Par_Mobile_No,Mobile_No, latitude, longitude,password)
+VALUES ('01FB15ECS009' ,'IONA', 'iona@gmail.com', 'Parent Name', '9999999999', '7463528940', 18.109581, -77.297508, 'iona');
+
+INSERT INTO Stu_Per_Data (USN ,Name,Email, Parent_name, Par_Mobile_No, Mobile_No, latitude, longitude,password)
+VALUES ('01FB15ECS010' ,'JACK', 'jack@gmail.com', 'Parent Name', '9999999999', '9034278012', 48.856613, 2.352222, 'jack');
 
 
 
@@ -714,12 +711,49 @@ INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_
 
 
 
---
--- SELECT locChanges('01FB15ECS083', 2 , 12.3473464, 13.67856432);
--- SELECT locChanges('01FB15ECS084', 2 , 12.8743468, 13.43443552);
--- SELECT locChanges('01FB15ECS093', 1 , 12.3473464, 13.67856432);
--- -- SELECT locChanges('01FB15ECS098', 5 , 12.74843468,11.43443552);
--- SELECT locChanges('01FB15ECS068', 3 , 12.8233464, 12.67856432);
--- SELECT locChanges('01FB15ECS069', 4 , 12.9933468, 13.43443552);
--- SELECT locChanges('01FB15ECS089', 1 , 12.5663464, 11.63456432);
--- SELECT locChanges('01FB15ECS089', 2 , 12.3443468, 12.34443552);
+SELECT locChanges('01FB15ECS083', 2 , 12.3473464, 13.67856432);
+SELECT locChanges('01FB15ECS084', 2 , 12.8743468, 13.43443552);
+SELECT locChanges('01FB15ECS093', 1 , 12.3473464, 13.67856432);
+SELECT locChanges('01FB15ECS098', 5 , 12.74843468,11.43443552);
+SELECT locChanges('01FB15ECS068', 3 , 12.8233464, 12.67856432);
+SELECT locChanges('01FB15ECS069', 4 , 12.9933468, 13.43443552);
+SELECT locChanges('01FB15ECS089', 1 , 12.5663464, 11.63456432);
+SELECT locChanges('01FB15ECS090', 2 , 12.3443468, 12.34443552);
+SELECT locChanges('01FB15ECS091', 1 , 12.5663464, 11.63456432);
+SELECT locChanges('01FB15ECS092', 2 , 12.3443908, 12.34443552);
+
+
+
+
+SELECT changeTime('01FB15ECS061', 1, '13:00:00');
+SELECT changeTime('01FB15ECS062', 2, '15:00:00');
+SELECT changeTime('01FB15ECS061', 1, '18:00:00');
+SELECT changeTime('01FB15ECS067', 3, '13:00:00');
+SELECT changeTime('01FB15ECS069', 6, '15:00:00');
+SELECT changeTime('01FB15ECS070', 8, '18:00:00');
+SELECT changeTime('01FB15ECS081', 1, '18:00:00');
+SELECT changeTime('01FB15ECS082', 3, '12:00:00');
+SELECT changeTime('01FB15ECS089', 6, '11:00:00');
+SELECT changeTime('01FB15ECS092', 9, '19:00:00');
+SELECT changeTime('01FB15ECS095', 7, '18:00:00');
+SELECT changeTime('01FB15ECS097', 5, '12:00:00');
+SELECT changeTime('01FB15ECS083', 4, '11:00:00');
+SELECT changeTime('01FB15ECS090', 4, '19:00:00');
+
+
+
+SELECT studentCancels('01FB15ECS083',2) ;
+SELECT studentCancels('01FB15ECS081',1) ;
+SELECT studentCancels('01FB15ECS063',1) ;
+SELECT studentCancels('01FB15ECS078',1) ;
+SELECT studentCancels('01FB15ECS083',2) ;
+SELECT studentCancels('01FB15ECS074',2) ;
+SELECT studentCancels('01FB15ECS075',1) ;
+SELECT studentCancels('01FB15ECS076',7) ;
+SELECT studentCancels('01FB15ECS077',7) ;
+SELECT studentCancels('01FB15ECS078',7) ;
+SELECT studentCancels('01FB15ECS090',8) ;
+SELECT studentCancels('01FB15ECS091',8) ;
+SELECT studentCancels('01FB15ECS092',9) ;
+SELECT studentCancels('01FB15ECS093',9) ;
+SELECT studentCancels('01FB15ECS094',9) ;
