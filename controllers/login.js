@@ -17,7 +17,7 @@ var resUser = {};
  */
 const fetchDriverTrips = (userdID) => {
     const clientTrip = new pg.Client(config);
-    const futureTripQuery = `SELECT Route_no,No_of_stu,Bus_no,timing from Trip where Trip.driver_id='${userdID}'`;
+    const futureTripQuery = `SELECT Route_no,No_of_stu,Bus_no,timing,trip_date from Trip where Trip.driver_id='${userdID}'`;
     return new Promise((resolve, reject) => {
         clientTrip.connect()
         .then(() => 
@@ -47,7 +47,7 @@ const fetchDriverTrips = (userdID) => {
 
 const fetchCurrentTrips = (userUSN) => {
     const clientTrip = new pg.Client(config);
-    const futureTripQuery = `SELECT trip.bus_no, driver.driver_name, driver.mobile_no, trip.timing, (select getCurentLocation('${userUSN}'))FROM stu_trip_data, trip, driver WHERE stu_trip_data.route_no = trip.route_no AND stu_trip_data.uid = (select uid from usn_uid where usn='${userUSN}') AND trip.driver_id = driver.driver_id;`;
+    const futureTripQuery = `SELECT trip.bus_no, driver.driver_name, driver.mobile_no, trip.timing, (select getPickUpLocation('${userUSN}')) as getcurentlocation FROM stu_trip_data, trip, driver WHERE stu_trip_data.route_no = trip.route_no AND stu_trip_data.uid = (select uid from usn_uid where usn='${userUSN}') AND trip.driver_id = driver.driver_id;`;
     resUser.CurrentTrip = null;
     return new Promise((resolve, reject) => {
         clientTrip.connect()
@@ -90,7 +90,7 @@ const fetchFutureTrips = (userUSN) => {
                             WHERE Fut_trip.trip_id NOT IN (
                             SELECT Cancel_trip.trip_id FROM Cancel_trip
                             INNER JOIN USN_UID ON Cancel_trip.UID = USN_UID.UID
-                            WHERE USN_UID.USN = '${userUSN}') 
+                            WHERE USN_UID.USN = '${userUSN}') AND Fut_trip.trip_id NOT IN (SELECT trip_id FROM trip) 
                             ORDER BY Fut_trip.trip_id
                             limit 10;`;
     return new Promise((resolve, reject) => {

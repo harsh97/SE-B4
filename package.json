@@ -12,14 +12,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/maps": "^0.5.5",
     "body-parser": "^1.18.3",
+    "clusters": "0.0.4",
     "dotenv": "^6.1.0",
     "ejs": "^2.6.1",
+    "euclidean-distance": "^1.0.0",
     "express": "^4.16.3",
 
     "moment": "^2.22.2",
 
+
     "jest": "^23.6.0",
+
 
     "node-geocoder": "^3.22.0",
     "nodemailer": "^4.6.8",
@@ -28,7 +33,9 @@
 
     "request": "^2.88.0",
 
+
     "supertest": "^3.3.0",
+
 
     "twilio": "^3.23.2"
   },

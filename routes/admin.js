@@ -1,8 +1,8 @@
 const express = require('express');
 const adminRouter = express.Router();
 
-const { approveUser, blockUser ,getUsers, getTrips, updateTrips,tripJson} = require('../controllers/admin');
 
+const { approveUser, blockUser ,getUsers, getTrips, getBlockUsers, updateTrips, tripJson } = require('../controllers/admin');
 
 const { sendEmail } = require('../controllers/login');
 adminRouter.get('/userList', (req, res, next) => {

@@ -1,7 +1,5 @@
 
 $(document).ready(function(){
-
-
     function selectTab(id) {
         var others = document.getElementsByClassName("hide");
         for (var i = 0; i < others.length; i++) {
@@ -32,6 +30,8 @@ $(document).ready(function(){
     }
     updateTrips = (trips) => {
 
+    }
+    
     renderUsers1 = (users) => {
         var userApprovalTab = document.getElementById('myUL');
         for(var Index=0 ; Index < users.length ; Index++) {
@@ -42,6 +42,7 @@ $(document).ready(function(){
             userApprovalTab.appendChild(User);
         }
     }
+
 
     renderTrips = (trips) => {
         var trackTripsTab = document.getElementById('track-trips-tab');
@@ -73,32 +74,16 @@ $(document).ready(function(){
 
                             `;
             trackTripsTab.appendChild(trip);
-            console.log("Temp is "+temp);
-
-
         }
-        $(`#button-trips`).on('click',()=>{
-          console.log("clicked");
-          getTripDetails(`/getTripDetails/1`);
-
-        });
-
-
-
     }
+
     renderMap = (json) =>{
       document.write('<script>initMap()</script>');
 
       var trackTripsTab = document.getElementById('track-trips-tab');
       var temp=trackTripsTab;
 
-
       }
-
-
-
-
-  
 
     getTripDetails = (url) => {
         $.ajax({

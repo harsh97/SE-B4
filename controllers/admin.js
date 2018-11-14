@@ -1,15 +1,65 @@
 const pg = require('pg');
-var distance = require('euclidean-distance')
-var http = require('http');
-var fs = require('fs');
+const Moment = require('moment');
+const distance = require('euclidean-distance')
 const config = require('../config');
-var Moment = require('moment');
+const clusterMaker = require('clusters');
 const googleMapsClient = require('@google/maps').createClient({
   key: 'AIzaSyCCtwx1FLuy40tqWrXIBIxhxwCI-f71wXw',
   Promise: Promise
 });
-var clusterMaker = require('clusters');
 var resUser = {};
+
+const sendMessage = (mobile_no,time,driver_name,driver_number) => {
+  // console.log(`Hi\n Your trip has been booked.\nDriver will arrive at ${time}.\nDriver Name :- ${driver_name}.\n Driver Contact Details :- ${driver_number}\n`);
+  // console.log(mobile_no);
+  const accountSid = process.env.TWILIO_ACCOUNT_SID ;
+  const authToken = process.env.TWILIO_AUTH_TOKEN ;
+  const client = require('twilio')(accountSid, authToken);
+
+  client.messages
+  .create({
+      body: `Hi\n Your trip has been booked.\nDriver will arrive at ${time}.\nDriver Name :- ${driver_name}.\nDriver Contact Details :- ${driver_number}\n`,
+      from: process.env.TWILIO_PHONE_NO,
+      to: mobile_no
+  })
+  .then(message => {
+      console.log(message.sid)
+  })
+  .catch(err => {
+  })
+  .done();
+}
+
+const notifyStudent = (route_no, time, uid) => {
+  const clientTrip = new pg.Client(config);
+    const fetchQuery = `select mobile_no, driver_name, driver_number from (select mobile_no from stu_per_data where usn = (select usn from usn_uid where uid=${uid}) ) as student cross join 
+    (select driver_name, mobile_no as driver_number from driver where driver_id = (select driver_id from trip where route_no = ${route_no})) as driver`;
+    return new Promise((resolve, reject) => {
+        clientTrip.connect()
+        .then(() =>
+            clientTrip.query(fetchQuery)
+                .then(res => {
+                  res.rows.forEach(row => {
+                    // console.log(row)
+                    sendMessage(row.mobile_no,time,row.driver_name,row.driver_number)
+                  })
+                })
+                .catch(err => {
+                    reject(err);
+                    console.log(`Fetch error: ${err}`);
+                })
+                .then(async () => {
+                    resolve(resUser.AId);
+                    clientTrip.end();
+                })
+        )
+        .catch(err => {
+            reject(err);
+            console.log(`Connection error: ${err}`);
+        });
+    });
+}
+
 
 const approveUser = (userUSN) => {
     const clientTrip = new pg.Client(config);
@@ -291,7 +341,12 @@ const updateTrips = (user) => {
               var time=stu_time.hour()+":"+stu_time.minute()+":"+stu_time.second();
               console.log("Time for student ",stu_time);
               const store_stu_trip = `update stu_trip_data set route_no=${res} , timing='${time}'where uid = ${uid}`;
-              // notifyStudent(uid);
+
+              const notify = false
+              if(notify) {
+                notifyStudent(res, time, uid);
+              }
+
               dbConn.query(store_stu_trip)
               .then(res=>
                 {
@@ -391,6 +446,7 @@ const updateTrips = (user) => {
         });
       });
 }
+
 const blockUser = (userUSN) => {
     const clientTrip = new pg.Client(config);
     const disapproveQuery = `UPDATE Stu_Per_Data SET Status = 'f' WHERE name = '${userUSN.AId}'`;
@@ -501,6 +557,6 @@ const getTrips =  (user) => {
     });
 }
 
-module.exports = { approveUser, blockUser, getUsers, getTrips, updateTrips, tripJson, getBlockUsers};
 
+module.exports = { approveUser, blockUser, getUsers, getTrips, getBlockUsers, updateTrips, tripJson };
 
