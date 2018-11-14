@@ -126,33 +126,23 @@
                                         <button type="button" name="button" class="button info outline cancelHandeller" id="CancelTrip" > Cancel Trip <i class="mif-cancel"></i></button>
                                     </div>
                                     <div class="pr-2">
-                                        <div class="dialog" data-role="dialog" id="ChangeTime">	
-                                            <div class="dialog-title">Change Time</div>	
-                                            <div class="dialog-content">	
-                                                <input data-role="timepicker">	
-                                            </div>	
-                                            <div class="dialog-actions">	
-                                                <button class="button js-dialog-close" id = "ChangeTimeConfirm">Ok</button>	
-                                                <button class="button js-dialog-close">Cancel</button>	
-                                            </div>
-                                        </div>	
-                                        <button type="button" name="button" class="button info outline" onclick="Metro.dialog.open('#ChangeTime')"> Change Time <span class="mif-alarm"></span></button>
-                                    </div>
+                                        <button type="button" name="button" class="button info outline changeTimeHandeller" > Change Time <span class="mif-alarm"></span></button>
+                                    </div> 
                                     <div class="pr-2">
                                         <div class="dialog" data-role="dialog" id="changeAddressClick" style="height:300px">	
                                                 <div class="dialog-title">Change Address</div>	
                                                 <div class="dialog-content" style="height:300px">	
                                                     <div data-role="panel">	
-                                                        <div id="map" style="height:200px"></div>	
-                                                    </div>	
+                                                        <div id="leafletMap" style="height:200px"></div>	
+                                                    </div>
                                                     <input class="mt-4 mb-4 ml-2 mr-2" type="text" data-role="input" id="end" data-prepend="Lat.,Long." style="width:100%!important;" disabled="disabled"/>	
                                                 </div>	
                                                 <div class="dialog-actions">	
-                                                    <button class="button js-dialog-close">Ok</button>	
+                                                    <button class="button js-dialog-close changeAddress">Ok</button>
                                                     <button class="button js-dialog-close">Cancel</button>	
                                                 </div>	
                                         </div>
-                                        <button type="button" name="button" class="button info outline" onclick="Metro.dialog.open('#changeAddressClick')"> Change Address <span class="mif-location-city"></span></button>
+                                        <button type="button" name="button"  class="button info outline changeAddHandeller "> Change Address <span class="mif-location-city"></span></button>
                                     </div>
                                 </div>
                                 <br><br><br> 

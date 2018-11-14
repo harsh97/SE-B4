@@ -1,3 +1,4 @@
+
 CREATE TABLE Stu_Per_Data (
 	USN VARCHAR PRIMARY KEY NOT NULL,
 	Name CHAR(30) NOT NULL,
@@ -44,8 +45,10 @@ CREATE TABLE Trip (
 	 Driver_id VARCHAR REFERENCES Driver (Driver_id),
 	 trip_id INT,
 	 trip_date DATE,
+
 	 status BOOLEAN DEFAULT FALSE,
 	 route_data varchar
+
 
 );
 
@@ -102,3 +105,4 @@ CREATE TABLE College_Loc(
 	PRIMARY KEY(latitude, longitude)
 );
 --INSERT INTO College_Loc VALUES (12.9345,77.5345);
+

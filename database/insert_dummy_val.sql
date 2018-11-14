@@ -714,6 +714,7 @@ INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_
 
 
 
+
 --
 -- SELECT locChanges('01FB15ECS083', 2 , 12.3473464, 13.67856432);
 -- SELECT locChanges('01FB15ECS084', 2 , 12.8743468, 13.43443552);
@@ -723,3 +724,41 @@ INSERT INTO Trip (Route_no, No_of_stu, timing, Bus_no, Driver_id, trip_id, trip_
 -- SELECT locChanges('01FB15ECS069', 4 , 12.9933468, 13.43443552);
 -- SELECT locChanges('01FB15ECS089', 1 , 12.5663464, 11.63456432);
 -- SELECT locChanges('01FB15ECS089', 2 , 12.3443468, 12.34443552);
+--location changes dont have blr co-ordinates
+
+
+
+
+
+SELECT changeTime('01FB15ECS061', 1, '13:00:00');
+SELECT changeTime('01FB15ECS062', 2, '15:00:00');
+SELECT changeTime('01FB15ECS061', 1, '18:00:00');
+SELECT changeTime('01FB15ECS067', 3, '13:00:00');
+SELECT changeTime('01FB15ECS069', 6, '15:00:00');
+SELECT changeTime('01FB15ECS070', 8, '18:00:00');
+SELECT changeTime('01FB15ECS081', 1, '18:00:00');
+SELECT changeTime('01FB15ECS082', 3, '12:00:00');
+SELECT changeTime('01FB15ECS089', 6, '11:00:00');
+SELECT changeTime('01FB15ECS092', 9, '19:00:00');
+SELECT changeTime('01FB15ECS095', 7, '18:00:00');
+SELECT changeTime('01FB15ECS097', 5, '12:00:00');
+SELECT changeTime('01FB15ECS083', 4, '11:00:00');
+SELECT changeTime('01FB15ECS090', 4, '19:00:00');
+
+
+
+SELECT studentCancels('01FB15ECS083',2) ;
+SELECT studentCancels('01FB15ECS081',1) ;
+SELECT studentCancels('01FB15ECS063',1) ;
+SELECT studentCancels('01FB15ECS078',1) ;
+SELECT studentCancels('01FB15ECS083',2) ;
+SELECT studentCancels('01FB15ECS074',2) ;
+SELECT studentCancels('01FB15ECS075',1) ;
+SELECT studentCancels('01FB15ECS076',7) ;
+SELECT studentCancels('01FB15ECS077',7) ;
+SELECT studentCancels('01FB15ECS078',7) ;
+SELECT studentCancels('01FB15ECS090',8) ;
+SELECT studentCancels('01FB15ECS091',8) ;
+SELECT studentCancels('01FB15ECS092',9) ;
+SELECT studentCancels('01FB15ECS093',9) ;
+SELECT studentCancels('01FB15ECS094',9) ;

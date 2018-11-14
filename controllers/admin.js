@@ -393,7 +393,7 @@ const updateTrips = (user) => {
 }
 const blockUser = (userUSN) => {
     const clientTrip = new pg.Client(config);
-    const disapproveQuery = `UPDATE Stu_Per_Data SET Status = 'f' WHERE USN = '${userUSN.AId}'`;
+    const disapproveQuery = `UPDATE Stu_Per_Data SET Status = 'f' WHERE name = '${userUSN.AId}'`;
     return new Promise((resolve, reject) => {
         clientTrip.connect()
         .then(() =>
@@ -444,6 +444,35 @@ const getUsers =  (user) => {
         });
 }
 
+
+const getBlockUsers =  (user) => {
+    var users = [];
+    const client = new pg.Client(config);
+    return new Promise((resolve, reject) => {
+        client.connect()
+            .then(() => {
+                var usersQuery = `SELECT  name as name from Stu_per_data where status='t';`;
+                client.query(usersQuery)
+                    .then((res)=>{
+                        res.rows.forEach(user1 => {
+                            users.push(user1);
+                        })
+                        resolve(users);
+                        client.end();
+                        })
+                        .catch(err => {
+                            console.log(`Fetch error: ${err}`);
+                            reject(err);
+                        });
+                })
+                .catch(err => {
+                   console.log(`Connection error: ${err}`);
+                   reject(err);
+               });
+        }); 
+}
+
+
 const getTrips =  (user) => {
     var trips = [];
     const client = new pg.Client(config);
@@ -472,4 +501,6 @@ const getTrips =  (user) => {
     });
 }
 
-module.exports = { approveUser, blockUser, getUsers, getTrips, updateTrips, tripJson};
+module.exports = { approveUser, blockUser, getUsers, getTrips, updateTrips, tripJson, getBlockUsers};
+
+
