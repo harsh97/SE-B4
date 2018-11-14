@@ -32,7 +32,7 @@ const sendMessage = (mobile_no,time,driver_name,driver_number) => {
 
 const notifyStudent = (route_no, time, uid) => {
   const clientTrip = new pg.Client(config);
-    const fetchQuery = `select mobile_no, driver_name, driver_number from (select mobile_no from stu_per_data where usn = (select usn from usn_uid where uid=${uid}) ) as student cross join 
+    const fetchQuery = `select mobile_no, driver_name, driver_number from (select mobile_no from stu_per_data where usn = (select usn from usn_uid where uid=${uid}) ) as student cross join
     (select driver_name, mobile_no as driver_number from driver where driver_id = (select driver_id from trip where route_no = ${route_no})) as driver`;
     return new Promise((resolve, reject) => {
         clientTrip.connect()
@@ -287,7 +287,7 @@ const updateTrips = (user) => {
           getDropPick(fut_trip.rows[0].trip_id)
           .then((dropPick)=>{
 
-
+          console.log("driop Pick =",dropPick);
           var durationObj=route_data.json.routes[0].legs;
           var total_duration=0;
           var datetime = Moment(fut_trip.rows[0].timing,'HH:mm:ss');
@@ -297,7 +297,7 @@ const updateTrips = (user) => {
             total_duration+=durationObj[iter].duration.value;
           }
           bus_time=datetime;
-          if(dropPick==false)
+          if(dropPick==true)
             var bus_time=datetime.subtract(total_duration,'seconds');
           console.log(bus_time);
           var date=fut_trip.rows[0].trip_date.getFullYear()+'-'+fut_trip.rows[0].trip_date.getMonth()+'-'+fut_trip.rows[0].trip_date.getDate();
@@ -525,7 +525,7 @@ const getBlockUsers =  (user) => {
                    console.log(`Connection error: ${err}`);
                    reject(err);
                });
-        }); 
+        });
 }
 
 
@@ -559,4 +559,3 @@ const getTrips =  (user) => {
 
 
 module.exports = { approveUser, blockUser, getUsers, getTrips, getBlockUsers, updateTrips, tripJson };
-
